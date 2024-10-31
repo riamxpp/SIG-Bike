@@ -20,10 +20,6 @@ void bicicletas(void){
         printf(" Digite a opção desejada: ");
         scanf("%d", &op_bicicleta);
 
-        if (op_bicicleta != 1 || op_bicicleta != 2 || op_bicicleta != 3 || op_bicicleta != 4 || op_bicicleta != 0){
-            break;
-        }
-
         getchar();
         switch (op_bicicleta) {
             case 1:
