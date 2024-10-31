@@ -223,15 +223,24 @@ void atualizarBicicleta(void){
 }
 
 void deletarBicicleta(void){
-    char id[2];
+    int id;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Excluir Bicicleta                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ Informe o ID da bicicleta à excluir:                                          ║\n");
-    printf("║                                                                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("Tecle <ENTER> para continuar...");
+    printf("║ Informe o ID da bicicleta à excluir: ");
+    if (scanf("%d", &id) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
     getchar();
+    printf("║                                                                               ║\n");
+    printf("║                                                                               ║\n");
+    printf("║                       Bicicleta excluída com sucesso                          ║\n");
+    printf("║                                   Aguarde...                                  ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    sleep(1);
 }
