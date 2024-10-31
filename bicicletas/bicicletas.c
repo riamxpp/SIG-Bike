@@ -20,7 +20,12 @@ void bicicletas(void){
         printf("║                                0. Voltar                                      ║\n");
         printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
         printf(" Digite a opção desejada: ");
-        scanf("%d", &op_bicicleta);
+        if (scanf("%d", &op_bicicleta) != 1) {
+            printf("\nEntrada inválida, digite apenas números.  \n");
+            while (getchar() != '\n');
+            getchar();
+            return;
+        }
         getchar();
 
         switch (op_bicicleta) {
