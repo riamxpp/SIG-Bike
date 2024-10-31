@@ -114,6 +114,8 @@ void atualizarBicicleta(void){
 }
 
 void deletarBicicleta(void){
+    char id[2];
+    
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Excluir Bicicleta                               ║\n");
