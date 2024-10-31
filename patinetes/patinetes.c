@@ -151,6 +151,13 @@ void pesquisarPatinete(void){
 }
 
 void atualizarPatinete(void){
+    int id;
+    char modelo[20];
+    char cor[12];
+    char marca[12];
+    char ano[12];
+    char bateria[5];
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                          Atualizar Dados do Patinete                          ║\n");
