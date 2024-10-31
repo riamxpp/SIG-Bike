@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "patinetes.h"
 
 void patinetes(void){
@@ -50,6 +51,7 @@ void patinetes(void){
 void cadastrarPatinete(void){
     int id;
     char modelo[20];
+    char cor[12];
     char marca[12];
     char ano[12];
     char bateria[5];
@@ -59,17 +61,65 @@ void cadastrarPatinete(void){
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ ID: ");
+    if (scanf("%d", &id) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
     printf("║                                                                               ║\n");
-    printf("║ Modelo:                                                                       ║\n");
-    printf("║ Cor:                                                                          ║\n");
-    printf("║ Marca:                                                                        ║\n");
-    printf("║ Ano de Fabricação:                                                            ║\n");
-    printf("║ Bateria (capacidade):                                                         ║\n");
+    printf("║ Modelo: ");
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
+        printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║ Cor:  ");
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor) != 1) {
+        printf("\nEntrada inválida, digite apenas letras.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║ Marca: ");
+    if (scanf("%[A-Za-z0-9@._]", marca) != 1){
+        printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    };
+    getchar();
+    
+    printf("║ Ano de Fabricação: ");
+    if (scanf("%[0-9]/-", ano) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║ Bateria (capacidade): ");
+    if (scanf("%[0-9]", bateria) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
     printf("║                                                                               ║\n");
     printf("║                      Patinete cadastrado com sucesso!                         ║\n");
+    printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
+    sleep(1);
 }
 
 void pesquisarPatinete(void){
