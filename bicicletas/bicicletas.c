@@ -52,7 +52,7 @@ void cadastrarBicicleta(void){
     char tam_quadro[5];
     char cor[20];
     char marca[20];
-    char data[12];
+    char modelo[12];
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -89,6 +89,12 @@ void pesquisarBicicleta(void){
 }
 
 void atualizarBicicleta(void){
+    char id[2];
+    char tam_quadro[5];
+    char cor[20];
+    char marca[20];
+    char modelo[12];
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                          Atualizar Dados da Bicicleta                         ║\n");
