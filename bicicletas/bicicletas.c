@@ -53,6 +53,7 @@ void cadastrarBicicleta(void){
     char cor[20];
     char marca[20];
     char modelo[12];
+    char data[12];
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -71,6 +72,13 @@ void cadastrarBicicleta(void){
 }
 
 void pesquisarBicicleta(void){
+    char id[2];
+    char tam_quadro[5];
+    char cor[20];
+    char marca[20];
+    char modelo[12];
+    char data[12];
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Pesquisar Bicicleta                             ║\n");
@@ -115,7 +123,7 @@ void atualizarBicicleta(void){
 
 void deletarBicicleta(void){
     char id[2];
-    
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Excluir Bicicleta                               ║\n");
