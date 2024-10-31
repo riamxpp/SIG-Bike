@@ -17,8 +17,14 @@ void patinetes(void){
         printf("║                               0. Voltar                                       ║\n");
         printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
         printf(" Digite a opção desejada: ");
-        scanf("%d", &op_patinete);
+        if (scanf("%d", &op_patinete) != 1) {
+            printf("\nEntrada inválida, digite apenas números.  \n");
+            while (getchar() != '\n');
+            getchar();
+            return;
+        }
         getchar();
+        
         switch (op_patinete) {
             case 1:
                 cadastrarPatinete();
