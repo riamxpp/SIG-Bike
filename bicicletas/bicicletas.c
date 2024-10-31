@@ -148,28 +148,78 @@ void pesquisarBicicleta(void){
 }
 
 void atualizarBicicleta(void){
-    char id[2];
+    int id;
     char tam_quadro[5];
     char cor[20];
     char marca[20];
     char modelo[12];
+    char data[12];
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                          Atualizar Dados da Bicicleta                         ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ Informe o ID da Bicicleta:                                                    ║\n");
+    printf("║ Informe o ID da Bicicleta: ");
+
+    if (scanf("%d", &id) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
     printf("║                                                                               ║\n");
     printf("║                           ↪Digite os Novos Dados↩                             ║\n");
-    printf("║ Modelo:                                                                       ║\n");
-    printf("║ Cor:                                                                          ║\n");
-    printf("║ Marca:                                                                        ║\n");
-    printf("║ Ano de Fabricação:                                                            ║\n");
-    printf("║ Tamanho do Quadro:                                                            ║\n");
-    printf("║                                                                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("Tecle <ENTER> para continuar...");
+    printf("║ Modelo: ");
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
+        printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
     getchar();
+
+    printf("║ Cor: ");
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor) != 1) {
+        printf("\nEntrada inválida, digite apenas letras.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║ Marca: ");
+    if (scanf("%[A-Za-z0-9@._]", marca) != 1){
+        printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    };
+    getchar();
+    
+    printf("║ Ano de Fabricação: ");
+    if (scanf("%[0-9]/-", data) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║ Tamanho do Quadro:  ");
+    if (scanf("%[0-9]", tam_quadro) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║                             Bicicleta atualizada                              ║\n");
+    printf("║                                   Aguarde...                                  ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    sleep(1);
 }
 
 void deletarBicicleta(void){
