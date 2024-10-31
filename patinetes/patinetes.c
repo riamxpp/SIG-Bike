@@ -123,6 +123,8 @@ void cadastrarPatinete(void){
 }
 
 void pesquisarPatinete(void){
+    int id;
+    
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Pesquisar Patinete                              ║\n");
