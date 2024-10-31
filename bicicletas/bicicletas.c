@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "bicicletas.h"
 
 void bicicletas(void){
@@ -18,6 +19,11 @@ void bicicletas(void){
         printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
         printf(" Digite a opção desejada: ");
         scanf("%d", &op_bicicleta);
+
+        if (op_bicicleta != 1 || op_bicicleta != 2 || op_bicicleta != 3 || op_bicicleta != 4 || op_bicicleta != 0){
+            break;
+        }
+
         getchar();
         switch (op_bicicleta) {
             case 1:
@@ -42,6 +48,12 @@ void bicicletas(void){
 }
 
 void cadastrarBicicleta(void){
+    char id[2];
+    char tam_quadro[5];
+    char cor[20];
+    char marca[20];
+    char data[12];
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Bicicleta                             ║\n");
@@ -56,8 +68,6 @@ void cadastrarBicicleta(void){
     printf("║                                                                               ║\n");
     printf("║                      Bicicleta cadastrada com sucesso!                        ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
 }
 
 void pesquisarBicicleta(void){
