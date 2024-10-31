@@ -124,12 +124,20 @@ void cadastrarPatinete(void){
 
 void pesquisarPatinete(void){
     int id;
-    
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Pesquisar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ Informe o ID do Patinete:                                                     ║\n");
+    printf("║ Informe o ID do Patinete: ");
+    if (scanf("%d", &id) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+
+    getchar();
     printf("║                                                                               ║\n");
     printf("║ Modelo:                                                                       ║\n");
     printf("║ Cor:                                                                          ║\n");
