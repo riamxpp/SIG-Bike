@@ -5,6 +5,7 @@
 
 void bicicletas(void){
     int op_bicicleta;
+    
     do{
         system("clear||cls");
         printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -19,8 +20,8 @@ void bicicletas(void){
         printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
         printf(" Digite a opção desejada: ");
         scanf("%d", &op_bicicleta);
-
         getchar();
+
         switch (op_bicicleta) {
             case 1:
                 cadastrarBicicleta();
@@ -68,18 +69,22 @@ void cadastrarBicicleta(void){
 }
 
 void pesquisarBicicleta(void){
-    char id[2];
-    char tam_quadro[5];
-    char cor[20];
-    char marca[20];
-    char modelo[12];
-    char data[12];
+    int id;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Pesquisar Bicicleta                             ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ Informe o ID da Bicicleta:                                                    ║\n");
+    printf("║ Informe o ID da Bicicleta:  ");
+    if (scanf("%d", &id) != 1) {
+        printf("\nEntrada inválida, digite um número.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+
+    getchar();
+
     printf("║                                                                               ║\n");
     printf("║ Modelo:                                                                       ║\n");
     printf("║ Cor:                                                                          ║\n");
