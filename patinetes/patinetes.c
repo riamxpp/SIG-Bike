@@ -24,7 +24,7 @@ void patinetes(void){
             return;
         }
         getchar();
-        
+
         switch (op_patinete) {
             case 1:
                 cadastrarPatinete();
@@ -48,11 +48,17 @@ void patinetes(void){
 } 
 
 void cadastrarPatinete(void){
+    int id;
+    char modelo[20];
+    char marca[12];
+    char ano[12];
+    char bateria[5];
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ ID:                                                                           ║\n");
+    printf("║ ID: ");
     printf("║                                                                               ║\n");
     printf("║ Modelo:                                                                       ║\n");
     printf("║ Cor:                                                                          ║\n");
