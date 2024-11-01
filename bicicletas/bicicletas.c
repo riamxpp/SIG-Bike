@@ -99,7 +99,7 @@ void cadastrarBicicleta(void){
     getchar();
 
     printf("║ Ano de Fabricação: ");
-    if (scanf("%[0-9]", data) != 1) {
+    if (scanf("%10[0-9/-]", data) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -204,7 +204,7 @@ void atualizarBicicleta(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    if (scanf("%[0-9]/-", data) != 1) {
+    if (scanf("%10[0-9/-]", data) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
