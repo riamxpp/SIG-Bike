@@ -69,10 +69,7 @@ void pesquisarCliente(void){
 }
 
 void atualizarCliente(void){
-    system("clear||cls");
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                         Atualizar Dados do Cliente                            ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    menuAtualizarCliente();
     printf("║ Digite o CPF do Cliente:                                                      ║\n");
     printf("║                                                                               ║\n");
     printf("║                           ↪Digite os Novos Dados↩                             ║\n");

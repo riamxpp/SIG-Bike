@@ -35,3 +35,10 @@ void menuPesquisarCliente(){
     printf("║                          Pesquisar Dados do Cliente                           ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
 }
+
+void menuAtualizarCliente(void){
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                         Atualizar Dados do Cliente                            ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+}
