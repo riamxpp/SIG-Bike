@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "clientes.h"
+#include <unistd.h>
 
 void clientes(void){
     int op_cliente;
@@ -43,12 +44,19 @@ void clientes(void){
 }
 
 void cadastrarCliente(void){
+    char nome [55];
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                              Cadastrar Cliente                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║                                                                               ║\n");
-    printf("║ Nome:                                                                         ║\n");
+    printf("║ Nome: ");
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome) != 1) {
+        printf("\nEntrada inválida, digite apenas letras.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
     printf("║ CPF:                                                                          ║\n");
     printf("║ Email:                                                                        ║\n");
     printf("║ Fone:                                                                         ║\n");
@@ -58,6 +66,7 @@ void cadastrarCliente(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
+    
 }
 
 void pesquisarCliente(void){
