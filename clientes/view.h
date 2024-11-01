@@ -3,5 +3,6 @@
 
 int menuClientes(void);
 void menuCadastrarCliente(void);
+void menuCadastrarCliente(void);
 
 #endif // VIEW_H
