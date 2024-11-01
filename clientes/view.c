@@ -21,3 +21,10 @@ int menuClientes(void){
         getchar();
     return op_cliente;
 }
+
+int menuCadastrarCliente(){
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                              Cadastrar Cliente                                ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+}
