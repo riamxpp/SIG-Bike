@@ -228,13 +228,24 @@ void atualizarPatinete(void){
 }
 
 void deletarPatinete(void){
+    int id;
+    
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Deletar Patinete                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ Informe o ID do patinete a excluir:                                           ║\n");
-    printf("║                                                                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("Tecle <ENTER> para continuar...");
+    printf("║ Informe o ID do patinete a excluir: ");
+    if (scanf("%d", &id) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
     getchar();
+
+    printf("║                                                                               ║\n");
+    printf("║                          Patinete excluído com sucesso!                       ║\n");
+    printf("║                                   Aguarde...                                  ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    sleep(1);
 }
