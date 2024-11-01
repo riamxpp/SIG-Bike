@@ -6,6 +6,7 @@
 
 void clientes(void){
     int op_cliente;
+    op_cliente = menuClientes();
     do{
         switch (op_cliente) {
             case 1:
@@ -31,10 +32,6 @@ void clientes(void){
 
 void cadastrarCliente(void){
     char nome[55];
-    char cpf[16];
-    char email[30];
-    char fone[15];
-    char dtnas[12];
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                              Cadastrar Cliente                                ║\n");

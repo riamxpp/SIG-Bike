@@ -1,6 +1,6 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-int menuCliente(void);
+int menuClientes(void);
 
 #endif // VIEW_H
