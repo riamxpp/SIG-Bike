@@ -22,7 +22,7 @@ int menuClientes(void){
     return op_cliente;
 }
 
-int menuCadastrarCliente(){
+void menuCadastrarCliente(){
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                              Cadastrar Cliente                                ║\n");
