@@ -4,5 +4,6 @@
 int menuClientes(void);
 void menuCadastrarCliente(void);
 void menuPesquisarCliente(void);
+void menuAtualizarCliente(void);
 
 #endif // VIEW_H
