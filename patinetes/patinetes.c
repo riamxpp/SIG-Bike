@@ -162,19 +162,69 @@ void atualizarPatinete(void){
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                          Atualizar Dados do Patinete                          ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ Informe o ID do Patinete:                                                     ║\n");
+    printf("║ Informe o ID do Patinete: ");
+    if (scanf("%d", &id) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
     printf("║                                                                               ║\n");
     printf("║                           ↪Digite os Novos Dados↩                             ║\n");
-    printf("║ Modelo:                                                                       ║\n");
-    printf("║ Cor:                                                                          ║\n");
-    printf("║ Marca:                                                                        ║\n");
-    printf("║ Ano de Fabricação:                                                            ║\n");
-    printf("║ Bateria (capacidade):                                                         ║\n");
+
     printf("║                                                                               ║\n");
-    printf("║                                                                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("Tecle <ENTER> para continuar...");
+    printf("║ Modelo: ");
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
+        printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
     getchar();
+
+    printf("║ Cor:  ");
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor) != 1) {
+        printf("\nEntrada inválida, digite apenas letras.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║ Marca: ");
+    if (scanf("%[A-Za-z0-9@._]", marca) != 1){
+        printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    };
+    getchar();
+    
+    printf("║ Ano de Fabricação: ");
+    if (scanf("%10[0-9/-]", ano) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║ Bateria (capacidade): ");
+    if (scanf("%[0-9]", bateria) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();
+
+    printf("║                                                                               ║\n");
+    printf("║                      Patinete Atualizado com sucesso!                         ║\n");
+    printf("║                                   Aguarde...                                  ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    sleep(1);
 }
 
 void deletarPatinete(void){
