@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "clientes.h"
 #include <unistd.h>
+#include "view.h"
 
 void clientes(void){
     int op_cliente;

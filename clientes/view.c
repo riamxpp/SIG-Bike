@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "view.h"
 
-void menuClientes(void){
+int menuClientes(void){
     int op_cliente;
     system("clear||cls");
         printf("\n");
