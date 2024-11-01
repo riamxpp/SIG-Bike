@@ -54,10 +54,7 @@ void cadastrarCliente(void){
 }
 
 void pesquisarCliente(void){
-    system("clear||cls");
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                          Pesquisar Dados do Cliente                           ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    menuPesquisarCliente();
     printf("║ Digite o CPF do Cliente:                                                      ║\n");
     printf("║                                                                               ║\n");
     printf("║ Nome:                                                                         ║\n");

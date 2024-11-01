@@ -28,3 +28,10 @@ void menuCadastrarCliente(){
     printf("║                              Cadastrar Cliente                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
 }
+
+void menuPesquisarCliente(){
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                          Pesquisar Dados do Cliente                           ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+}
