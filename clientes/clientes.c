@@ -32,7 +32,7 @@ void clientes(void){
 
 void cadastrarCliente(void){
     char nome[55];
-    cadastrarCliente();
+    menuCadastrarCliente();
     printf("║ Nome: ");
     if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome) != 1) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
