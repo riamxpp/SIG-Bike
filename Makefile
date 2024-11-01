@@ -7,13 +7,13 @@ CC := gcc
 CFLAGS := -Wall -Wextra -pedantic
 
 # Source files
-SRCS := main.c clientes/clientes.c bicicletas/bicicletas.c patinetes/patinetes.c locacao/locacao.c relatorios/relatorios.c
+SRCS := main.c $(wildcard clientes/*.c) $(wildcard bicicletas/*.c) $(wildcard patinetes/*.c) $(wildcard locacao/*.c) $(wildcard relatorios/*.c)
 
 # Object files
 OBJS := $(SRCS:.c=.o)
 
 # Header files
-HDRS := clientes/clientes.h bicicletas/bicicletas.h patinetes/patinetes.h locacao/locacao.h relatorios/relatorios.h
+HDRS := $(wildcard clientes/*.h) $(wildcard bicicletas/*.h) $(wildcard patinetes/*.h) $(wildcard locacao/*.h) $(wildcard relatorios/*.h) 
 
 # Executable name
 TARGET := main
