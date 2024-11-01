@@ -44,7 +44,11 @@ void clientes(void){
 }
 
 void cadastrarCliente(void){
-    char nome [55];
+    char nome[55];
+    char cpf[16];
+    char email[30];
+    char fone[15];
+    char dtnas[12];
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                              Cadastrar Cliente                                ║\n");
@@ -57,7 +61,7 @@ void cadastrarCliente(void){
         return;
     }
     getchar();
-    printf("║ CPF:                                                                          ║\n");
+    printf("║ CPF:");
     printf("║ Email:                                                                        ║\n");
     printf("║ Fone:                                                                         ║\n");
     printf("║ Data de Nascimento:                                                           ║\n");
