@@ -6,5 +6,6 @@ void menuReservarBicicleta(void);
 void menuReservarPatinete(void);
 void menuDevolverBicicleta(void);
 void menuDevolverPatinete(void);
+void menuConsultarAluguel(void);
 
 #endif // VIEW_H
