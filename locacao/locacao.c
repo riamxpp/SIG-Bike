@@ -61,10 +61,7 @@ void devolverBicicleta(void){
 }
 
 void devolverPatinete(void){
-    system("clear||cls");
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                              Devolver Patinete                                ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    menuDevolverPatinete();
     printf("║ Informe o ID do Patinete:                                                     ║\n");
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");

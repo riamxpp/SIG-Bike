@@ -41,3 +41,10 @@ void menuDevolverBicicleta(void){
     printf("║                              Devolver Bicicleta                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
 }
+
+void menuDevolverPatinete(void){
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                              Devolver Patinete                                ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+}
