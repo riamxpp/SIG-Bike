@@ -3,6 +3,7 @@
 #include "clientes.h"
 #include <unistd.h>
 #include "view.h"
+#include "validacao.h"
 
 void clientes(void){
     int op_cliente;
@@ -31,16 +32,11 @@ void clientes(void){
 }
 
 void cadastrarCliente(void){
-    char nome[55];
+    char nome[100];
     menuCadastrarCliente();
     printf("║ Nome: ");
-    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome) != 1) {
-        printf("\nEntrada inválida, digite apenas letras.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
+    while (!validarNome(nome)) {
     }
-    getchar();
     printf("║ CPF:");
     printf("║ Email:                                                                        ║\n");
     printf("║ Fone:                                                                         ║\n");

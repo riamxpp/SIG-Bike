@@ -12,7 +12,7 @@ int validarNome(char *nome) {
         while (getchar() != '\n');  // Limpa o buffer
         return 0;  // Retorna 0 indicando entrada inválida
     }
-    
+    getchar();
     return 1;  // Retorna 1 indicando entrada válida
 }
 
