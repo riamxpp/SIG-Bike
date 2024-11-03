@@ -35,6 +35,7 @@ void cadastrarCliente(void){
     char nome[100];
     char cpf[15];
     char email[100];
+    char fone[20];
     menuCadastrarCliente();
 
     do {
@@ -42,8 +43,8 @@ void cadastrarCliente(void){
         scanf("%99[^\n]", nome);
         while (getchar() != '\n');
         if (!validarNome(nome)) {
-            printf("║ Entrada inválida. Digite apenas letras e espaços.\n");
-            printf("║ \n");
+            printf("  Entrada inválida. Digite apenas letras e espaços.\n");
+            printf("\n");
         }
     } while (!validarNome(nome));
 
@@ -52,8 +53,8 @@ void cadastrarCliente(void){
         scanf("%14s", cpf);
         while (getchar() != '\n');
         if (!validarCPF(cpf)) {
-            printf("║ CPF inválido. \n");
-            printf("║ \n");
+            printf("  CPF inválido. \n");
+            printf("\n");
         }
     }while (!validarCPF(cpf));
 
@@ -62,13 +63,20 @@ void cadastrarCliente(void){
         scanf("%99s", email);
         while (getchar() != '\n');
         if (!validarEmail(email)) {
-            printf("║ Email inválido. \n");
-            printf("║ \n");
+            printf("  Email inválido. \n");
+            printf("\n");
         }
     }while (!validarEmail(email));
 
-    printf("║ Email: ");
-    printf("║ Fone:                                                                         ║\n");
+    do{
+        printf("║ Telefone (DD000000000): ");
+        scanf("%19s", fone);
+        while (getchar() != '\n');
+        if (!validarTelefone(fone)) {
+            printf("  Telefone inválido. \n");
+            printf(" \n");
+        }
+    }while (!validarTelefone(fone));
     printf("║ Data de Nascimento:                                                           ║\n");
     printf("║                                                                               ║\n");
     printf("║                        Cliente cadastrado com sucesso!                        ║\n");
