@@ -6,5 +6,6 @@
 int validarNome(char *nome);
 int validarCPF(const char *cpf);
 int validarEmail(const char *email);
+int validarTelefone(const char *telefone);
 
 #endif 
