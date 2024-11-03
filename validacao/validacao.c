@@ -3,13 +3,17 @@
 #include <ctype.h>
 #include <time.h>
 
-int validarNome(const char *nome){
+int validarNome(char *nome) {
+    printf("Digite o nome: ");
+    
+    // Lê e valida a entrada, permitindo apenas letras e espaços
     if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome) != 1) {
-        printf("\nEntrada inválida, digite apenas letras.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
+        printf("\nEntrada inválida, digite apenas letras.\n");
+        while (getchar() != '\n');  // Limpa o buffer
+        return 0;  // Retorna 0 indicando entrada inválida
     }
+    
+    return 1;  // Retorna 1 indicando entrada válida
 }
 
 int validarCPF(const char *cpf) {
