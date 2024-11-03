@@ -2,6 +2,15 @@
 #include <string.h>
 #include <ctype.h>
 
+int validarNome(const char *nome){
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome) != 1) {
+        printf("\nEntrada inválida, digite apenas letras.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+}
+
 int validarCPF(const char *cpf) {
     int i, j = 0, soma, resto, digito1, digito2;
     int multiplicadores1[9] = {10, 9, 8, 7, 6, 5, 4, 3, 2};
