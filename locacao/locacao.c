@@ -34,10 +34,7 @@ void locacao(void){
 }
 
 void reservarBicicleta(void){
-    system("clear||cls");
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                              Reservar Bicicleta                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    reservarBicicleta();
     printf("║ Informe o ID da Bicicleta:                                                    ║\n");
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");

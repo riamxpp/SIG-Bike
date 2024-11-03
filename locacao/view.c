@@ -21,3 +21,10 @@ int menuLocacao(void){
     getchar();
     return op_locacao;
 }
+
+void reservarBicicleta(void){
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                              Reservar Bicicleta                               ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+}
