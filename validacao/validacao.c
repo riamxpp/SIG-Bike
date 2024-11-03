@@ -17,7 +17,8 @@ int validarNome(char *nome) {
 }
 
 int validarCPF(const char *cpf) {
-    int i, j = 0, soma, resto, digito1, digito2;
+    size_t i;
+    int j = 0, soma, resto, digito1, digito2;
     int multiplicadores1[9] = {10, 9, 8, 7, 6, 5, 4, 3, 2};
     int multiplicadores2[10] = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
     char numeros[11]; // Armazena apenas os dígitos do CPF
