@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 
 int validarNome(const char *nome){
     if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome) != 1) {
@@ -116,6 +117,75 @@ int validarTelefone(const char *telefone) {
     }
 
     return 1; // Telefone válido
+}
+
+int isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+int validarData(int dia, int mes, int ano) {
+    int diasPorMes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (ano < 0 || mes < 1 || mes > 12) return 0;
+
+    // Ajusta fevereiro em ano bissexto
+    if (mes == 2 && isLeapYear(ano)) {
+        diasPorMes[1] = 29;
+    }
+
+    return dia >= 1 && dia <= diasPorMes[mes - 1];
+}
+
+int calcularIdade(int dia, int mes, int ano) {
+    // Obtém a data atual
+    time_t t = time(NULL);
+    struct tm hoje = *localtime(&t);
+    
+    int idade = hoje.tm_year + 1900 - ano;
+
+    // Ajusta se o aniversário ainda não chegou este ano
+    if (mes > (hoje.tm_mon + 1) || (mes == (hoje.tm_mon + 1) && dia > hoje.tm_mday)) {
+        idade--;
+    }
+
+    return idade;
+}
+
+int validarDataNascimento(const char *data) {
+    int dia, mes, ano;
+
+    // Verifica o formato dd/mm/aaaa
+    if (strlen(data) != 10 || data[2] != '/' || data[5] != '/' ||
+        !isdigit(data[0]) || !isdigit(data[1]) ||
+        !isdigit(data[3]) || !isdigit(data[4]) ||
+        !isdigit(data[6]) || !isdigit(data[7]) || !isdigit(data[8]) || !isdigit(data[9])) {
+        printf("Erro: A data deve estar no formato dd/mm/aaaa.\n");
+        return 0;
+    }
+
+    // Converte os valores de dia, mês e ano
+    dia = (data[0] - '0') * 10 + (data[1] - '0');
+    mes = (data[3] - '0') * 10 + (data[4] - '0');
+    ano = (data[6] - '0') * 1000 + (data[7] - '0') * 100 + (data[8] - '0') * 10 + (data[9] - '0');
+
+    // Verifica se a data é válida
+    if (!validarData(dia, mes, ano)) {
+        printf("Erro: Data inválida.\n");
+        return 0;
+    }
+
+    // Calcula a idade
+    int idade = calcularIdade(dia, mes, ano);
+    if (idade < 16) {
+        printf("Erro: A idade mínima permitida é 16 anos.\n");
+        return 0;
+    }
+    if (idade > 200) {
+        printf("Erro: A idade máxima permitida é 200 anos.\n");
+        return 0;
+    }
+
+    return 1; // Data válida
 }
 
 
