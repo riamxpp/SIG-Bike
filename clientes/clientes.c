@@ -6,8 +6,8 @@
 
 void clientes(void){
     int op_cliente;
-    op_cliente = menuClientes();
     do{
+        op_cliente = menuClientes();
         switch (op_cliente) {
             case 1:
                 cadastrarCliente();

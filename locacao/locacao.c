@@ -6,9 +6,8 @@
 
 void locacao(void){
     int op_locacao;
-    op_locacao = menuLocacao();
     do{
-        
+        op_locacao = menuLocacao();
         switch (op_locacao) {
             case 1:
                 reservarBicicleta();
