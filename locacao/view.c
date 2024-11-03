@@ -28,3 +28,10 @@ void menuReservarBicicleta(void){
     printf("║                              Reservar Bicicleta                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
 }
+
+void menuReservarPatinete(void){
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                              Reservar Patinete                                ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+}

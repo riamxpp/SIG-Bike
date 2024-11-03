@@ -2,6 +2,6 @@
 #define VIEW_H
 
 int menuLocacao(void);
-void reservarBicicleta(void);
+void menuReservarBicicleta(void);
 
 #endif // VIEW_H
