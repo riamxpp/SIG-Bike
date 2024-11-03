@@ -70,10 +70,7 @@ void devolverPatinete(void){
 }
 
 void consultarAluguel(void){
-    system("clear||cls");
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                              Consultar Aluguel                                ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    menuConsultarAluguel();
     printf("║ Você deseja consultar por Bicicleta ou Patinete:                              ║\n");
     printf("║                                                                               ║\n");
     printf("║ Informe o ID:                                                                 ║\n");

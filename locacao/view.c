@@ -48,3 +48,10 @@ void menuDevolverPatinete(void){
     printf("║                              Devolver Patinete                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
 }
+
+void menuConsultarAluguel(void){
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                              Consultar Aluguel                                ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+}
