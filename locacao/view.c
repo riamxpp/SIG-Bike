@@ -22,7 +22,7 @@ int menuLocacao(void){
     return op_locacao;
 }
 
-void reservarBicicleta(void){
+void menuReservarBicicleta(void){
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                              Reservar Bicicleta                               ║\n");
