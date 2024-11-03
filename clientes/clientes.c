@@ -36,6 +36,7 @@ void cadastrarCliente(void){
     char cpf[15];
     char email[100];
     char fone[20];
+    char dtnas[11];
     menuCadastrarCliente();
 
     do {
@@ -77,8 +78,17 @@ void cadastrarCliente(void){
             printf(" \n");
         }
     }while (!validarTelefone(fone));
-    printf("║ Data de Nascimento:                                                           ║\n");
-    printf("║                                                                               ║\n");
+
+    do{
+        printf("║ Data de Nascimento: (xx/xx/xxxx): ");
+        scanf("%19s", dtnas);
+        while (getchar() != '\n');
+        if (!validarDataNascimento(dtnas)) {
+            printf("  Data de Nascimento inválida. \n");
+            printf(" \n");
+        }
+    }while (!validarDataNascimento(dtnas));
+    printf("\n╔═════════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                        Cliente cadastrado com sucesso!                        ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");

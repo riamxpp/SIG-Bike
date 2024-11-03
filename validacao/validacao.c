@@ -161,7 +161,6 @@ int validarDataNascimento(const char *data) {
         !isdigit(data[0]) || !isdigit(data[1]) ||
         !isdigit(data[3]) || !isdigit(data[4]) ||
         !isdigit(data[6]) || !isdigit(data[7]) || !isdigit(data[8]) || !isdigit(data[9])) {
-        printf("Erro: A data deve estar no formato dd/mm/aaaa.\n");
         return 0;
     }
 
@@ -172,18 +171,17 @@ int validarDataNascimento(const char *data) {
 
     // Verifica se a data é válida
     if (!validarData(dia, mes, ano)) {
-        printf("Erro: Data inválida.\n");
         return 0;
     }
 
     // Calcula a idade
     int idade = calcularIdade(dia, mes, ano);
     if (idade < 16) {
-        printf("Erro: A idade mínima permitida é 16 anos.\n");
+        printf("  Erro: A idade mínima permitida é 16 anos.\n");
         return 0;
     }
-    if (idade > 200) {
-        printf("Erro: A idade máxima permitida é 200 anos.\n");
+    if (idade > 150) {
+        printf("  Erro: A idade máxima permitida é 150 anos.\n");
         return 0;
     }
 
