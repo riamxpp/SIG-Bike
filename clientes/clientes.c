@@ -33,12 +33,13 @@ void clientes(void){
 
 void cadastrarCliente(void){
     char nome[100];
+    char cpf[15];
     menuCadastrarCliente();
-    printf("║ Nome: ");
     while (!validarNome(nome)) {
     }
-    printf("║ CPF:");
-    printf("║ Email:                                                                        ║\n");
+    while (!validarCPF(cpf)){
+    }
+    printf("║ Email: ");
     printf("║ Fone:                                                                         ║\n");
     printf("║ Data de Nascimento:                                                           ║\n");
     printf("║                                                                               ║\n");

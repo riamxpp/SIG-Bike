@@ -3,20 +3,19 @@
 #include <ctype.h>
 #include <time.h>
 
-int validarNome(char *nome) {
-    printf("Digite o nome: ");
-    
-    // Lê e valida a entrada, permitindo apenas letras e espaços
-    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome) != 1) {
-        printf("\nEntrada inválida, digite apenas letras.\n");
-        while (getchar() != '\n');  // Limpa o buffer
-        return 0;  // Retorna 0 indicando entrada inválida
+int validarNome(const char *nome) {
+    // Verifica se o nome contém apenas letras e espaços
+    for (int i = 0; nome[i] != '\0'; i++) {
+        if (!isalpha(nome[i]) && nome[i] != ' ') {
+            return 0; // Retorna 0 se inválido
+        }
     }
-    getchar();
-    return 1;  // Retorna 1 indicando entrada válida
+    return 1; // Retorna 1 se válido
 }
 
 int validarCPF(const char *cpf) {
+    printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
+    scanf("%14s", cpf);
     size_t i;
     int j = 0, soma, resto, digito1, digito2;
     int multiplicadores1[9] = {10, 9, 8, 7, 6, 5, 4, 3, 2};
