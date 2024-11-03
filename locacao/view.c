@@ -35,3 +35,9 @@ void menuReservarPatinete(void){
     printf("║                              Reservar Patinete                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
 }
+void menuDevolverBicicleta(void){
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                              Devolver Bicicleta                               ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+}

@@ -52,10 +52,7 @@ void reservarPatinete(void){
 }
 
 void devolverBicicleta(void){
-    system("clear||cls");
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                              Devolver Bicicleta                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    menuDevolverBicicleta();
     printf("║ Informe o ID da Bicicleta:                                                    ║\n");
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
