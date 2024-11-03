@@ -35,6 +35,11 @@ void cadastrarCliente(void){
     char nome[100];
     char cpf[15];
     menuCadastrarCliente();
+    do {
+        printf("║ Nome: ");
+        scanf("%99[^\n]", nome);
+        while (getchar() != '\n');
+    } while (!validarNome(nome));
     while (!validarNome(nome)) {
     }
     while (!validarCPF(cpf)){
