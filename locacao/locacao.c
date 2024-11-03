@@ -5,7 +5,7 @@
 #include "view.h"
 
 void locacao(void){
-    int op_locacao
+    int op_locacao;
     op_locacao = menuLocacao();
     do{
         
