@@ -60,3 +60,37 @@ int validarCPF(const char *cpf) {
     return 1; // CPF válido
 }
 
+int validarEmail(const char *email) {
+    int i, atPos = -1, dotPos = -1;
+    int len = strlen(email);
+
+    // Verifica o comprimento mínimo de um email (ex: a@b.co)
+    if (len < 5) return 0;
+
+    // Percorre cada caractere do email
+    for (i = 0; i < len; i++) {
+        char c = email[i];
+
+        // Verifica se há exatamente um '@' e sua posição
+        if (c == '@') {
+            if (atPos != -1) return 0; // Mais de um '@'
+            atPos = i;
+        }
+        // Verifica a posição do último ponto após o '@'
+        else if (c == '.' && atPos != -1) {
+            dotPos = i;
+        }
+        // Verifica caracteres inválidos (não alfanuméricos ou símbolos permitidos)
+        else if (!isalnum(c) && c != '.' && c != '-' && c != '_') {
+            return 0;
+        }
+    }
+
+    // Verifica se '@' e '.' estão em posições válidas
+    if (atPos == -1 || dotPos == -1) return 0; // Ausência de '@' ou '.'
+    if (atPos < 1 || dotPos < atPos + 2 || dotPos >= len - 1) return 0;
+
+    return 1; // Email válido
+}
+
+// Códigos de validação fornecidos pelo ChatGPT(https://chatgpt.com/).
