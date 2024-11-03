@@ -35,15 +35,25 @@ void cadastrarCliente(void){
     char nome[100];
     char cpf[15];
     menuCadastrarCliente();
+
     do {
         printf("║ Nome: ");
         scanf("%99[^\n]", nome);
         while (getchar() != '\n');
+        if (!validarNome(nome)) {
+            printf("Entrada inválida. Digite apenas letras e espaços.\n");
+        }
     } while (!validarNome(nome));
-    while (!validarNome(nome)) {
-    }
-    while (!validarCPF(cpf)){
-    }
+
+    do{
+        printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
+        scanf("%14s", cpf);
+        while (getchar() != '\n');
+        if (!validarNome(nome)) {
+            printf("CPF inválido. \n");
+        }
+    }while (!validarCPF(cpf));
+
     printf("║ Email: ");
     printf("║ Fone:                                                                         ║\n");
     printf("║ Data de Nascimento:                                                           ║\n");

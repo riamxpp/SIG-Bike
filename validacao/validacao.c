@@ -14,8 +14,6 @@ int validarNome(const char *nome) {
 }
 
 int validarCPF(const char *cpf) {
-    printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
-    scanf("%14s", cpf);
     size_t i;
     int j = 0, soma, resto, digito1, digito2;
     int multiplicadores1[9] = {10, 9, 8, 7, 6, 5, 4, 3, 2};
