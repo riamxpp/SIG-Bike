@@ -49,7 +49,7 @@ void cadastrarCliente(void){
         printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
         scanf("%14s", cpf);
         while (getchar() != '\n');
-        if (!validarNome(nome)) {
+        if (!validarCPF(cpf)) {
             printf("CPF inválido. \n");
         }
     }while (!validarCPF(cpf));
