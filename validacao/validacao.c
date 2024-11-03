@@ -102,4 +102,22 @@ int validarEmail(const char *email) {
     return 1; // Email válido
 }
 
+int validarTelefone(const char *telefone) {
+    // Verifica se o comprimento é exatamente 11 caracteres
+    if (strlen(telefone) != 11) {
+        return 0;
+    }
+
+    // Verifica se todos os caracteres são dígitos
+    for (int i = 0; i < 11; i++) {
+        if (!isdigit(telefone[i])) {
+            return 0;
+        }
+    }
+
+    return 1; // Telefone válido
+}
+
+
+
 // Códigos de validação fornecidos pelo ChatGPT(https://chatgpt.com/).
