@@ -4,5 +4,6 @@
 #include <time.h>
 
 int validarNome(char *nome);
+int validarCPF(const char *cpf);
 
 #endif 
