@@ -71,6 +71,7 @@ void cadastrarPatinete(void){
 
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
@@ -80,6 +81,7 @@ void cadastrarPatinete(void){
     getchar();
 
     printf("║ Cor:  ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor) != 1) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
@@ -89,6 +91,7 @@ void cadastrarPatinete(void){
     getchar();
 
     printf("║ Marca: ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[A-Za-z0-9@._]", marca) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
@@ -98,6 +101,7 @@ void cadastrarPatinete(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[0-9]/-", ano) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
@@ -107,6 +111,7 @@ void cadastrarPatinete(void){
     getchar();
 
     printf("║ Bateria (capacidade): ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[0-9]", bateria) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
@@ -176,6 +181,7 @@ void atualizarPatinete(void){
 
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
@@ -185,6 +191,7 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Cor:  ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor) != 1) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
@@ -194,6 +201,7 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Marca: ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[A-Za-z0-9@._]", marca) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
@@ -203,6 +211,7 @@ void atualizarPatinete(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%10[0-9/-]", ano) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
@@ -212,6 +221,7 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Bateria (capacidade): ");
+    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (scanf("%[0-9]", bateria) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
