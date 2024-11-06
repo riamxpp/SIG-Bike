@@ -92,7 +92,7 @@ void cadastrarPatinete(void){
 
     printf("║ Marca: ");
     // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[A-Za-z0-9@._]", marca) != 1){
+    if (validarNumAndChar(marca) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -202,7 +202,7 @@ void atualizarPatinete(void){
 
     printf("║ Marca: ");
     // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[A-Za-z0-9@._]", marca) != 1){
+    if (validarNumAndChar(marca) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
