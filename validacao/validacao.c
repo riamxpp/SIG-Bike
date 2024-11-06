@@ -198,3 +198,10 @@ int verificaNumero(int *num) {
     }
     return 1;
 }
+
+int validarNumAndChar(char valor[]) {
+    if (scanf("%[A-Za-z0-9@._]", valor) != 1){
+        return 0;
+    }
+    return 1;
+}
