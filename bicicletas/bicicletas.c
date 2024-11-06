@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include "bicicletas.h"
 #include <unistd.h>
-
+#include "../validacao/validacao.h"
 
 void bicicletas(void){
     int op_bicicleta;
@@ -223,7 +223,8 @@ void atualizarBicicleta(void){
 
     printf("║ Tamanho do Quadro:  ");
     // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[0-9]", tam_quadro) != 1) {
+    // num = 
+    if (verificaNumero(&tam_quadro) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();

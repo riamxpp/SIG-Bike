@@ -191,3 +191,10 @@ int validarDataNascimento(const char *data) {
 
 
 // Códigos de validação fornecidos pelo ChatGPT(https://chatgpt.com/).
+
+int verificaNumero(int *num) {
+    if (scanf("%d", num) != 1) {
+        return 0;
+    }
+    return 1;
+}
