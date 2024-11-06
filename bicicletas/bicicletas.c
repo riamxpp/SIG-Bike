@@ -202,7 +202,6 @@ void atualizarBicicleta(void){
     getchar();
 
     printf("║ Marca: ");
-    // validarNumAndChar
     if (validarNumAndChar(marca) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
