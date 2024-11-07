@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "patinetes.h"
+#include "../validacao/validacao.h"
 
 void patinetes(void){
     int op_patinete;
@@ -18,7 +19,7 @@ void patinetes(void){
         printf("║                               0. Voltar                                       ║\n");
         printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
         printf(" Digite a opção desejada: ");
-        if (scanf("%d", &op_patinete) != 1) {
+        if (verificaNumero(&op_patinete) != 1) {
             printf("\nEntrada inválida, digite apenas números.  \n");
             while (getchar() != '\n');
             getchar();
@@ -61,7 +62,7 @@ void cadastrarPatinete(void){
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ ID: ");
-    if (scanf("%d", &id) != 1) {
+    if (verificaNumero(&id) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -71,8 +72,7 @@ void cadastrarPatinete(void){
 
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
+    if (validarNumAndChar(modelo) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -91,7 +91,6 @@ void cadastrarPatinete(void){
     getchar();
 
     printf("║ Marca: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (validarNumAndChar(marca) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
@@ -111,9 +110,8 @@ void cadastrarPatinete(void){
     getchar();
 
     printf("║ Bateria (capacidade): ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[0-9]", bateria) != 1) {
-        printf("\nEntrada inválida, digite apenas números.  \n");
+    if (verificaNumero(&bateria) != 1 || bateria < 0 || bateria > 100) {
+        printf("\nEntrada inválida, digite um valor válido.  \n");
         while (getchar() != '\n');
         getchar();
         return;
@@ -135,7 +133,7 @@ void pesquisarPatinete(void){
     printf("║                               Pesquisar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do Patinete: ");
-    if (scanf("%d", &id) != 1) {
+    if (verificaNumero(&id) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -168,7 +166,7 @@ void atualizarPatinete(void){
     printf("║                          Atualizar Dados do Patinete                          ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do Patinete: ");
-    if (scanf("%d", &id) != 1) {
+    if (verificaNumero(&id) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -181,8 +179,7 @@ void atualizarPatinete(void){
 
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
+    if (validarNumAndChar(modelo) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -201,7 +198,6 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Marca: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (validarNumAndChar(marca) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
@@ -221,8 +217,7 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Bateria (capacidade): ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[0-9]", bateria) != 1) {
+    if (verificaNumero(&bateria) != 1 || bateria < 0 || bateria > 100) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -245,7 +240,7 @@ void deletarPatinete(void){
     printf("║                               Deletar Patinete                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do patinete a excluir: ");
-    if (scanf("%d", &id) != 1) {
+    if (verificaNumero(&id) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();

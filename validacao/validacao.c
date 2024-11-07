@@ -189,7 +189,6 @@ int validarDataNascimento(const char *data) {
 }
 
 
-
 // Códigos de validação fornecidos pelo ChatGPT(https://chatgpt.com/).
 
 int verificaNumero(int *num) {
@@ -199,8 +198,15 @@ int verificaNumero(int *num) {
     return 1;
 }
 
-int validarNumAndChar(char valor[]) {
+int validarNumAndCharAndCaractere(char valor[]) {
     if (scanf("%[A-Za-z0-9@._]", valor) != 1){
+        return 0;
+    }
+    return 1;
+}
+
+int validarNumAndChar(char valor[]) {
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", valor) != 1) {
         return 0;
     }
     return 1;

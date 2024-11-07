@@ -8,6 +8,7 @@ void listarPatinetes(void);
 void bicicleta_mais_alugadas(void);
 void patinetes_mais_alugados(void);
 int verificaNumero(int num);
+int validarNumAndCharAndCaractere(char[]);
 int validarNumAndChar(char[]);
 
 #endif

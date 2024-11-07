@@ -73,8 +73,7 @@ void cadastrarBicicleta(void){
     getchar();
 
     printf("║ Modelo: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
+    if (validarNumAndChar(modelo) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -93,7 +92,6 @@ void cadastrarBicicleta(void){
     getchar();
 
     printf("║ Marca: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
     if (validarNumAndChar(marca) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
@@ -182,8 +180,7 @@ void atualizarBicicleta(void){
     printf("║                                                                               ║\n");
     printf("║                           ↪Digite os Novos Dados↩                             ║\n");
     printf("║ Modelo: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo) != 1) {
+    if (validarNumAndChar(modelo) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
