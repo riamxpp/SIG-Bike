@@ -10,5 +10,6 @@ void patinetes_mais_alugados(void);
 int verificaNumero(int num);
 int validarNumAndCharAndCaractere(char[]);
 int validarNumAndChar(char[]);
+int validarPalavra(char[]);
 
 #endif

@@ -211,3 +211,10 @@ int validarNumAndChar(char valor[]) {
     }
     return 1;
 }
+
+int validarPalavra(char palavra[]) {
+    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", palavra) != 1) {
+        return 0;
+    }
+    return 1;
+}
