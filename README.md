@@ -33,7 +33,7 @@ O projeto tem uma dinâmica de troca de duplas.
 Inicou-se com:
 - Ariadny Dantas | ariadnyfran15@gmail.com | ariadnyD
 - João Roberto | galvaojoaoroberto@gmail.com | joaorobertoaquino
-- 
+  
 Atualmente está com:
 - Ariadny Dantas | ariadnyfran15@gmail.com | ariadnyD
 - Riam Stefesom | riamstefeson616@gmail.com | riamxpp
