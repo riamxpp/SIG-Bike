@@ -99,8 +99,7 @@ void cadastrarPatinete(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%[0-9]/-", ano) != 1) {
+    if (verificaNumero(&ano) != 1 || ano < 1000 || ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -205,8 +204,7 @@ void atualizarPatinete(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%10[0-9/-]", ano) != 1) {
+    if (verificaNumero(&ano) != 1 || ano < 1000 || ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();

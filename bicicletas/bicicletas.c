@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include "bicicletas.h"
 #include <unistd.h>
 #include "../validacao/validacao.h"
@@ -57,7 +58,7 @@ void cadastrarBicicleta(void){
     char cor[20];
     char marca[20];
     char modelo[20];
-    char data[12];
+    int ano;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -99,9 +100,8 @@ void cadastrarBicicleta(void){
     };
     getchar();
 
-    printf("║ Ano de Fabricação: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%10[0-9/-]", data) != 1) {
+    printf("║ Ano de Fabricação; ");
+    if (verificaNumero(&ano) != 1 || ano < 1000 || ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -160,7 +160,7 @@ void atualizarBicicleta(void){
     char cor[20];
     char marca[20];
     char modelo[12];
-    char data[12];
+    int ano;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -205,8 +205,7 @@ void atualizarBicicleta(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    if (scanf("%10[0-9/-]", data) != 1) {
+    if (verificaNumero(&ano) != 1 || ano < 1000 || ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -215,8 +214,6 @@ void atualizarBicicleta(void){
     getchar();
 
     printf("║ Tamanho do Quadro:  ");
-    // Validação baseado no projeto (https://github.com/FlaviusGorgonio/LinguaSolta_2021) 01/11/2024
-    // num = 
     if (verificaNumero(&tam_quadro) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
