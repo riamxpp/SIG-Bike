@@ -52,7 +52,7 @@ void patinetes(void){
 void cadastrarPatinete(void){
     int id;
     char *modelo;
-    char cor[12];
+    char *cor;
     char *marca;
     char ano[12];
     char bateria[5];
@@ -83,9 +83,9 @@ void cadastrarPatinete(void){
         return;
     }
     getchar();
+    cor = (char*) malloc(20*sizeof(char));
 
-    printf("║ Cor:  ");
-    if (validarPalavra(cor) != 1) {
+    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor)) != 1) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
@@ -95,8 +95,8 @@ void cadastrarPatinete(void){
 
     printf("║ Marca: ");
     marca = (char*) malloc(12*sizeof(char));
-    
-    if (validarNumAndChar(canf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
+
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -161,7 +161,7 @@ void pesquisarPatinete(void){
 void atualizarPatinete(void){
     int id;
     char *modelo;
-    char cor[12];
+    char *cor;
     char *marca;
     char ano[12];
     char bateria[5];
@@ -195,7 +195,9 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Cor:  ");
-    if (validarPalavra(cor) != 1) {
+    cor = (char*) malloc(20*sizeof(char));
+
+    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor)) != 1) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
@@ -206,7 +208,7 @@ void atualizarPatinete(void){
     printf("║ Marca: ");
     marca = (char*) malloc(12*sizeof(char));
 
-    if (validarNumAndChar(canf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
