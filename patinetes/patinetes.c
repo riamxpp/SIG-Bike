@@ -127,6 +127,8 @@ void cadastrarPatinete(void){
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     free(modelo);
+    free(marca);
+    free(cor);
     sleep(1);
 }
 
@@ -238,6 +240,9 @@ void atualizarPatinete(void){
     printf("║                      Patinete Atualizado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    free(modelo);
+    free(marca);
+    free(cor);
     sleep(1);
 }
 

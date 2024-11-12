@@ -128,6 +128,9 @@ void cadastrarBicicleta(void){
     printf("║                      Bicicleta cadastrada com sucesso!                        ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    free(modelo);
+    free(marca);
+    free(cor);
     sleep(1);
 }
 
@@ -238,6 +241,9 @@ void atualizarBicicleta(void){
     printf("║                             Bicicleta atualizada                              ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    free(modelo);
+    free(marca);
+    free(cor);
     sleep(1);
 }
 
