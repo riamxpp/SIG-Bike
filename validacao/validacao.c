@@ -205,8 +205,8 @@ int validarNumAndCharAndCaractere(char valor[]) {
     return 1;
 }
 
-int validarNumAndChar(char valor[]) {
-    if (scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", valor) != 1) {
+int validarNumAndChar(int valor) {
+    if (valor != 1) {
         return 0;
     }
     return 1;

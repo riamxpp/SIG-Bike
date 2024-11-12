@@ -51,11 +51,13 @@ void patinetes(void){
 
 void cadastrarPatinete(void){
     int id;
-    char modelo[20];
+    char *modelo;
     char cor[12];
     char marca[12];
     char ano[12];
     char bateria[5];
+    int valida;
+    char valor[12];
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -68,11 +70,13 @@ void cadastrarPatinete(void){
         getchar();
         return;
     }
-    getchar();
+    getchar();  
 
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
-    if (validarNumAndChar(modelo) != 1) {
+    modelo = (char*) malloc(20*sizeof(char));
+    
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo)) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -120,6 +124,7 @@ void cadastrarPatinete(void){
     printf("║                      Patinete cadastrado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    free(modelo);
     sleep(1);
 }
 

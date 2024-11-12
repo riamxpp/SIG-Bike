@@ -11,5 +11,6 @@ int isLeapYear(int year);
 int validarData(int dia, int mes, int ano);
 int calcularIdade(int dia, int mes, int ano);
 int validarDataNascimento(const char *data);
+int validarNumAndChar(int);
 
 #endif 
