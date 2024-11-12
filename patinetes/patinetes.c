@@ -53,7 +53,7 @@ void cadastrarPatinete(void){
     int id;
     char *modelo;
     char cor[12];
-    char marca[12];
+    char *marca;
     char ano[12];
     char bateria[5];
     int valida;
@@ -75,7 +75,7 @@ void cadastrarPatinete(void){
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
     modelo = (char*) malloc(20*sizeof(char));
-    
+
     if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo)) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
@@ -94,7 +94,9 @@ void cadastrarPatinete(void){
     getchar();
 
     printf("║ Marca: ");
-    if (validarNumAndChar(marca) != 1){
+    marca = (char*) malloc(12*sizeof(char));
+    
+    if (validarNumAndChar(canf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -158,9 +160,9 @@ void pesquisarPatinete(void){
 
 void atualizarPatinete(void){
     int id;
-    char modelo[20];
+    char *modelo;
     char cor[12];
-    char marca[12];
+    char *marca;
     char ano[12];
     char bateria[5];
 
@@ -182,7 +184,9 @@ void atualizarPatinete(void){
 
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
-    if (validarNumAndChar(modelo) != 1) {
+    modelo = (char*) malloc(20*sizeof(char));
+
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo)) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -200,7 +204,9 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Marca: ");
-    if (validarNumAndChar(marca) != 1){
+    marca = (char*) malloc(12*sizeof(char));
+
+    if (validarNumAndChar(canf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();

@@ -56,8 +56,8 @@ void cadastrarBicicleta(void){
     int id;
     char tam_quadro[5];
     char cor[20];
-    char marca[20];
-    char modelo[20];
+    char *marca;
+    char *modelo;
     int ano;
 
     system("clear||cls");
@@ -74,7 +74,9 @@ void cadastrarBicicleta(void){
     getchar();
 
     printf("║ Modelo: ");
-    if (validarNumAndChar(modelo) != 1) {
+    modelo = (char*) malloc(20*sizeof(char));
+
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo)) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -92,7 +94,9 @@ void cadastrarBicicleta(void){
     getchar();
 
     printf("║ Marca: ");
-    if (validarNumAndChar(marca) != 1){
+    marca = (char*) malloc(12*sizeof(char));
+    
+    if (validarNumAndChar(canf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -158,8 +162,8 @@ void atualizarBicicleta(void){
     int id;
     char tam_quadro[5];
     char cor[20];
-    char marca[20];
-    char modelo[12];
+    char *marca;
+    char *modelo;
     int ano;
 
     system("clear||cls");
@@ -179,7 +183,9 @@ void atualizarBicicleta(void){
     printf("║                                                                               ║\n");
     printf("║                           ↪Digite os Novos Dados↩                             ║\n");
     printf("║ Modelo: ");
-    if (validarNumAndChar(modelo) != 1) {
+    modelo = (char*) malloc(20*sizeof(char));
+
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo)) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -196,7 +202,9 @@ void atualizarBicicleta(void){
     getchar();
 
     printf("║ Marca: ");
-    if (validarNumAndChar(marca) != 1){
+    marca = (char*) malloc(12*sizeof(char));
+    
+    if (validarNumAndChar(canf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
