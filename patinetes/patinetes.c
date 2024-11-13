@@ -19,7 +19,7 @@ void patinetes(void){
         printf("║                               0. Voltar                                       ║\n");
         printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
         printf(" Digite a opção desejada: ");
-        if (verificaNumero(&op_patinete) != 1) {
+        if (verificaNumero(scanf("%d", &op_patinete)) != 1) {
             printf("\nEntrada inválida, digite apenas números.  \n");
             while (getchar() != '\n');
             getchar();
@@ -54,17 +54,15 @@ void cadastrarPatinete(void){
     char *modelo;
     char *cor;
     char *marca;
-    char ano[12];
-    char bateria[5];
-    int valida;
-    char valor[12];
+    int ano;
+    int bateria;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ ID: ");
-    if (verificaNumero(&id) != 1) {
+    if (verificaNumero(scanf("%d", &id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -140,7 +138,7 @@ void pesquisarPatinete(void){
     printf("║                               Pesquisar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do Patinete: ");
-    if (verificaNumero(&id) != 1) {
+    if (verificaNumero(scanf("%d", &id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -173,7 +171,7 @@ void atualizarPatinete(void){
     printf("║                          Atualizar Dados do Patinete                          ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do Patinete: ");
-    if (verificaNumero(&id) != 1) {
+    if (verificaNumero(scanf("%d", &id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -219,7 +217,7 @@ void atualizarPatinete(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    if (verificaNumero(&ano) != 1 || ano < 1000 || ano > 9999) {
+    if (verificaNumero(scanf("%d", &ano)) != 1 || ano < 1000 || ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -228,7 +226,7 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Bateria (capacidade): ");
-    if (verificaNumero(&bateria) != 1 || bateria < 0 || bateria > 100) {
+    if (verificaNumero(scanf("%d", &bateria)) != 1 || bateria < 0 || bateria > 100) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -254,7 +252,7 @@ void deletarPatinete(void){
     printf("║                               Deletar Patinete                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do patinete a excluir: ");
-    if (verificaNumero(&id) != 1) {
+    if (verificaNumero(scanf("%d", &id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();

@@ -22,7 +22,7 @@ void bicicletas(void){
         printf("║                                0. Voltar                                      ║\n");
         printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
         printf(" Digite a opção desejada: ");
-        if (scanf("%d", &op_bicicleta) != 1) {
+        if (verificaNumero(scanf("%d", &op_bicicleta)) != 1) {
             printf("\nEntrada inválida, digite apenas números.  \n");
             while (getchar() != '\n');
             getchar();
@@ -54,7 +54,7 @@ void bicicletas(void){
 
 void cadastrarBicicleta(void){
     int id;
-    char tam_quadro[5];
+    int tam_quadro;
     char *cor;
     char *marca;
     char *modelo;
@@ -65,7 +65,8 @@ void cadastrarBicicleta(void){
     printf("║                               Cadastrar Bicicleta                             ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ ID: ");
-    if (verificaNumero(&id) != 1) {
+
+    if (verificaNumero(scanf("%d", &id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -107,7 +108,7 @@ void cadastrarBicicleta(void){
     getchar();
 
     printf("║ Ano de Fabricação; ");
-    if (verificaNumero(&ano) != 1 || ano < 1000 || ano > 9999) {
+    if (verificaNumero(scanf("%d", &ano)) != 1 || ano < 1000 || ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -116,7 +117,7 @@ void cadastrarBicicleta(void){
     getchar();
 
     printf("║ Tamanho do Quadro:  ");
-    if (verificaNumero(&tam_quadro) != 1) {
+    if (verificaNumero(scanf("%d", &tam_quadro)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -142,7 +143,8 @@ void pesquisarBicicleta(void){
     printf("║                               Pesquisar Bicicleta                             ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID da Bicicleta:  ");
-    if (scanf("%d", &id) != 1) {
+
+    if (verificaNumero(scanf("%d", &id)) != 1) {
         printf("\nEntrada inválida, digite um número.  \n");
         while (getchar() != '\n');
         getchar();
@@ -165,7 +167,7 @@ void pesquisarBicicleta(void){
 
 void atualizarBicicleta(void){
     int id;
-    char tam_quadro[5];
+    int tam_quadro;
     char *cor;
     char *marca;
     char *modelo;
@@ -176,8 +178,8 @@ void atualizarBicicleta(void){
     printf("║                          Atualizar Dados da Bicicleta                         ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID da Bicicleta: ");
-
-    if (verificaNumero(&id) != 1) {
+    
+    if (verificaNumero(scanf("%d", &id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -221,7 +223,7 @@ void atualizarBicicleta(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    if (verificaNumero(&ano) != 1 || ano < 1000 || ano > 9999) {
+    if (verificaNumero(scanf("%d", &ano)) != 1 || ano < 1000 || ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -230,7 +232,7 @@ void atualizarBicicleta(void){
     getchar();
 
     printf("║ Tamanho do Quadro:  ");
-    if (verificaNumero(&tam_quadro) != 1) {
+    if (verificaNumero(scanf("%d", &tam_quadro)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -255,7 +257,8 @@ void deletarBicicleta(void){
     printf("║                               Excluir Bicicleta                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID da bicicleta à excluir: ");
-    if (verificaNumero(&id) != 1) {
+
+    if (verificaNumero(scanf("%d", &id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
