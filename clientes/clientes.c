@@ -102,8 +102,21 @@ void cadastrarCliente(void){
 }
 
 void pesquisarCliente(void){
+    char *cpf;
+
     menuPesquisarCliente();
-    printf("║ Digite o CPF do Cliente:                                                      ║\n");
+
+    cpf = (char*) malloc(15*sizeof(char));
+    do{
+        printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
+        scanf("%14s", cpf);
+        while (getchar() != '\n');
+        if (!validarCPF(cpf)) {
+            printf("  CPF inválido. \n");
+            printf("\n");
+        }
+    }while (!validarCPF(cpf));
+
     printf("║                                                                               ║\n");
     printf("║ Nome:                                                                         ║\n");
     printf("║ CPF:                                                                          ║\n");
