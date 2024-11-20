@@ -98,7 +98,11 @@ void cadastrarCliente(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
-    
+    free(cpf);
+    free(nome);
+    free(email);
+    free(fone);
+    free(dtnas);
 }
 
 void pesquisarCliente(void){
@@ -127,6 +131,7 @@ void pesquisarCliente(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
+    free(cpf);
 }
 
 void atualizarCliente(void){
@@ -246,4 +251,5 @@ void deletarCliente(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
+    free(cpf);
 }
