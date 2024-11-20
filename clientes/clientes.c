@@ -83,7 +83,7 @@ void cadastrarCliente(void){
         }
     }while (!validarTelefone(fone));
 
-    dtnas = (char*) malloc(11+sizeof(char));
+    dtnas = (char*) malloc(11*sizeof(char));
     do{
         printf("║ Data de Nascimento: (xx/xx/xxxx): ");
         scanf("%19s", dtnas);
