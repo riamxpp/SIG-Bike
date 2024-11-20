@@ -32,13 +32,14 @@ void clientes(void){
 }
 
 void cadastrarCliente(void){
-    char nome[100];
-    char cpf[15];
-    char email[100];
-    char fone[20];
-    char dtnas[11];
+    char *nome;
+    char *cpf;
+    char *email;
+    char *fone;
+    char *dtnas;
     menuCadastrarCliente();
 
+    nome = (char*) malloc(100*sizeof(char));
     do {
         printf("║ Nome: ");
         scanf("%99[^\n]", nome);
@@ -49,6 +50,7 @@ void cadastrarCliente(void){
         }
     } while (!validarNome(nome));
 
+    cpf = (char*) malloc(15*sizeof(char));
     do{
         printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
         scanf("%14s", cpf);
@@ -59,6 +61,7 @@ void cadastrarCliente(void){
         }
     }while (!validarCPF(cpf));
 
+    email = (char*) malloc(100*sizeof(char));
     do{ 
         printf("║ Email: ");
         scanf("%99s", email);
@@ -69,6 +72,7 @@ void cadastrarCliente(void){
         }
     }while (!validarEmail(email));
 
+    fone = (char*) malloc(20*sizeof(char));
     do{
         printf("║ Telefone (DD000000000): ");
         scanf("%19s", fone);
@@ -79,6 +83,7 @@ void cadastrarCliente(void){
         }
     }while (!validarTelefone(fone));
 
+    dtnas = (char*) malloc(11+sizeof(char));
     do{
         printf("║ Data de Nascimento: (xx/xx/xxxx): ");
         scanf("%19s", dtnas);
@@ -88,7 +93,7 @@ void cadastrarCliente(void){
             printf(" \n");
         }
     }while (!validarDataNascimento(dtnas));
-    printf("\n╔═════════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                        Cliente cadastrado com sucesso!                        ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
