@@ -151,6 +151,20 @@ void deletarCliente(void){
     printf("║                               Excluir Cliente                                 ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Digite o CPF do Cliente:                                                      ║\n");
+
+    char *cpf;
+    cpf = (char*) malloc(15*sizeof(char));
+    
+    do{
+        printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
+        scanf("%14s", cpf);
+        while (getchar() != '\n');
+        if (!validarCPF(cpf)) {
+            printf("  CPF inválido. \n");
+            printf("\n");
+        }
+    }while (!validarCPF(cpf));
+    
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
