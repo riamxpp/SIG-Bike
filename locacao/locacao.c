@@ -3,9 +3,11 @@
 #include "locacao.h"
 #include <unistd.h>
 #include "view.h"
+#include "../validacao/validacao.h"
 
 void locacao(void){
     int op_locacao;
+    
     do{
         op_locacao = menuLocacao();
         switch (op_locacao) {
@@ -33,8 +35,19 @@ void locacao(void){
 }
 
 void reservarBicicleta(void){
+    int id;
     menuReservarBicicleta();
-    printf("║ Informe o ID da Bicicleta:                                                    ║\n");
+
+    printf("║ Informe o ID da Bicicleta: ");
+
+    // valida se na variável id foi passado um número.
+    if (verificaNumero(scanf("%d", &id)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();  
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
@@ -42,8 +55,17 @@ void reservarBicicleta(void){
 }
 
 void reservarPatinete(void){
+    int id;
     menuReservarPatinete();
-    printf("║ Informe o ID do Patinete:                                                     ║\n");
+
+    printf("║ Informe o ID do Patinete: ");
+    if (verificaNumero(scanf("%d", &id)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();  
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
@@ -51,8 +73,17 @@ void reservarPatinete(void){
 }
 
 void devolverBicicleta(void){
+    int id;
     menuDevolverBicicleta();
-    printf("║ Informe o ID da Bicicleta:                                                    ║\n");
+
+    printf("║ Informe o ID da Bicicleta: ");
+    if (verificaNumero(scanf("%d", &id)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();  
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
@@ -60,8 +91,19 @@ void devolverBicicleta(void){
 }
 
 void devolverPatinete(void){
+    int id;
     menuDevolverPatinete();
-    printf("║ Informe o ID do Patinete:                                                     ║\n");
+
+    printf("║ Informe o ID do Patinete: ");
+
+    if (verificaNumero(scanf("%d", &id)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();  
+
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
@@ -69,10 +111,19 @@ void devolverPatinete(void){
 }
 
 void consultarAluguel(void){
+    int id;
     menuConsultarAluguel();
-    printf("║ Você deseja consultar por Bicicleta ou Patinete:                              ║\n");
+
+    printf("║ Você deseja consultar por Bicicleta ou Patinete: ");
     printf("║                                                                               ║\n");
-    printf("║ Informe o ID:                                                                 ║\n");
+    printf("║ Informe o ID: ");    
+    if (verificaNumero(scanf("%d", &id)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    getchar();  
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
