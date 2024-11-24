@@ -112,20 +112,19 @@ void cadastrarCliente(void){
 }
 
 void pesquisarCliente(void){
-    char *cpf;
-
+    struct cliente cliente1;
     menuPesquisarCliente();
 
-    cpf = (char*) malloc(15*sizeof(char));
+    cliente1.cpf = (char*) malloc(15*sizeof(char));
     do{
         printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
-        scanf("%14s", cpf);
+        scanf("%14s", cliente1.cpf);
         while (getchar() != '\n');
-        if (!validarCPF(cpf)) {
+        if (!validarCPF(cliente1.cpf)) {
             printf("  CPF inválido. \n");
             printf("\n");
         }
-    }while (!validarCPF(cpf));
+    }while (!validarCPF(cliente1.cpf));
 
     printf("║                                                                               ║\n");
     printf("║ Nome:                                                                         ║\n");
@@ -137,17 +136,11 @@ void pesquisarCliente(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
-    free(cpf);
+    free(cliente1.cpf);
 }
 
 void atualizarCliente(void){
     struct cliente cliente1;
-    char *cpf;
-    char *nome;
-    char *email;
-    char *fone;
-    char *dtnas;
-
     menuAtualizarCliente();
 
     cliente1.cpf = (char*) malloc(15*sizeof(char));
@@ -235,28 +228,29 @@ void atualizarCliente(void){
 }
 
 void deletarCliente(void){
+    struct cliente cliente1;
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Excluir Cliente                                 ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Digite o CPF do Cliente:                                                      ║\n");
 
-    char *cpf;
-    cpf = (char*) malloc(15*sizeof(char));
+    cliente1.cpf = (char*) malloc(15*sizeof(char));
     
     do{
         printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
-        scanf("%14s", cpf);
+        scanf("%14s", cliente1.cpf);
         while (getchar() != '\n');
-        if (!validarCPF(cpf)) {
+        if (!validarCPF(cliente1.cpf)) {
             printf("  CPF inválido. \n");
             printf("\n");
         }
-    }while (!validarCPF(cpf));
+    }while (!validarCPF(cliente1.cpf));
 
     printf("║                                                                               ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
-    free(cpf);
+    free(cliente1.cpf);
 }
