@@ -4,6 +4,15 @@
 #include "patinetes.h"
 #include "../validacao/validacao.h"
 
+struct patinete {
+    int id;
+    char *modelo;
+    char *cor;
+    char *marca;
+    int ano;
+    int bateria;
+};
+
 void patinetes(void){
     int op_patinete;
     do{
@@ -50,19 +59,14 @@ void patinetes(void){
 } 
 
 void cadastrarPatinete(void){
-    int id;
-    char *modelo;
-    char *cor;
-    char *marca;
-    int ano;
-    int bateria;
+    struct patinete patinete1;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ ID: ");
-    if (verificaNumero(scanf("%d", &id)) != 1) {
+    if (verificaNumero(scanf("%d", &patinete1.id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -72,18 +76,19 @@ void cadastrarPatinete(void){
 
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
-    modelo = (char*) malloc(20*sizeof(char));
+    patinete1.modelo = (char*) malloc(20*sizeof(char));
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo)) != 1) {
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", patinete1.modelo)) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
         return;
     }
     getchar();
-    cor = (char*) malloc(20*sizeof(char));
 
-    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor)) != 1) {
+    printf("║ Cor: ");
+    patinete1.cor = (char*) malloc(20*sizeof(char));
+    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", patinete1.cor)) != 1) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
@@ -92,9 +97,9 @@ void cadastrarPatinete(void){
     getchar();
 
     printf("║ Marca: ");
-    marca = (char*) malloc(12*sizeof(char));
+    patinete1.marca = (char*) malloc(12*sizeof(char));
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", patinete1.marca)) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -103,7 +108,7 @@ void cadastrarPatinete(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    if (verificaNumero(&ano) != 1 || ano < 1000 || ano > 9999) {
+    if (verificaNumero(scanf("%d", &patinete1.ano)) != 1 || patinete1.ano < 1000 || patinete1.ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -112,7 +117,7 @@ void cadastrarPatinete(void){
     getchar();
 
     printf("║ Bateria (capacidade): ");
-    if (verificaNumero(&bateria) != 1 || bateria < 0 || bateria > 100) {
+    if (verificaNumero(scanf("%d", &patinete1.bateria)) != 1 || patinete1.bateria < 0 || patinete1.bateria > 100) {
         printf("\nEntrada inválida, digite um valor válido.  \n");
         while (getchar() != '\n');
         getchar();
@@ -124,9 +129,9 @@ void cadastrarPatinete(void){
     printf("║                      Patinete cadastrado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    free(modelo);
-    free(marca);
-    free(cor);
+    free(patinete1.modelo);
+    free(patinete1.marca);
+    free(patinete1.cor);
     sleep(1);
 }
 
