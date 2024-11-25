@@ -165,12 +165,6 @@ void pesquisarPatinete(void){
 
 void atualizarPatinete(void){
     struct patinete patinete;
-    int id;
-    char *modelo;
-    char *cor;
-    char *marca;
-    char ano[12];
-    char bateria[5];
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
