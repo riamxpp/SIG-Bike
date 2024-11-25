@@ -164,6 +164,7 @@ void pesquisarPatinete(void){
 }
 
 void atualizarPatinete(void){
+    struct patinete patinete;
     int id;
     char *modelo;
     char *cor;
@@ -176,7 +177,7 @@ void atualizarPatinete(void){
     printf("║                          Atualizar Dados do Patinete                          ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do Patinete: ");
-    if (verificaNumero(scanf("%d", &id)) != 1) {
+    if (verificaNumero(scanf("%d", &patinete.id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -189,9 +190,9 @@ void atualizarPatinete(void){
 
     printf("║                                                                               ║\n");
     printf("║ Modelo: ");
-    modelo = (char*) malloc(20*sizeof(char));
+    patinete.modelo = (char*) malloc(20*sizeof(char));
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", modelo)) != 1) {
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", patinete.modelo)) != 1) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -200,9 +201,9 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Cor:  ");
-    cor = (char*) malloc(20*sizeof(char));
+    patinete.cor = (char*) malloc(20*sizeof(char));
 
-    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", cor)) != 1) {
+    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", patinete.cor)) != 1) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
@@ -211,9 +212,9 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Marca: ");
-    marca = (char*) malloc(12*sizeof(char));
+    patinete.marca = (char*) malloc(12*sizeof(char));
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", marca)) != 1){
+    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", patinete.marca)) != 1){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -222,7 +223,7 @@ void atualizarPatinete(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    if (verificaNumero(scanf("%d", &ano)) != 1 || ano < 1000 || ano > 9999) {
+    if (verificaNumero(scanf("%d", &patinete.ano)) != 1 || patinete.ano < 1000 || patinete.ano > 9999) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -231,7 +232,7 @@ void atualizarPatinete(void){
     getchar();
 
     printf("║ Bateria (capacidade): ");
-    if (verificaNumero(scanf("%d", &bateria)) != 1 || bateria < 0 || bateria > 100) {
+    if (verificaNumero(scanf("%d", &patinete.bateria)) != 1 || patinete.bateria < 0 || patinete.bateria > 100) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -243,9 +244,9 @@ void atualizarPatinete(void){
     printf("║                      Patinete Atualizado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    free(modelo);
-    free(marca);
-    free(cor);
+    free(patinete.modelo);
+    free(patinete.marca);
+    free(patinete.cor);
     sleep(1);
 }
 
