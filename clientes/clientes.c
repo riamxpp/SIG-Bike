@@ -5,6 +5,7 @@
 #include "view.h"
 #include "../validacao/validacao.h"
 
+
 struct cliente {
     char *nome;
     char *cpf;
