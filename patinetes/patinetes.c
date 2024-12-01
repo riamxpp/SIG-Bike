@@ -84,7 +84,7 @@ void cadastrarPatinete(void){
         getchar();
         return;
     }
-    
+
     printf("║ Cor: ");
     patinete1.cor = (char*) malloc(20*sizeof(char));
     scanf("%99s", patinete1.cor);
@@ -194,10 +194,10 @@ void atualizarPatinete(void){
     }
     getchar();
 
-    printf("║ Cor:  ");
-    patinete.cor = (char*) malloc(20*sizeof(char));
-
-    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", patinete.cor)) != 1) {
+    printf("║ Cor: ");
+    patinete1.cor = (char*) malloc(20*sizeof(char));
+    scanf("%99s", patinete1.cor);
+    if (validarPalavra(patinete1.cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
