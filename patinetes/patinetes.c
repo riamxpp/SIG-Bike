@@ -108,7 +108,9 @@ void cadastrarPatinete(void){
     }
     
     printf("║ Ano de Fabricação: ");
-    if (verificaNumero(scanf("%d", &patinete1.ano)) != 1 || patinete1.ano < 1000 || patinete1.ano > 9999) {
+    scanf("%d", &patinete1.ano);
+
+    if (!validaAno(patinete1.ano)) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
