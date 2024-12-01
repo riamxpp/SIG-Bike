@@ -221,10 +221,21 @@ bool validarNumAndChar(const char *entrada) {
     return true;
 }
 
+bool validarPalavra(const char *entrada) {
+    for (int i = 0; entrada[i] != '\0'; i++) {
+        char c = entrada[i];
 
-int validarPalavra(int valor) {
-    if (valor != 1) {
-        return 0;
+        // Verifica se o caractere é uma letra (maiúscula ou minúscula) ou espaço
+        if (!isalpha(c) && c != ' ') {
+            return false;  // Se encontrar um caractere inválido, retorna false
+        }
     }
-    return 1;
+    return true;  // Se todos os caracteres forem válidos, retorna true
+}
+
+int validaAno(int ano){
+    if (ano < 1000 || ano > 9999){
+        return false
+    }
+    return true
 }

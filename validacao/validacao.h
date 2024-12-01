@@ -13,7 +13,8 @@ int validarData(int dia, int mes, int ano);
 int calcularIdade(int dia, int mes, int ano);
 int validarDataNascimento(const char *data);
 bool validarNumAndChar(const char *entrada);
-int validarPalavra(int);
+bool validarPalavra(const char *entrada)
 int verificaNumero(int);
+int validaAno(int ano);
 
 #endif 

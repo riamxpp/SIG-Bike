@@ -94,8 +94,8 @@ void cadastrarBicicleta(void){
 
     printf("║ Cor: ");
     bicicleta.cor = (char*) malloc(20*sizeof(char));
-
-    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", bicicleta.cor)) != 1) {
+    scanf("%99s", bicicleta.cor);
+    if (validarPalavra(bicicleta.cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
@@ -115,8 +115,9 @@ void cadastrarBicicleta(void){
     }
     getchar();
 
-    printf("║ Ano de Fabricação; ");
-    if (verificaNumero(scanf("%d", &bicicleta.ano)) != 1 || bicicleta.ano < 1000 || bicicleta.ano > 9999) {
+    printf("║ Ano de Fabricação: ");
+    scanf("%99s", bicicleta.ano);
+    if (!verificaAno(bicicleta.ano)) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
