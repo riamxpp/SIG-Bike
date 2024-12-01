@@ -183,16 +183,16 @@ void atualizarPatinete(void){
     printf("║                           ↪Digite os Novos Dados↩                             ║\n");
 
     printf("║                                                                               ║\n");
+    patinete1.modelo = (char*) malloc(20*sizeof(char));
     printf("║ Modelo: ");
-    patinete.modelo = (char*) malloc(20*sizeof(char));
+    scanf("%99s", patinete1.modelo);
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", patinete.modelo)) != 1) {
+    if (!validarNumAndChar(patinete1.modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
         return;
     }
-    getchar();
 
     printf("║ Cor: ");
     patinete1.cor = (char*) malloc(20*sizeof(char));
