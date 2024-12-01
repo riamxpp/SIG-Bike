@@ -117,6 +117,7 @@ void cadastrarBicicleta(void){
 
     printf("║ Ano de Fabricação: ");
     scanf("%99s", bicicleta.ano);
+    
     if (!verificaAno(bicicleta.ano)) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
