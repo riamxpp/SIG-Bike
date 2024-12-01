@@ -96,16 +96,16 @@ void cadastrarPatinete(void){
     }
     getchar();
 
-    printf("║ Marca: ");
     patinete1.marca = (char*) malloc(12*sizeof(char));
+    printf("║ Marca: ");
+    scanf("%99s", patinete1.marca);
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", patinete1.marca)) != 1){
+    if (!validarNumAndChar(patinete1.marca)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
         return;
-    };
-    getchar();
+    }
     
     printf("║ Ano de Fabricação: ");
     if (verificaNumero(scanf("%d", &patinete1.ano)) != 1 || patinete1.ano < 1000 || patinete1.ano > 9999) {
