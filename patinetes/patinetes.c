@@ -205,15 +205,16 @@ void atualizarPatinete(void){
     }
     getchar();
 
+    patinete1.marca = (char*) malloc(12*sizeof(char));
     printf("║ Marca: ");
-    patinete.marca = (char*) malloc(12*sizeof(char));
+    scanf("%99s", patinete1.marca);
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", patinete.marca)) != 1){
+    if (!validarNumAndChar(patinete1.marca)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
         return;
-    };
+    }
     getchar();
     
     printf("║ Ano de Fabricação: ");
