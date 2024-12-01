@@ -2,6 +2,7 @@
 #define VALIDACAO_H
 #include <stdio.h>
 #include <time.h>
+#include <stdbool.h>
 
 int validarNome(char *nome);
 int validarCPF(const char *cpf);
@@ -11,7 +12,7 @@ int isLeapYear(int year);
 int validarData(int dia, int mes, int ano);
 int calcularIdade(int dia, int mes, int ano);
 int validarDataNascimento(const char *data);
-int validarNumAndChar(int);
+bool validarNumAndChar(const char *entrada);
 int validarPalavra(int);
 int verificaNumero(int);
 

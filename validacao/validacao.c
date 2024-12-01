@@ -2,6 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
+#include <stdbool.h>
 
 int validarNome(const char *nome) {
     // Verifica se o nome contém apenas letras e espaços
@@ -205,12 +206,21 @@ int validarNumAndCharAndCaractere(char valor[]) {
     return 1;
 }
 
-int validarNumAndChar(int valor) {
-    if (valor != 1) {
-        return 0;
+bool validarNumAndChar(const char *entrada) {
+    for (int i = 0; entrada[i] != '\0'; i++) {
+        char c = entrada[i];
+
+        // Verifica se é alfanumérico básico (letras ou números)
+        if (isalnum(c)) {
+            continue;
+        }
+
+        // Qualquer outro caractere é inválido
+        return false;
     }
-    return 1;
+    return true;
 }
+
 
 int validarPalavra(int valor) {
     if (valor != 1) {

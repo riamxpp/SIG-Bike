@@ -80,16 +80,18 @@ void cadastrarBicicleta(void){
     }
     getchar();
 
-    printf("║ Modelo: ");
     bicicleta.modelo = (char*) malloc(20*sizeof(char));
+    printf("║ Modelo: ");
+    scanf("%99s", bicicleta.modelo);
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", bicicleta.modelo)) != 1) {
+    if (!validar(bicicleta.modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
         return;
     }
     getchar();
+
 
     printf("║ Cor: ");
     bicicleta.cor = (char*) malloc(20*sizeof(char));
