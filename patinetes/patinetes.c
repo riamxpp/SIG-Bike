@@ -73,22 +73,31 @@ void cadastrarPatinete(void){
         return;
     }
     getchar();  
-
     printf("║                                                                               ║\n");
-    printf("║ Modelo: ");
     patinete1.modelo = (char*) malloc(20*sizeof(char));
+    printf("║ Modelo: ");
+    scanf("%99s", patinete1.modelo);
 
-    if (validarNumAndChar(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", patinete1.modelo)) != 1) {
+    if (!validarNumAndChar(patinete1.modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
         return;
     }
-    getchar();
 
     printf("║ Cor: ");
+    bicicleta.cor = (char*) malloc(20*sizeof(char));
+    scanf("%99s", bicicleta.cor);
+    if (validarPalavra(bicicleta.cor)) {
+        printf("\nEntrada inválida, digite apenas letras.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+    printf("║ Cor: ");
     patinete1.cor = (char*) malloc(20*sizeof(char));
-    if (validarPalavra(scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", patinete1.cor)) != 1) {
+    scanf("%99s", patinete1.cor);
+    if (validarPalavra(patinete1.cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();

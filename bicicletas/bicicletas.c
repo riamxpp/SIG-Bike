@@ -77,6 +77,7 @@ void cadastrarBicicleta(void){
         return;
     }
 
+
     printf("║ Cor: ");
     bicicleta.cor = (char*) malloc(20*sizeof(char));
     scanf("%99s", bicicleta.cor);
