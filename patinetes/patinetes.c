@@ -185,11 +185,11 @@ void atualizarPatinete(void){
     printf("║                           ↪Digite os Novos Dados↩                             ║\n");
 
     printf("║                                                                               ║\n");
-    patinete1.modelo = (char*) malloc(20*sizeof(char));
+    patinete.modelo = (char*) malloc(20*sizeof(char));
     printf("║ Modelo: ");
-    scanf("%99s", patinete1.modelo);
+    scanf("%99s", patinete.modelo);
 
-    if (!validarNumAndChar(patinete1.modelo)) {
+    if (!validarNumAndChar(patinete.modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -197,9 +197,9 @@ void atualizarPatinete(void){
     }
 
     printf("║ Cor: ");
-    patinete1.cor = (char*) malloc(20*sizeof(char));
-    scanf("%99s", patinete1.cor);
-    if (validarPalavra(patinete1.cor)) {
+    patinete.cor = (char*) malloc(20*sizeof(char));
+    scanf("%99s", patinete.cor);
+    if (validarPalavra(patinete.cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
@@ -207,11 +207,11 @@ void atualizarPatinete(void){
     }
     getchar();
 
-    patinete1.marca = (char*) malloc(12*sizeof(char));
+    patinete.marca = (char*) malloc(12*sizeof(char));
     printf("║ Marca: ");
-    scanf("%99s", patinete1.marca);
+    scanf("%99s", patinete.marca);
 
-    if (!validarNumAndChar(patinete1.marca)) {
+    if (!validarNumAndChar(patinete.marca)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -220,9 +220,9 @@ void atualizarPatinete(void){
     getchar();
     
     printf("║ Ano de Fabricação: ");
-    scanf("%d", &patinete1.ano);
+    scanf("%d", &patinete.ano);
 
-    if (!validaAno(patinete1.ano)) {
+    if (!validaAno(patinete.ano)) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
