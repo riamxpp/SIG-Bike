@@ -11,7 +11,7 @@ struct Bicicleta {
 };
 void bicicletas(void);
 void cadastrarBicicleta(FILE *fp);
-void pesquisarBicicleta(void);
+void pesquisarBicicleta(FILE *fp);
 void atualizarBicicleta(void);
 void deletarBicicleta(void);
 

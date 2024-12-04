@@ -4,10 +4,11 @@
 #include <string.h>
 #include "bicicletas.h"
 #include "../validacao/validacao.h"
+#include "../utils/util.c"
 
 void bicicletas(void){
     int op_bicicleta;
-    FILE *fp;
+    FILE *fp = NULL;
     do{
         system("clear||cls");
         printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -30,10 +31,10 @@ void bicicletas(void){
 
         switch (op_bicicleta) {
             case 1:
-                cadastrarBicicleta(&fp);
+                cadastrarBicicleta(fp);
                 break;
             case 2:
-                pesquisarBicicleta();
+                pesquisarBicicleta(fp);
                 break;
             case 3:
                 atualizarBicicleta();
@@ -157,21 +158,38 @@ void cadastrarBicicleta(FILE *fp){
     sleep(1);
 }
 
-void pesquisarBicicleta(void){
-    int id;
+void pesquisarBicicleta(FILE *fp){
+    // struct Bicicleta bicicleta;
+    // char id[3];
+    char idBuscador[3];
+    char linha[256];
+    fp = fopen("bicicletas.txt", "r");
 
+    if (fp == NULL) {
+        printf("Erro no arquivo!!\n");
+        exit(1);
+    }
+
+    while (!feof(fp)) {        
+        fgets(linha, 256, fp); 
+        printf("linha: %s\n", linha);
+        obterTresPrimeiros(linha, idBuscador, sizeof(idBuscador));
+        printf("idbuscador: %s\n", idBuscador);
+        getchar();
+    }
+        // printf("%s", idBuscador);
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Pesquisar Bicicleta                             ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID da Bicicleta:  ");
 
-    if (verificaNumero(scanf("%d", &id)) != 1) {
-        printf("\nEntrada inválida, digite um número.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
-    }
+    // if (verificaNumero(scanf("%d", &id)) != 1) {
+    //     printf("\nEntrada inválida, digite um número.  \n");
+    //     while (getchar() != '\n');
+    //     getchar();
+    //     return;
+    // }
 
     printf("║                                                                               ║\n");
     printf("║ Modelo:                                                                       ║\n");
@@ -183,6 +201,7 @@ void pesquisarBicicleta(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
+    fclose(fp);
 }
 
 void atualizarBicicleta(void){
