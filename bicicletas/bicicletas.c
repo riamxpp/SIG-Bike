@@ -7,7 +7,7 @@
 
 void bicicletas(void){
     int op_bicicleta;
-    
+    FILE *fp;
     do{
         system("clear||cls");
         printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -30,7 +30,7 @@ void bicicletas(void){
 
         switch (op_bicicleta) {
             case 1:
-                cadastrarBicicleta();
+                cadastrarBicicleta(&fp);
                 break;
             case 2:
                 pesquisarBicicleta();
@@ -50,8 +50,27 @@ void bicicletas(void){
     }while(op_bicicleta != 0);
 }
 
-void cadastrarBicicleta(void){
-    struct bicicleta bicicleta;
+void cadastrarBicicleta(FILE *fp){
+    fp = fopen("bicicletas.txt", "r");
+
+    if (fp == NULL) {
+        fp = fopen("bicicletas.txt", "w");
+
+        if (fp == NULL) {
+            printf("Erro no arquivo!!\n");
+            exit(1);
+        }
+    }else {
+        fclose(fp);
+        fp = fopen("bicicletas.txt", "a");
+        if (fp == NULL) {
+            printf("Erro no arquivo!!\n");
+            exit(1);
+        }
+    }
+
+    int verificaValidacao;
+    struct Bicicleta bicicleta;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -79,8 +98,11 @@ void cadastrarBicicleta(void){
 
     printf("║ Cor: ");
     bicicleta.cor = (char*) malloc(20*sizeof(char));
+    
     scanf("%99s", bicicleta.cor);
-    if (validarPalavra(bicicleta.cor)) {
+    verificaValidacao = validarPalavra(bicicleta.cor);
+    
+    if (!verificaValidacao) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
@@ -117,6 +139,13 @@ void cadastrarBicicleta(void){
         return;
     }
 
+    fprintf(fp, "%d ", bicicleta.id);
+    fprintf(fp, "%s ", bicicleta.modelo);
+    fprintf(fp, "%s ", bicicleta.cor);
+    fprintf(fp, "%s ", bicicleta.marca);
+    fprintf(fp, "%d ", bicicleta.ano);
+    fprintf(fp, "%d \n", bicicleta.tam_quadro);
+
     printf("║                                                                               ║\n");
     printf("║                      Bicicleta cadastrada com sucesso!                        ║\n");
     printf("║                                   Aguarde...                                  ║\n");
@@ -124,6 +153,7 @@ void cadastrarBicicleta(void){
     free(bicicleta.modelo);
     free(bicicleta.marca);
     free(bicicleta.cor);
+    fclose(fp);
     sleep(1);
 }
 
@@ -156,7 +186,7 @@ void pesquisarBicicleta(void){
 }
 
 void atualizarBicicleta(void){
-    struct bicicleta bicicleta;
+    struct Bicicleta bicicleta;
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                          Atualizar Dados da Bicicleta                         ║\n");

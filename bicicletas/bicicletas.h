@@ -1,7 +1,7 @@
 #ifndef BICICLETAS_H
 #define BICICLETAS_H
 
-struct bicicleta {
+struct Bicicleta {
     int id;
     int tam_quadro;
     char *cor;
@@ -10,7 +10,7 @@ struct bicicleta {
     int ano;
 };
 void bicicletas(void);
-void cadastrarBicicleta(void);
+void cadastrarBicicleta(FILE *fp);
 void pesquisarBicicleta(void);
 void atualizarBicicleta(void);
 void deletarBicicleta(void);
