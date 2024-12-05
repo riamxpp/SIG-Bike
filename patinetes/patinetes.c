@@ -127,6 +127,18 @@ Patinete* preenchePatinete(void) {
     return pat;
 }
 
+void gravaPatinete(Patinete* pat) {
+    FILE* fp;
+    fp = fopen("patinetes.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        exit(1);
+    }
+    fwrite(pat, sizeof(Patinete), 1, fp);
+    fclose(fp);
+}
+
 void pesquisarPatinete(void){
     int id;
 
