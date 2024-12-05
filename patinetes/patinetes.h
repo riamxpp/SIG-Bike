@@ -14,7 +14,7 @@ void patinetes(void);
 Patinete* preenchePatinete(void);
 void gravaPatinete(Patinete* pat);
 int obterProximoID();
-void pesquisarPatinete(void);
+Patinete* pesquisarPatinete(void);
 void atualizarPatinete(void);
 void deletarPatinete(void);
 

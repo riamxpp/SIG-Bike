@@ -159,7 +159,9 @@ void gravaPatinete(Patinete* pat) {
     fclose(fp);
 }
 
-void pesquisarPatinete(void){
+Patinete* pesquisarPatinete(void){
+    FILE *fp;
+    Patinete* pat;
     int id;
 
     system("clear||cls");
@@ -167,14 +169,27 @@ void pesquisarPatinete(void){
     printf("║                               Pesquisar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do Patinete: ");
-    if (verificaNumero(scanf("%d", &id)) != 1) {
-        printf("\nEntrada inválida, digite apenas números.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
+    scanf("%d", &id);
+    pat = (Patinete*) malloc(sizeof(Patinete));
+    fp = fopen("patinetes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        exit(1);
     }
+    while(!feof(fp)) {
+        fread(pat, sizeof(Patinete), 1, fp);
+        if ((pat->id == id)) {
+            fclose(fp);
+            return pat;
+        }
+    }
+    fclose(fp);
+    return NULL;
+    
 
     getchar();
+    /*
     printf("║                                                                               ║\n");
     printf("║ Modelo:                                                                       ║\n");
     printf("║ Cor:                                                                          ║\n");
@@ -185,6 +200,7 @@ void pesquisarPatinete(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
+    */
 }
 
 void atualizarPatinete(void){
