@@ -4,6 +4,7 @@
 #include "patinetes.h"
 #include <string.h>
 #include "../validacao/validacao.h"
+#include "../utils/util.c"
 
 struct patinete {
     int id;
