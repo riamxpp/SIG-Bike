@@ -172,6 +172,7 @@ void pesquisarBicicleta(FILE *fp){
     while (!feof(fp)) {        
         fgets(linha, 256, fp); 
         printf("linha: %s\n", linha);
+        // obterTresPrimeiros(linha, idBuscador, sizeof(idBuscador));
         printf("idbuscador: %s\n", idBuscador);
         getchar();
     }
