@@ -13,6 +13,7 @@ typedef struct patinete {
 void patinetes(void);
 Patinete* preenchePatinete(void);
 void gravaPatinete(Patinete* pat);
+int obterProximoID();
 void pesquisarPatinete(void);
 void atualizarPatinete(void);
 void deletarPatinete(void);

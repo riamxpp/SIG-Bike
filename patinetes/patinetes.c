@@ -63,7 +63,9 @@ Patinete* preenchePatinete(void) {
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ ID: ");
+    pat->id = obterProximoID();
+
+    /*
     if (verificaNumero(scanf("%d", &pat->id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         free(pat);
@@ -71,7 +73,7 @@ Patinete* preenchePatinete(void) {
         getchar();
         return NULL;
     }
-    getchar();
+    */
 
     printf("║ Modelo: ");
     scanf(" %50[^\n]", pat->modelo);
@@ -127,6 +129,22 @@ Patinete* preenchePatinete(void) {
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     sleep(1);
     return pat;
+}
+
+int obterProximoID() {
+    FILE* arquivo = fopen("patinetes.dat", "rb");
+    if (arquivo == NULL) {
+        return 1;
+    }
+    Patinete temp;
+    int ultimoID = 0;
+
+    while (fread(&temp, sizeof(Patinete), 1, arquivo) == 1) {
+        ultimoID = temp.id;
+    }
+
+    fclose(arquivo);
+    return ultimoID + 1;
 }
 
 void gravaPatinete(Patinete* pat) {
