@@ -203,6 +203,24 @@ Patinete* pesquisarPatinete(void){
     */
 }
 
+void exibePatinete(Patinete* pat) {
+    if (pat == NULL) {
+        printf("\n= = = Patinete Inexistente = = =\n");
+        printf("Tecle <ENTER> para continuar...");
+        getchar();
+    } else {
+        printf("\n= = = Patinete Cadastrado = = =\n");
+        printf("║ ID: %d\n", pat->id);
+        printf("║ Modelo: %s\n", pat->modelo);
+        printf("║ Cor: %s\n", pat->cor);
+        printf("║ Marca: %s\n", pat->marca);
+        printf("║ Ano de Fabrica: %d\n", pat->ano);
+        printf("║ Bateria (capacidade): %d\n", pat->bateria);
+        printf("Tecle <ENTER> para continuar...");
+        getchar();
+    }
+}
+
 void atualizarPatinete(void){
     return;
     /*
