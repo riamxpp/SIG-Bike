@@ -6,15 +6,6 @@
 #include "../validacao/validacao.h"
 #include "../utils/util.c"
 
-struct patinete {
-    int id;
-    char *modelo;
-    char *cor;
-    char *marca;
-    int ano;
-    int bateria;
-};
-
 void patinetes(void){
     int op_patinete;
     do{
@@ -40,7 +31,7 @@ void patinetes(void){
 
         switch (op_patinete) {
             case 1:
-                cadastrarPatinete();
+                preenchePatinete();
                 break;
             case 2:
                 pesquisarPatinete();
@@ -60,83 +51,80 @@ void patinetes(void){
     }while(op_patinete != 0);
 } 
 
-void cadastrarPatinete(void){
-    struct patinete patinete1;
-
+Patinete* preenchePatinete(void) {
+    Patinete* pat;
+    pat = (Patinete*) malloc(sizeof(Patinete));
+    if (pat == NULL) {
+        printf("Erro ao alocar memória para o patinete.\n");
+        exit(1);
+    }
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ ID: ");
-    if (verificaNumero(scanf("%d", &patinete1.id)) != 1) {
+    if (verificaNumero(scanf("%d", &pat->id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
+        free(pat);
         while (getchar() != '\n');
         getchar();
-        return;
+        return NULL;
     }
-    getchar();  
-    printf("║                                                                               ║\n");
-    patinete1.modelo = (char*) malloc(20*sizeof(char));
-    printf("║ Modelo: ");
-    scanf("%99s", patinete1.modelo);
+    getchar();
 
-    if (!validarNumAndChar(patinete1.modelo)) {
+    printf("║ Modelo: ");
+    scanf(" %50[^\n]", pat->modelo);
+    if (!validarNumAndChar(pat->modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        free(pat);
         while (getchar() != '\n');
         getchar();
-        return;
+        return NULL;
     }
 
     printf("║ Cor: ");
-    patinete1.cor = (char*) malloc(20*sizeof(char));
-    scanf("%99s", patinete1.cor);
-    if (validarPalavra(patinete1.cor)) {
+    scanf(" %50[^\n]", pat->cor);
+    if (validarPalavra(pat->cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
+        free(pat);
         while (getchar() != '\n');
         getchar();
-        return;
+        return NULL;
     }
-    getchar();
 
-    patinete1.marca = (char*) malloc(12*sizeof(char));
     printf("║ Marca: ");
-    scanf("%99s", patinete1.marca);
-
-    if (!validarNumAndChar(patinete1.marca)) {
+    scanf(" %50[^\n]", pat->marca);
+    if (!validarNumAndChar(pat->marca)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        free(pat);
         while (getchar() != '\n');
         getchar();
-        return;
+        return NULL;
     }
-    
-    printf("║ Ano de Fabricação: ");
-    scanf("%d", &patinete1.ano);
 
-    if (!validaAno(patinete1.ano)) {
+    printf("║ Ano de Fabricação: ");
+    scanf("%d", &pat->ano);
+    if (!validaAno(pat->ano)) {
         printf("\nEntrada inválida, digite apenas números.  \n");
+        free(pat);
         while (getchar() != '\n');
         getchar();
-        return;
-    }
-    getchar();
+        return NULL;
+    } 
 
     printf("║ Bateria (capacidade): ");
-    if (verificaNumero(scanf("%d", &patinete1.bateria)) != 1 || patinete1.bateria < 0 || patinete1.bateria > 100) {
+    if (verificaNumero(scanf("%d", &pat->bateria)) != 1 || pat->bateria < 0 || pat->bateria > 100) {
         printf("\nEntrada inválida, digite um valor válido.  \n");
+        free(pat);
         while (getchar() != '\n');
         getchar();
-        return;
+        return NULL;
     }
-    getchar();
-
     printf("║                                                                               ║\n");
     printf("║                      Patinete cadastrado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    free(patinete1.modelo);
-    free(patinete1.marca);
-    free(patinete1.cor);
-    sleep(1);
+    return pat;
 }
 
 void pesquisarPatinete(void){

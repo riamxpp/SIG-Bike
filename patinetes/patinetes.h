@@ -1,10 +1,20 @@
 #ifndef PATINETES_H
 #define PATINETES_H
 
+typedef struct patinete {
+    int id;
+    char modelo[51];
+    char cor[51];
+    char marca[51];
+    int ano;
+    int bateria;
+} Patinete;
+
 void patinetes(void);
-void cadastrarPatinete(void);
+Patinete* preenchePatinete(void);
 void pesquisarPatinete(void);
 void atualizarPatinete(void);
 void deletarPatinete(void);
+
 
 #endif
