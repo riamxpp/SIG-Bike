@@ -12,6 +12,7 @@ typedef struct patinete {
 
 void patinetes(void);
 Patinete* preenchePatinete(void);
+void gravaPatinete(Patinete* pat);
 void pesquisarPatinete(void);
 void atualizarPatinete(void);
 void deletarPatinete(void);

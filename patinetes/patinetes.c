@@ -4,9 +4,9 @@
 #include "patinetes.h"
 #include <string.h>
 #include "../validacao/validacao.h"
-#include "../utils/util.c"
 
 void patinetes(void){
+    Patinete* pat;
     int op_patinete;
     do{
         system("clear||cls");
@@ -31,7 +31,8 @@ void patinetes(void){
 
         switch (op_patinete) {
             case 1:
-                preenchePatinete();
+                pat = preenchePatinete();
+                gravaPatinete(pat);
                 break;
             case 2:
                 pesquisarPatinete();
@@ -84,7 +85,7 @@ Patinete* preenchePatinete(void) {
 
     printf("║ Cor: ");
     scanf(" %50[^\n]", pat->cor);
-    if (validarPalavra(pat->cor)) {
+    if (!validarNome(pat->cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         free(pat);
         while (getchar() != '\n');
@@ -124,6 +125,7 @@ Patinete* preenchePatinete(void) {
     printf("║                      Patinete cadastrado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    sleep(1);
     return pat;
 }
 
@@ -168,6 +170,8 @@ void pesquisarPatinete(void){
 }
 
 void atualizarPatinete(void){
+    return;
+    /*
     struct patinete patinete;
 
     system("clear||cls");
@@ -249,6 +253,7 @@ void atualizarPatinete(void){
     free(patinete.marca);
     free(patinete.cor);
     sleep(1);
+    */
 }
 
 void deletarPatinete(void){

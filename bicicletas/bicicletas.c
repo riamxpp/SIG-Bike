@@ -4,7 +4,6 @@
 #include <string.h>
 #include "bicicletas.h"
 #include "../validacao/validacao.h"
-#include "../utils/util.c"
 
 void bicicletas(void){
     int op_bicicleta;
@@ -173,7 +172,6 @@ void pesquisarBicicleta(FILE *fp){
     while (!feof(fp)) {        
         fgets(linha, 256, fp); 
         printf("linha: %s\n", linha);
-        obterTresPrimeiros(linha, idBuscador, sizeof(idBuscador));
         printf("idbuscador: %s\n", idBuscador);
         getchar();
     }
