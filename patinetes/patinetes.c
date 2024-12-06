@@ -66,16 +66,6 @@ Patinete* preenchePatinete(void) {
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     pat->id = obterProximoID();
 
-    /*
-    if (verificaNumero(scanf("%d", &pat->id)) != 1) {
-        printf("\nEntrada inválida, digite apenas números.  \n");
-        free(pat);
-        while (getchar() != '\n');
-        getchar();
-        return NULL;
-    }
-    */
-
     printf("║ Modelo: ");
     scanf(" %50[^\n]", pat->modelo);
     if (!validarNumAndChar(pat->modelo)) {
@@ -182,7 +172,7 @@ Patinete* pesquisarPatinete(void){
         free(pat);
         exit(1);
     }
-    while (fread(pat, sizeof(Patinete), 1, fp) == 1) { // Lê enquanto houver registros
+    while (fread(pat, sizeof(Patinete), 1, fp) == 1) {
         if (pat->id == id) {
             encontrado = 1;
             break;
@@ -190,22 +180,11 @@ Patinete* pesquisarPatinete(void){
     }
     fclose(fp);
     if (encontrado) {
-        return pat; // Retorna o patinete encontrado
+        return pat;
     } else {
-        free(pat); // Libera a memória caso o ID não seja encontrado
+        free(pat);
         return NULL;
     }
-    
-    /*
-    printf("║                                                                               ║\n");
-    printf("║ Modelo:                                                                       ║\n");
-    printf("║ Cor:                                                                          ║\n");
-    printf("║ Marca:                                                                        ║\n");
-    printf("║ Ano de Fabricação:                                                            ║\n");
-    printf("║ Bateria (capacidade):                                                         ║\n");
-    printf("║                                                                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    */
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
