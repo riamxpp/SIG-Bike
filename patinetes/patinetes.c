@@ -42,7 +42,8 @@ void patinetes(void){
                 atualizarPatinete();
                 break;
             case 4:
-                deletarPatinete();
+                pat = pesquisarPatinete();
+                deletarPatinete(pat);
                 break;
             case 0:
                 break;
@@ -292,25 +293,68 @@ void atualizarPatinete(void){
     */
 }
 
-void deletarPatinete(void){
-    int id;
-    
+void deletarPatinete(Patinete* patLido) {
+    FILE *fp, *temp;
+    Patinete* patArq;
+    int achou = 0;
+
+    if (patLido == NULL) {
+        printf("O patinete informado não existe!\n");
+        return;
+    } 
+
+    patArq = (Patinete*) malloc(sizeof(Patinete));
+    if(patArq == NULL){
+        printf("Erro ao alocar memória.\n");
+        exit(1);
+    }
+
+    fp = fopen("patinetes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        free(patArq);
+        exit(1);
+    }
+
+    temp =fopen("temp.dat","wb");
+    if (temp == NULL) {
+        printf("Ops! Erro na criação do arquivo temporário!\n");
+        fclose(fp);
+        free(patArq);
+        exit(1);
+    }
+
+    while (fread(patArq, sizeof(Patinete), 1, fp) == 1) {
+        if (patArq->id == patLido->id) {
+            achou = 1;
+        } else {
+            fwrite(patArq, sizeof(Patinete), 1, temp);
+        }
+    }
+
+    fclose(fp);
+    fclose(temp);
+    free(patArq);
+
+    if (achou) {
+        remove("patinetes.dat");
+        rename("temp.dat", "patinetes.dat");
+        printf("║                                                                               ║\n");
+        printf("║                          Patinete excluído com sucesso!                       ║\n");
+        printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    } else {
+        remove("temp.dat");
+        printf("\nPatinete não encontrado!\n");
+    }
+    printf("Tecle <ENTER> para continuar...");
+    getchar();
+    /*
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Deletar Patinete                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do patinete a excluir: ");
-    if (verificaNumero(scanf("%d", &id)) != 1) {
-        printf("\nEntrada inválida, digite apenas números.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
-    }
-    getchar();
-
-    printf("║                                                                               ║\n");
-    printf("║                          Patinete excluído com sucesso!                       ║\n");
-    printf("║                                   Aguarde...                                  ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    sleep(1);
+    */
 }
+
