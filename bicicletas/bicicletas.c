@@ -70,7 +70,7 @@ void cadastrarBicicleta(FILE *fp){
     }
 
     int verificaValidacao;
-    struct Bicicleta bicicleta;
+    Bicicleta *bicicleta;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -78,18 +78,18 @@ void cadastrarBicicleta(FILE *fp){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ ID: ");
 
-    if (verificaNumero(scanf("%d", &bicicleta.id)) != 1) {
+    if (verificaNumero(scanf("%d", &bicicleta->id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
         return;
     }
 
-    bicicleta.modelo = (char*) malloc(20*sizeof(char));
+    bicicleta->modelo = (char*) malloc(20*sizeof(char));
     printf("║ Modelo: ");
-    scanf("%99s", bicicleta.modelo);
+    scanf("%99s", bicicleta->modelo);
 
-    if (!validarNumAndChar(bicicleta.modelo)) {
+    if (!validarNumAndChar(bicicleta->modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -97,10 +97,10 @@ void cadastrarBicicleta(FILE *fp){
     }
 
     printf("║ Cor: ");
-    bicicleta.cor = (char*) malloc(20*sizeof(char));
+    bicicleta->cor = (char*) malloc(20*sizeof(char));
     
-    scanf("%99s", bicicleta.cor);
-    verificaValidacao = validarPalavra(bicicleta.cor);
+    scanf("%99s", bicicleta->cor);
+    verificaValidacao = validarPalavra(bicicleta->cor);
     
     if (!verificaValidacao) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
@@ -109,11 +109,11 @@ void cadastrarBicicleta(FILE *fp){
         return;
     }
 
-    bicicleta.marca = (char*) malloc(12*sizeof(char));
+    bicicleta->marca = (char*) malloc(12*sizeof(char));
     printf("║ Marca: ");
-    scanf("%99s", bicicleta.marca);
+    scanf("%99s", bicicleta->marca);
 
-    if (!validarNumAndChar(bicicleta.marca)) {
+    if (!validarNumAndChar(bicicleta->marca)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -121,9 +121,9 @@ void cadastrarBicicleta(FILE *fp){
     }
 
     printf("║ Ano de Fabricação: ");
-    scanf("%d", &bicicleta.ano);
+    scanf("%d", &bicicleta->ano);
 
-    if (!validaAno(bicicleta.ano)) {
+    if (!validaAno(bicicleta->ano)) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -132,29 +132,41 @@ void cadastrarBicicleta(FILE *fp){
     getchar();
 
     printf("║ Tamanho do Quadro:  ");
-    if (verificaNumero(scanf("%d", &bicicleta.tam_quadro)) != 1) {
+    if (verificaNumero(scanf("%d", &bicicleta->tam_quadro)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
         return;
     }
 
-    fprintf(fp, "%d ", bicicleta.id);
-    fprintf(fp, "%s ", bicicleta.modelo);
-    fprintf(fp, "%s ", bicicleta.cor);
-    fprintf(fp, "%s ", bicicleta.marca);
-    fprintf(fp, "%d ", bicicleta.ano);
-    fprintf(fp, "%d \n", bicicleta.tam_quadro);
+    fprintf(fp, "%d ", bicicleta->id);
+    fprintf(fp, "%s ", bicicleta->modelo);
+    fprintf(fp, "%s ", bicicleta->cor);
+    fprintf(fp, "%s ", bicicleta->marca);
+    fprintf(fp, "%d ", bicicleta->ano);
+    fprintf(fp, "%d \n", bicicleta->tam_quadro);
 
     printf("║                                                                               ║\n");
     printf("║                      Bicicleta cadastrada com sucesso!                        ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    free(bicicleta.modelo);
-    free(bicicleta.marca);
-    free(bicicleta.cor);
+    free(bicicleta->modelo);
+    free(bicicleta->marca);
+    free(bicicleta->cor);
     fclose(fp);
     sleep(1);
+}
+
+void gravaPatinete(Bicicleta* bicicleta) {
+    FILE* fp;
+    fp = fopen("patinetes.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        exit(1);
+    }
+    fwrite(bicicleta, sizeof(Bicicleta), 1, fp);
+    fclose(fp);
 }
 
 void pesquisarBicicleta(FILE *fp){
@@ -204,14 +216,14 @@ void pesquisarBicicleta(FILE *fp){
 }
 
 void atualizarBicicleta(void){
-    struct Bicicleta bicicleta;
+    Bicicleta* bicicleta;
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                          Atualizar Dados da Bicicleta                         ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID da Bicicleta: ");
     
-    if (verificaNumero(scanf("%d", &bicicleta.id)) != 1) {
+    if (verificaNumero(scanf("%d", &bicicleta->id)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -221,9 +233,9 @@ void atualizarBicicleta(void){
     printf("║                                                                               ║\n");
     printf("║                           ↪Digite os Novos Dados↩                             ║\n");
     printf("║ Modelo: ");
-    bicicleta.modelo = (char*) malloc(20*sizeof(char));
-    scanf("%99s", bicicleta.modelo);
-    if (!validarNumAndChar(bicicleta.modelo)) {
+    bicicleta->modelo = (char*) malloc(20*sizeof(char));
+    scanf("%99s", bicicleta->modelo);
+    if (!validarNumAndChar(bicicleta->modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -231,9 +243,9 @@ void atualizarBicicleta(void){
     }
 
     printf("║ Cor: ");
-    bicicleta.cor = (char*) malloc(20*sizeof(char));
-    scanf("%99s", bicicleta.cor);
-    if (validarPalavra(bicicleta.cor)) {
+    bicicleta->cor = (char*) malloc(20*sizeof(char));
+    scanf("%99s", bicicleta->cor);
+    if (validarPalavra(bicicleta->cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
         while (getchar() != '\n');
         getchar();
@@ -241,10 +253,10 @@ void atualizarBicicleta(void){
     }
 
     printf("║ Marca: ");
-    bicicleta.marca = (char*) malloc(12*sizeof(char));
-    scanf("%99s", bicicleta.marca);
+    bicicleta->marca = (char*) malloc(12*sizeof(char));
+    scanf("%99s", bicicleta->marca);
     
-    if (!validarNumAndChar(bicicleta.marca)){
+    if (!validarNumAndChar(bicicleta->marca)){
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -252,9 +264,9 @@ void atualizarBicicleta(void){
     };
 
     printf("║ Ano de Fabricação: ");
-    scanf("%d", &bicicleta.ano);
+    scanf("%d", &bicicleta->ano);
     
-    if (!validaAno(bicicleta.ano)) {
+    if (!validaAno(bicicleta->ano)) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -262,7 +274,7 @@ void atualizarBicicleta(void){
     }
 
     printf("║ Tamanho do Quadro:  ");
-    if (verificaNumero(scanf("%d", &bicicleta.tam_quadro)) != 1) {
+    if (verificaNumero(scanf("%d", &bicicleta->tam_quadro)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
@@ -272,9 +284,9 @@ void atualizarBicicleta(void){
     printf("║                             Bicicleta atualizada                              ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    free(bicicleta.modelo);
-    free(bicicleta.marca);
-    free(bicicleta.cor);
+    free(bicicleta->modelo);
+    free(bicicleta->marca);
+    free(bicicleta->cor);
     sleep(1);
 }
 
