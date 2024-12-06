@@ -4,6 +4,7 @@
 #include "patinetes.h"
 #include <string.h>
 #include "../validacao/validacao.h"
+#include "../util/util.c"
 
 void patinetes(void){
     Patinete* pat;
@@ -32,7 +33,7 @@ void patinetes(void){
         switch (op_patinete) {
             case 1:
                 pat = preenchePatinete();
-                gravaPatinete(pat);
+                gravaArquivo("patinetes.dat", pat, sizeof(Patinete));
                 break;
             case 2:
                 pat = pesquisarPatinete();
@@ -137,18 +138,6 @@ int obterProximoID() {
 
     fclose(arquivo);
     return ultimoID + 1;
-}
-
-void gravaPatinete(Patinete* pat) {
-    FILE* fp;
-    fp = fopen("patinetes.dat", "ab");
-    if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Não é possível continuar...\n");
-        exit(1);
-    }
-    fwrite(pat, sizeof(Patinete), 1, fp);
-    fclose(fp);
 }
 
 Patinete* pesquisarPatinete(void){
