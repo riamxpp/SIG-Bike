@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <stdlib.h>
+#include "../util/util.h"
 
 void gravaArquivo(char nomeDoArquivo[], void* estrutura, size_t tamanhoEstrutura) {
     FILE* fp;

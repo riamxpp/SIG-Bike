@@ -4,7 +4,7 @@
 #include "patinetes.h"
 #include <string.h>
 #include "../validacao/validacao.h"
-#include "../util/util.c"
+#include "../util/util.h"
 
 void patinetes(void){
     Patinete* pat;
