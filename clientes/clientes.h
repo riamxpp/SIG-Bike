@@ -14,7 +14,5 @@ Cliente* preencherCliente(void);
 int obterProximoID();
 Cliente* pesquisarCliente(void);
 void exibeCliente(Cliente* cli);
-void atualizarCliente(void);
-void deletarCliente(void);
-
+void deletarCliente(Cliente *cliLido);
 #endif 

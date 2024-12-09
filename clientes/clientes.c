@@ -24,7 +24,8 @@ void clientes(void){
                 //atualizarCliente();
                 break;
             case 4:
-                deletarCliente();
+                cli = pesquisarCliente();
+                deletarCliente(cli);
                 break;
             case 0:
                 break;
