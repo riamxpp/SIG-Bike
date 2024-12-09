@@ -7,13 +7,14 @@
 #include "../util/util.h"
 
 void clientes(void){
-    Cliente* cliente;
+    Cliente* cli;
     int op_cliente;
     do{
         op_cliente = menuClientes();
         switch (op_cliente) {
             case 1:
-                cadastrarCliente();
+                cli = preencherCliente();
+                gravaArquivo("patinetes.dat", cli, sizeof(Cliente));
                 break;
             case 2:
                 pesquisarCliente();
