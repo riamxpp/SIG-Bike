@@ -5,16 +5,6 @@
 #include "view.h"
 #include "../validacao/validacao.h"
 
-
-struct cliente {
-    char *nome;
-    char *cpf;
-    char *email;
-    char *fone;
-    char *dtnas;    
-};
-
-
 void clientes(void){
     int op_cliente;
     do{
