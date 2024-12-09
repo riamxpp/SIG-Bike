@@ -14,7 +14,7 @@ void clientes(void){
         switch (op_cliente) {
             case 1:
                 cli = preencherCliente();
-                gravaArquivo("patinetes.dat", cli, sizeof(Cliente));
+                gravaArquivo("clientes.dat", cli, sizeof(Cliente));
                 break;
             case 2:
                 cli = pesquisarCliente();
@@ -106,7 +106,7 @@ Cliente* preencherCliente(void){
             return NULL;
         }
     } while (!validarDataNascimento(cli->dtnas));
-
+    exibeCliente(cli);
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                        Cliente cadastrado com sucesso!                        ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
