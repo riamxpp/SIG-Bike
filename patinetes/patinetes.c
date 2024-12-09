@@ -53,6 +53,7 @@ void patinetes(void){
             break;
         }
     }while(op_patinete != 0);
+    free(pat);
 } 
 
 Patinete* preenchePatinete(void) {
