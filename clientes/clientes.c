@@ -45,8 +45,6 @@ Cliente* preencherCliente(void){
     }
     menuCadastrarCliente();
     const char* arquivoClientes = "clientes.dat";
-    cli->id = obterProximoID(arquivoClientes, sizeof(Cliente));
-
     do {
         printf("║ Nome: ");
         scanf(" %50[^\n]", cli->nome);
@@ -106,6 +104,7 @@ Cliente* preencherCliente(void){
             return NULL;
         }
     } while (!validarDataNascimento(cli->dtnas));
+    cli->id = obterProximoID(arquivoClientes, sizeof(Cliente));
     exibeCliente(cli);
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                        Cliente cadastrado com sucesso!                        ║\n");
@@ -139,12 +138,12 @@ Cliente* pesquisarCliente(void){
     int id;
     int encontrado = 0;
     menuPesquisarCliente();
+    printf("║ ID: ");
+    scanf("%d", &id);
+    getchar();
 
     cli = (Cliente*) malloc(sizeof(Cliente));
     fp = fopen("clientes.dat", "rb");
-
-    printf("║ ID: ");
-    scanf("%d", &id);
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         printf("Não é possível continuar...\n");
@@ -179,8 +178,9 @@ void exibeCliente(Cliente* cli) {
         printf("║ CPF: %s\n", cli->cpf);
         printf("║ Email: %s\n", cli->email);
         printf("║ Telefone: %s\n", cli->fone);
-        printf("║ Data de Nasscimento: %s\n", cli->dtnas);
+        printf("║ Data de Nascimento: %s\n", cli->dtnas);
     }
+    printf("passou por aqui");
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
