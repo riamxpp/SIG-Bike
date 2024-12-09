@@ -175,8 +175,8 @@ void exibeCliente(Cliente* cli) {
         printf("║ Nome: %s\n", cli->nome);
         printf("║ CPF: %s\n", cli->cpf);
         printf("║ Email: %s\n", cli->email);
-        printf("║ Telefone: %d\n", cli->fone);
-        printf("║ Data de Nasscimento: %d\n", cli->dtnas);
+        printf("║ Telefone: %s\n", cli->fone);
+        printf("║ Data de Nasscimento: %s\n", cli->dtnas);
     }
     printf("Tecle <ENTER> para continuar...");
     getchar();
