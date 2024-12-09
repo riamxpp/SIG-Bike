@@ -55,53 +55,47 @@ void bicicletas(void){
 }
 
 Bicicleta* preencheBicicleta(void) {
-    int verificaValidacao;
-    Bicicleta *bicicleta;
+    Bicicleta* bicicleta;
     bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
     if (bicicleta == NULL) {
-        printf("Erro ao alocar mémoria para bicicleta!!\n");
+        printf("Erro ao alocar memória para o Bicicleta.\n");
         exit(1);
     }
-
+    
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                               Cadastrar Bicicleta                             ║\n");
+    printf("║                               Cadastrar Bicicleta                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ ID: ");
-
-    if (verificaNumero(scanf("%d", &bicicleta->id)) != 1) {
-        printf("\nEntrada inválida, digite apenas números.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return NULL;
-    }
+    const char* arquivoBicicletas = "Bicicletas.dat";
+    bicicleta->id = obterProximoID(arquivoBicicletas, sizeof(Bicicleta));
 
     printf("║ Modelo: ");
-    scanf("%99s", bicicleta->modelo);
-
+    bicicleta->modelo = (char*) malloc(51*sizeof(char));
+    scanf(" %50[^\n]", bicicleta->modelo);
     if (!validarNumAndChar(bicicleta->modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        free(bicicleta);
         while (getchar() != '\n');
-        getchar();
         return NULL;
     }
 
     printf("║ Cor: ");
-    scanf("%99s", bicicleta->cor);
-    verificaValidacao = validarPalavra(bicicleta->cor);
-    
-    if (!verificaValidacao) {
+    bicicleta->cor = (char*) malloc(51*sizeof(char));
+    scanf(" %50[^\n]", bicicleta->cor);
+    if (!validarNome(bicicleta->cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
+        free(bicicleta);
         while (getchar() != '\n');
         getchar();
         return NULL;
     }
 
     printf("║ Marca: ");
-    scanf("%99s", bicicleta->marca);
-
+    bicicleta->marca = (char*) malloc(51*sizeof(char));
+    scanf(" %50[^\n]", bicicleta->marca);
     if (!validarNumAndChar(bicicleta->marca)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
+        free(bicicleta);
         while (getchar() != '\n');
         getchar();
         return NULL;
@@ -109,14 +103,13 @@ Bicicleta* preencheBicicleta(void) {
 
     printf("║ Ano de Fabricação: ");
     scanf("%d", &bicicleta->ano);
-
     if (!validaAno(bicicleta->ano)) {
         printf("\nEntrada inválida, digite apenas números.  \n");
+        free(bicicleta);
         while (getchar() != '\n');
         getchar();
         return NULL;
-    }
-    getchar();
+    } 
 
     printf("║ Tamanho do Quadro:  ");
     if (verificaNumero(scanf("%d", &bicicleta->tam_quadro)) != 1) {
@@ -126,23 +119,11 @@ Bicicleta* preencheBicicleta(void) {
         return NULL;
     }
     printf("║                                                                               ║\n");
-    printf("║                      Bicicleta cadastrada com sucesso!                        ║\n");
+    printf("║                      Bicicleta cadastrado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     sleep(1);
     return bicicleta;
-}
-
-void gravaPatinete(Bicicleta* bicicleta) {
-    FILE* fp;
-    fp = fopen("patinetes.dat", "ab");
-    if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Não é possível continuar...\n");
-        exit(1);
-    }
-    fwrite(bicicleta, sizeof(Bicicleta), 1, fp);
-    fclose(fp);
 }
 
 Bicicleta* pesquisarBicicleta(FILE *fp){
@@ -159,7 +140,7 @@ Bicicleta* pesquisarBicicleta(FILE *fp){
     getchar();
 
     bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
-    fp = fopen("patinetes.dat", "rb");
+    fp = fopen("Bicicletas.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         printf("Não é possível continuar...\n");
