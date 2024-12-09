@@ -21,7 +21,7 @@ void clientes(void){
                 exibeCliente(cli);
                 break;
             case 3:
-                atualizarCliente();
+                //atualizarCliente();
                 break;
             case 4:
                 deletarCliente();
@@ -181,6 +181,7 @@ void exibeCliente(Cliente* cli) {
     getchar();
 }
 
+/*
 void atualizarCliente(void){
     struct cliente cliente1;
     menuAtualizarCliente();
@@ -268,9 +269,12 @@ void atualizarCliente(void){
     free(cliente1.fone);
     free(cliente1.dtnas);
 }
+*/
 
-void deletarCliente(void){
-    struct cliente cliente1;
+void deletarCliente(Cliente *cliLido){
+    FILE *fp, *temp;
+    Cliente* cliArq;
+    int achou = 0;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -278,21 +282,54 @@ void deletarCliente(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Digite o CPF do Cliente:                                                      ║\n");
 
-    cliente1.cpf = (char*) malloc(15*sizeof(char));
-    
-    do{
-        printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
-        scanf("%14s", cliente1.cpf);
-        while (getchar() != '\n');
-        if (!validarCPF(cliente1.cpf)) {
-            printf("  CPF inválido. \n");
-            printf("\n");
-        }
-    }while (!validarCPF(cliente1.cpf));
+    if (cliLido == NULL) {
+        printf("O cliente informado não existe!\n");
+        return;
+    } 
 
-    printf("║                                                                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    cliArq = (Cliente*) malloc(sizeof(Cliente));
+    if(cliArq == NULL){
+        printf("Erro ao alocar memória.\n");
+        exit(1);
+    }
+
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        free(cliArq);
+        exit(1);
+    }
+
+    temp =fopen("temp.dat","wb");
+    if (temp == NULL) {
+        printf("Ops! Erro na criação do arquivo temporário!\n");
+        fclose(fp);
+        free(cliArq);
+        exit(1);
+    }
+
+    while (fread(cliArq, sizeof(Cliente), 1, fp) == 1) {
+        if (cliArq->id == cliLido->id) {
+            achou = 1;
+        } else {
+            fwrite(cliArq, sizeof(Cliente), 1, temp);
+        }
+    }
+
+    fclose(fp);
+    fclose(temp);
+    free(cliArq);
+    if (achou) {
+        remove("clientes.dat");
+        rename("temp.dat", "clientes.dat");
+        printf("║                                                                               ║\n");
+        printf("║                          Cliente excluído com sucesso!                       ║\n");
+        printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    } else {
+        remove("temp.dat");
+        printf("\nCliente não encontrado!\n");
+    }
     printf("Tecle <ENTER> para continuar...");
     getchar();
-    free(cliente1.cpf);
 }
