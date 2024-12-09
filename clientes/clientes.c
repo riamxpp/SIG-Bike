@@ -37,7 +37,7 @@ Cliente* preencherCliente(void){
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
     if (cli == NULL) {
-        printf("Erro ao alocar mémoria para bicicleta!!\n");
+        printf("Erro ao alocar mémoria para cliente!!\n");
         exit(1);
     }
     menuCadastrarCliente();
