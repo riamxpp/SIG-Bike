@@ -44,7 +44,8 @@ Cliente* preencherCliente(void){
         exit(1);
     }
     menuCadastrarCliente();
-    cli->id = obterProximoID();
+    const char* arquivoClientes = "clientes.dat";
+    cli->id = obterProximoID(arquivoClientes, sizeof(Cliente));
 
     do {
         printf("║ Nome: ");
@@ -114,6 +115,7 @@ Cliente* preencherCliente(void){
     return(cli);
 }
 
+/*
 int obterProximoID() {
     FILE* arquivo = fopen("clientes.dat", "rb");
     if (arquivo == NULL) {
@@ -129,6 +131,7 @@ int obterProximoID() {
     fclose(arquivo);
     return ultimoID + 1;
 }
+*/
 
 Cliente* pesquisarCliente(void){
     FILE *fp;

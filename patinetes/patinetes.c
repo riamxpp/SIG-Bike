@@ -66,7 +66,8 @@ Patinete* preenchePatinete(void) {
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    pat->id = obterProximoID();
+    const char* arquivoPatinetes = "patinetes.dat";
+    pat->id = obterProximoID(arquivoPatinetes, sizeof(Patinete));
 
     printf("║ Modelo: ");
     scanf(" %50[^\n]", pat->modelo);
@@ -122,7 +123,7 @@ Patinete* preenchePatinete(void) {
     sleep(1);
     return pat;
 }
-
+/*
 int obterProximoID() {
     FILE* arquivo = fopen("patinetes.dat", "rb");
     if (arquivo == NULL) {
@@ -138,6 +139,7 @@ int obterProximoID() {
     fclose(arquivo);
     return ultimoID + 1;
 }
+*/
 
 Patinete* pesquisarPatinete(void){
     FILE *fp;
