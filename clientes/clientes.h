@@ -1,15 +1,16 @@
 #ifndef CLIENTES_H
 #define CLIENTES_H
 
-struct cliente {
+typedef struct cliente {
+    int id;
     char nome[81];
     char cpf[15];
     char email[51];
     char fone[20];
     char dtnas[12];    
-};
+} Cliente;
 void clientes(void);
-void cadastrarCliente(void);
+Cliente* preencherCliente(void);
 void pesquisarCliente(void);
 void atualizarCliente(void);
 void deletarCliente(void);

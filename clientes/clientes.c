@@ -4,8 +4,10 @@
 #include <unistd.h>
 #include "view.h"
 #include "../validacao/validacao.h"
+#include "../util/util.h"
 
 void clientes(void){
+    Cliente* cliente;
     int op_cliente;
     do{
         op_cliente = menuClientes();
@@ -31,9 +33,13 @@ void clientes(void){
     }while(op_cliente != 0);
 }
 
-void cadastrarCliente(void){
-    struct cliente cliente1;
-
+Cliente* preencherCliente(void){
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    if (cliente == NULL) {
+        printf("Erro ao alocar mémoria para bicicleta!!\n");
+        exit(1);
+    }
     menuCadastrarCliente();
 
     cliente1.nome = (char*) malloc(100*sizeof(char));
@@ -100,6 +106,22 @@ void cadastrarCliente(void){
     free(cliente1.email);
     free(cliente1.fone);
     free(cliente1.dtnas);
+}
+
+int obterProximoID() {
+    FILE* arquivo = fopen("clientes.dat", "rb");
+    if (arquivo == NULL) {
+        return 1;
+    }
+    Cliente temp;
+    int ultimoID = 0;
+
+    while (fread(&temp, sizeof(Cliente), 1, arquivo) == 1) {
+        ultimoID = temp.id;
+    }
+
+    fclose(arquivo);
+    return ultimoID + 1;
 }
 
 void pesquisarCliente(void){
