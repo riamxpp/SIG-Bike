@@ -34,6 +34,7 @@ void clientes(void){
             break;
         }
     }while(op_cliente != 0);
+    free(cli);
 }
 
 Cliente* preencherCliente(void){
