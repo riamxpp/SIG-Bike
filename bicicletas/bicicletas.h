@@ -15,7 +15,8 @@ void bicicletas(void);
 Bicicleta* preencheBicicleta(void);
 void cadastrarBicicleta(FILE *fp);
 void gravaPatinete(Bicicleta* bicicleta);
-void pesquisarBicicleta(FILE *fp);
+Bicicleta* pesquisarBicicleta(FILE *fp);
+void exibeBicicleta(Bicicleta* bicicleta);
 // void atualizarBicicleta(void);
 void deletarBicicleta(void);
 

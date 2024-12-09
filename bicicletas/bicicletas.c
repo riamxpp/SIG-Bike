@@ -36,7 +36,8 @@ void bicicletas(void){
                 gravaArquivo("bicicletas.dat", bicicleta, sizeof(Bicicleta));
                 break;
             case 2:
-                pesquisarBicicleta(fp);
+                bicicleta = pesquisarBicicleta(fp);
+                exibeBicicleta(bicicleta);
                 break;
             case 3:
                 // atualizarBicicleta();
@@ -144,50 +145,59 @@ void gravaPatinete(Bicicleta* bicicleta) {
     fclose(fp);
 }
 
-void pesquisarBicicleta(FILE *fp){
-    // struct Bicicleta bicicleta;
-    // char id[3];
-    char idBuscador[3];
-    char linha[256];
-    fp = fopen("bicicletas.txt", "r");
+Bicicleta* pesquisarBicicleta(FILE *fp){
+    Bicicleta* bicicleta;
+    int id;
+    int encontrado = 0;
 
-    if (fp == NULL) {
-        printf("Erro no arquivo!!\n");
-        exit(1);
-    }
-
-    while (!feof(fp)) {        
-        fgets(linha, 256, fp); 
-        printf("linha: %s\n", linha);
-        // obterTresPrimeiros(linha, idBuscador, sizeof(idBuscador));
-        printf("idbuscador: %s\n", idBuscador);
-        getchar();
-    }
-        // printf("%s", idBuscador);
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Pesquisar Bicicleta                             ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID da Bicicleta:  ");
+    scanf("%d", &id);
+    getchar();
 
-    // if (verificaNumero(scanf("%d", &id)) != 1) {
-    //     printf("\nEntrada inválida, digite um número.  \n");
-    //     while (getchar() != '\n');
-    //     getchar();
-    //     return;
-    // }
+    bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
+    fp = fopen("patinetes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        free(bicicleta);
+        exit(1);
+    }
+    while (fread(bicicleta, sizeof(Bicicleta), 1, fp) == 1) {
+        if (bicicleta->id == id) {
+            encontrado = 1;
+            break;
+        }
+    }
+    fclose(fp);
 
-    printf("║                                                                               ║\n");
-    printf("║ Modelo:                                                                       ║\n");
-    printf("║ Cor:                                                                          ║\n");
-    printf("║ Marca:                                                                        ║\n");
-    printf("║ Ano de Fabricação:                                                            ║\n");
-    printf("║ Tamanho do Quadro:                                                            ║\n");
-    printf("║                                                                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    if (encontrado) {
+        return bicicleta;
+    } else {
+        free(bicicleta);
+        return NULL;
+    }
     printf("Tecle <ENTER> para continuar...");
     getchar();
-    fclose(fp);
+}
+
+void exibeBicicleta(Bicicleta* bicicleta) {
+    if (bicicleta == NULL) {
+        printf("\n= = = Bicicleta Inexistente = = =\n");
+    } else {
+        printf("\n= = = Bicicleta Cadastrado = = =\n");
+        printf("║ ID: %d\n", bicicleta->id);
+        printf("║ Modelo: %s\n", bicicleta->modelo);
+        printf("║ Cor: %s\n", bicicleta->cor);
+        printf("║ Marca: %s\n", bicicleta->marca);
+        printf("║ Ano de Fabrica: %d\n", bicicleta->ano);
+        printf("║ Bateria (capacidade): %d\n", bicicleta->tam_quadro);
+    }
+    printf("Tecle <ENTER> para continuar...");
+    getchar();
 }
 
 // void atualizarBicicleta(void){
