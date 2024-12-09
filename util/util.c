@@ -14,8 +14,6 @@ void gravaArquivo(char nomeDoArquivo[], void* estrutura, size_t tamanhoEstrutura
     fclose(fp);
 }
 
-#include "util.h"
-
 int obterProximoID(const char* nomeArquivo, size_t tamanhoEstrutura) {
     FILE* arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
