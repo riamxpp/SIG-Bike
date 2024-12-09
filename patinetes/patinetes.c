@@ -74,7 +74,6 @@ Patinete* preenchePatinete(void) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
         free(pat);
         while (getchar() != '\n');
-        getchar();
         return NULL;
     }
 

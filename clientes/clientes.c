@@ -34,78 +34,81 @@ void clientes(void){
 }
 
 Cliente* preencherCliente(void){
-    Cliente* cliente;
-    cliente = (Cliente*) malloc(sizeof(Cliente));
-    if (cliente == NULL) {
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    if (cli == NULL) {
         printf("Erro ao alocar mémoria para bicicleta!!\n");
         exit(1);
     }
     menuCadastrarCliente();
+    cli->id = obterProximoID();
 
-    cliente1.nome = (char*) malloc(100*sizeof(char));
     do {
         printf("║ Nome: ");
-        scanf("%99[^\n]", cliente1.nome);
-        while (getchar() != '\n');
-        if (!validarNome(cliente1.nome)) {
+        scanf(" %50[^\n]", cli->nome);
+        if (!validarNome(cli->nome)) {
             printf("  Entrada inválida. Digite apenas letras e espaços.\n");
             printf("\n");
+            while (getchar() != '\n');
+            free(cli);
+            return NULL;
         }
-    } while (!validarNome(cliente1.nome));
+    } while (!validarNome(cli->nome));
 
-    cliente1.cpf = (char*) malloc(15*sizeof(char));
-    do{
+    do {
         printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
-        scanf("%14s", cliente1.cpf);
-        while (getchar() != '\n');
-        if (!validarCPF(cliente1.cpf)) {
-            printf("  CPF inválido. \n");
+        scanf(" %50[^\n]", cli->cpf);
+        if (!validarCPF(cli->cpf)) {
+            printf("  CPF inválido! \n");
             printf("\n");
+            while (getchar() != '\n');
+            free(cli);
+            return NULL;
         }
-    }while (!validarCPF(cliente1.cpf));
+    } while (!validarCPF(cli->cpf));
 
-    cliente1.email = (char*) malloc(100*sizeof(char));
-    do{ 
+    do {
         printf("║ Email: ");
-        scanf("%99s", cliente1.email);
-        while (getchar() != '\n');
-        if (!validarEmail(cliente1.email)) {
-            printf("  Email inválido. \n");
+        scanf(" %50[^\n]", cli->email);
+        if (!validarEmail(cli->email)) {
+            printf("  Email inválido! \n");
             printf("\n");
+            while (getchar() != '\n');
+            free(cli);
+            return NULL;
         }
-    }while (!validarEmail(cliente1.email));
+    } while (!validarEmail(cli->email));
 
-    cliente1.fone = (char*) malloc(20*sizeof(char));
-    do{
-        printf("║ Telefone (DD000000000): ");
-        scanf("%19s", cliente1.fone);
-        while (getchar() != '\n');
-        if (!validarTelefone(cliente1.fone)) {
-            printf("  Telefone inválido. \n");
-            printf(" \n");
+    do {
+        printf("║ Telefone: ");
+        scanf(" %50[^\n]", cli->fone);
+        if (!validarTelefone(cli->fone)) {
+            printf("  Telefone inválido! \n");
+            printf("\n");
+            while (getchar() != '\n');
+            free(cli);
+            return NULL;
         }
-    }while (!validarTelefone(cliente1.fone));
+    } while (!validarTelefone(cli->fone));
 
-    cliente1.dtnas = (char*) malloc(11*sizeof(char));
-    do{
-        printf("║ Data de Nascimento: (xx/xx/xxxx): ");
-        scanf("%19s", cliente1.dtnas);
-        while (getchar() != '\n');
-        if (!validarDataNascimento(cliente1.dtnas)) {
-            printf("  Data de Nascimento inválida. \n");
-            printf(" \n");
+    do {
+        printf("║ Data de nascimento: ");
+        scanf(" %50[^\n]", cli->dtnas);
+        if (!validarDataNascimento(cli->dtnas)) {
+            printf("  Data de Nascimento inválida! \n");
+            printf("\n");
+            while (getchar() != '\n');
+            free(cli);
+            return NULL;
         }
-    }while (!validarDataNascimento(cliente1.dtnas));
+    } while (!validarDataNascimento(cli->dtnas));
+
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                        Cliente cadastrado com sucesso!                        ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
-    free(cliente1.cpf);
-    free(cliente1.nome);
-    free(cliente1.email);
-    free(cliente1.fone);
-    free(cliente1.dtnas);
+    return(cli);
 }
 
 int obterProximoID() {
