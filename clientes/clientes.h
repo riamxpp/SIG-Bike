@@ -11,7 +11,9 @@ typedef struct cliente {
 } Cliente;
 void clientes(void);
 Cliente* preencherCliente(void);
-void pesquisarCliente(void);
+int obterProximoID();
+Cliente* pesquisarCliente(void);
+void exibeCliente(Cliente* cli);
 void atualizarCliente(void);
 void deletarCliente(void);
 

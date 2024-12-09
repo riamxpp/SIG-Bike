@@ -17,7 +17,8 @@ void clientes(void){
                 gravaArquivo("patinetes.dat", cli, sizeof(Cliente));
                 break;
             case 2:
-                pesquisarCliente();
+                cli = pesquisarCliente();
+                exibeCliente(cli);
                 break;
             case 3:
                 atualizarCliente();
@@ -128,32 +129,56 @@ int obterProximoID() {
     return ultimoID + 1;
 }
 
-void pesquisarCliente(void){
-    struct cliente cliente1;
+Cliente* pesquisarCliente(void){
+    FILE *fp;
+    Cliente* cli;
+    int id;
+    int encontrado = 0;
     menuPesquisarCliente();
 
-    cliente1.cpf = (char*) malloc(15*sizeof(char));
-    do{
-        printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
-        scanf("%14s", cliente1.cpf);
-        while (getchar() != '\n');
-        if (!validarCPF(cliente1.cpf)) {
-            printf("  CPF inválido. \n");
-            printf("\n");
-        }
-    }while (!validarCPF(cliente1.cpf));
+    cli = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
 
-    printf("║                                                                               ║\n");
-    printf("║ Nome:                                                                         ║\n");
-    printf("║ CPF:                                                                          ║\n");
-    printf("║ Email:                                                                        ║\n");
-    printf("║ Fone:                                                                         ║\n");
-    printf("║ Data de Nascimento:                                                           ║\n");
-    printf("║                                                                               ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    printf("║ ID: ");
+    scanf("%d", &id);
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        free(cli);
+        exit(1);
+    }
+    while (fread(cli, sizeof(Cliente), 1, fp) == 1) {
+        if (cli->id == id) {
+            encontrado = 1;
+            break;
+        }
+    }
+    fclose(fp);
+    if (encontrado) {
+        return cli;
+    } else {
+        free(cli);
+        return NULL;
+    }
     printf("Tecle <ENTER> para continuar...");
     getchar();
-    free(cliente1.cpf);
+
+}
+
+void exibeCliente(Cliente* cli) {
+    if (cli == NULL) {
+        printf("\n= = = Cliente Inexistente = = =\n");
+    } else {
+        printf("\n= = = Cliente Cadastrado = = =\n");
+        printf("║ ID: %d\n", cli->id);
+        printf("║ Nome: %s\n", cli->nome);
+        printf("║ CPF: %s\n", cli->cpf);
+        printf("║ Email: %s\n", cli->email);
+        printf("║ Telefone: %d\n", cli->fone);
+        printf("║ Data de Nasscimento: %d\n", cli->dtnas);
+    }
+    printf("Tecle <ENTER> para continuar...");
+    getchar();
 }
 
 void atualizarCliente(void){
