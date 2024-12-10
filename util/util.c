@@ -38,6 +38,7 @@ void* encontrarPeloID(void* estrutura, char* nomeArquivo, FILE* fp, size_t taman
         printf("Ops! Erro na abertura do arquivo!\n");
         printf("Não é possível continuar...\n");
         free(estrutura);
+        fclose(fp);
         return NULL;
         // exit(1);
     }
