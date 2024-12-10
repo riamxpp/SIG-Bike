@@ -72,7 +72,7 @@ Bicicleta* preencheBicicleta(void) {
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     const char* arquivoBicicletas = "Bicicletas.dat";
     bicicleta->id = obterProximoID(arquivoBicicletas, sizeof(Bicicleta));
-    printf("%s %d", " id dentro de preencher bike: ", bicicleta->id);
+    printf("%s %d", " id bike: ", bicicleta->id);
     printf("║ Modelo: ");
     // bicicleta->modelo = (char*) malloc(51*sizeof(char));
     scanf(" %50[^\n]", bicicleta->modelo);
@@ -122,16 +122,14 @@ Bicicleta* preencheBicicleta(void) {
         getchar();
         return NULL;
     }
+    bicicleta->status = "a";
+    bicicleta->tipo = 1;
+    
     printf("║                                                                               ║\n");
     printf("║                      Bicicleta cadastrado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     sleep(1);
-    
-    // free(bicicleta->modelo);
-    // free(bicicleta->cor);
-    // free(bicicleta->marca);
-    // free(bicicleta);
     return bicicleta;
 }
 

@@ -9,7 +9,7 @@ typedef struct bicicleta {
     char marca[51];
     char modelo[51];
     int ano;
-    int status;
+    char status;
     int tipo;
 } Bicicleta;
 void bicicletas(void);

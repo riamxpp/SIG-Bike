@@ -63,13 +63,16 @@ void listarBicicletas(void){
     Bicicleta* bicicleta;
     FILE* fp;
 
+    bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
+   
     system("clear||cls");
     printf("\n╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                                         Listar Bicicletas                                                  ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║     ID     ║         Modelo          ║         Marca          ║ Ano de Fabricação ║   Tamanho do Quadro    ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
-    listarTodosOsItens(fp, bicicleta, "bicicletas.dat", sizeof(Bicicleta), 1);
+    listarTodosOsItens(fp, "bicicletas.dat", sizeof(Bicicleta), 1);
+    free(bicicleta);
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
@@ -78,6 +81,7 @@ void listarPatinetes(void){
     Patinete* pat;
     FILE *fp;
 
+    pat = (Patinete*) malloc(sizeof(Patinete));
     system("clear||cls");
     printf("\n╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                                         Listar Patinetes                                                   ║\n");
@@ -85,8 +89,8 @@ void listarPatinetes(void){
     printf("║     ID     ║         Modelo          ║         Marca          ║ Ano de Fabricação ║  Bateria (capacidade)  ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     
-    listarTodosOsItens(fp, pat, "patinetes.dat", sizeof(Patinete), 2);
-
+    listarTodosOsItens(fp, "patinetes.dat", sizeof(Patinete), 2);
+    free(pat);
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
@@ -113,7 +117,7 @@ void patinetes_mais_alugados(void){
     getchar();
 }
 
-void listarTodosOsItens(FILE* fp, void* estrutura, char* nomeDoArquivo, size_t tamanhoEstrutura, int tipo) {
+void listarTodosOsItens(FILE* fp, char* nomeDoArquivo, size_t tamanhoEstrutura, int tipo) {
     fp = fopen(nomeDoArquivo, "rb");
 
     if (fp == NULL) {
@@ -132,7 +136,6 @@ void listarTodosOsItens(FILE* fp, void* estrutura, char* nomeDoArquivo, size_t t
                 exibePatinete(&buffer);
             }
         }
-
         fclose(fp);
     }
 }
