@@ -70,11 +70,10 @@ Bicicleta* preencheBicicleta(void) {
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Bicicleta                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    const char* arquivoBicicletas = "Bicicletas.dat";
+    const char* arquivoBicicletas = "bicicletas.dat";
     bicicleta->id = obterProximoID(arquivoBicicletas, sizeof(Bicicleta));
-    printf("%s %d", " id bike: ", bicicleta->id);
+
     printf("║ Modelo: ");
-    // bicicleta->modelo = (char*) malloc(51*sizeof(char));
     scanf(" %50[^\n]", bicicleta->modelo);
     if (!validarNumAndChar(bicicleta->modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
@@ -84,7 +83,6 @@ Bicicleta* preencheBicicleta(void) {
     }
 
     printf("║ Cor: ");
-    // bicicleta->cor = (char*) malloc(51*sizeof(char));
     scanf(" %50[^\n]", bicicleta->cor);
     if (!validarNome(bicicleta->cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
@@ -95,7 +93,6 @@ Bicicleta* preencheBicicleta(void) {
     }
 
     printf("║ Marca: ");
-    // bicicleta->marca = (char*) malloc(51*sizeof(char));
     scanf(" %50[^\n]", bicicleta->marca);
     if (!validarNumAndChar(bicicleta->marca)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
@@ -129,7 +126,8 @@ Bicicleta* preencheBicicleta(void) {
     printf("║                      Bicicleta cadastrado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    sleep(1);
+    sleep(1);    
+
     return bicicleta;
 }
 
