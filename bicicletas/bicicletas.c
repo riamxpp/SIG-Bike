@@ -120,6 +120,7 @@ Bicicleta* preencheBicicleta(void) {
         return NULL;
     }
     bicicleta->status = "a";
+    // tipo 1 para a função listar entender que é bicicleta
     bicicleta->tipo = 1;
     
     printf("║                                                                               ║\n");

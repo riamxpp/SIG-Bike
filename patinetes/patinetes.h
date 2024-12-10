@@ -8,7 +8,7 @@ typedef struct patinete {
     char marca[51];
     int ano;
     int bateria;
-    int status;
+    char status;
     int tipo;
 } Patinete;
 

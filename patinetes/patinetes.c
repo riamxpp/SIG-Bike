@@ -120,6 +120,11 @@ Patinete* preenchePatinete(void) {
         getchar();
         return NULL;
     }
+
+    pat-> status = "a";
+    // tipo 2 para a função listar entender que é patinete
+    pat->tipo = 2;
+
     printf("║                                                                               ║\n");
     printf("║                      Patinete cadastrado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
