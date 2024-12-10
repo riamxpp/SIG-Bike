@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "relatorios.h"
+#include "../util/util.h"
+#include "../bicicletas/bicicletas.h"
+#include "../patinetes/patinetes.h"
 
 void relatorios(void){
     int op_relatorio;
@@ -57,23 +60,33 @@ void listarClientes(void){
 }
 
 void listarBicicletas(void){
+    Bicicleta* bicicleta;
+    FILE* fp;
+
     system("clear||cls");
     printf("\n╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                                         Listar Bicicletas                                                  ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║     ID     ║         Modelo          ║         Marca          ║ Ano de Fabricação ║   Tamanho do Quadro    ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
+    listarTodosOsItens(fp, bicicleta, "bicicletas.dat", sizeof(Bicicleta), 1);
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
 
 void listarPatinetes(void){
+    Patinete* pat;
+    FILE *fp;
+
     system("clear||cls");
     printf("\n╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                                         Listar Patinetes                                                   ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║     ID     ║         Modelo          ║         Marca          ║ Ano de Fabricação ║  Bateria (capacidade)  ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
+    
+    listarTodosOsItens(fp, pat, "patinetes.dat", sizeof(Patinete), 2);
+
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
@@ -98,4 +111,28 @@ void patinetes_mais_alugados(void){
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
     getchar();
+}
+
+void listarTodosOsItens(FILE* fp, void* estrutura, char* nomeDoArquivo, size_t tamanhoEstrutura, int tipo) {
+    fp = fopen(nomeDoArquivo, "rb");
+
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo!!\n\n");
+        return;
+    }else {
+
+        if (tipo == 1) {
+            Bicicleta buffer;
+            while (fread(&buffer, tamanhoEstrutura, 1, fp) == 1) {
+                exibeBicicleta(&buffer);
+            }
+        }else {
+            Patinete buffer;
+            while (fread(&buffer, tamanhoEstrutura, 1, fp) == 1) {
+                exibePatinete(&buffer);
+            }
+        }
+
+        fclose(fp);
+    }
 }

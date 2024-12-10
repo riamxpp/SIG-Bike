@@ -9,7 +9,7 @@
 void bicicletas(void){
     Bicicleta* bicicleta;
     int op_bicicleta;
-    FILE *fp = NULL;
+
     do{
         system("clear||cls");
         printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -29,14 +29,18 @@ void bicicletas(void){
             getchar();
             return;
         }
+        getchar();
 
+        Bicicleta *bicicleta  = malloc(sizeof(Bicicleta));
         switch (op_bicicleta) {
             case 1:
                 bicicleta = preencheBicicleta();
+                printf("%d", bicicleta->id);
                 gravaArquivo("bicicletas.dat", bicicleta, sizeof(Bicicleta));
+                free(bicicleta);
                 break;
             case 2:
-                bicicleta = pesquisarBicicleta(fp);
+                bicicleta = pesquisarBicicleta();
                 exibeBicicleta(bicicleta);
                 break;
             case 3:
@@ -68,9 +72,9 @@ Bicicleta* preencheBicicleta(void) {
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     const char* arquivoBicicletas = "Bicicletas.dat";
     bicicleta->id = obterProximoID(arquivoBicicletas, sizeof(Bicicleta));
-
+    printf("%s %d", " id dentro de preencher bike: ", bicicleta->id);
     printf("║ Modelo: ");
-    bicicleta->modelo = (char*) malloc(51*sizeof(char));
+    // bicicleta->modelo = (char*) malloc(51*sizeof(char));
     scanf(" %50[^\n]", bicicleta->modelo);
     if (!validarNumAndChar(bicicleta->modelo)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
@@ -80,7 +84,7 @@ Bicicleta* preencheBicicleta(void) {
     }
 
     printf("║ Cor: ");
-    bicicleta->cor = (char*) malloc(51*sizeof(char));
+    // bicicleta->cor = (char*) malloc(51*sizeof(char));
     scanf(" %50[^\n]", bicicleta->cor);
     if (!validarNome(bicicleta->cor)) {
         printf("\nEntrada inválida, digite apenas letras.  \n");
@@ -91,7 +95,7 @@ Bicicleta* preencheBicicleta(void) {
     }
 
     printf("║ Marca: ");
-    bicicleta->marca = (char*) malloc(51*sizeof(char));
+    // bicicleta->marca = (char*) malloc(51*sizeof(char));
     scanf(" %50[^\n]", bicicleta->marca);
     if (!validarNumAndChar(bicicleta->marca)) {
         printf("\nEntrada inválida, digite apenas letras e números.  \n");
@@ -124,17 +128,17 @@ Bicicleta* preencheBicicleta(void) {
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     sleep(1);
     
-    free(bicicleta->modelo);
-    free(bicicleta->cor);
-    free(bicicleta->marca);
-    free(bicicleta);
+    // free(bicicleta->modelo);
+    // free(bicicleta->cor);
+    // free(bicicleta->marca);
+    // free(bicicleta);
     return bicicleta;
 }
 
-Bicicleta* pesquisarBicicleta(FILE *fp){
+Bicicleta* pesquisarBicicleta(){
+    FILE *fp;
     Bicicleta* bicicleta;
     int id;
-    int encontrado = 0;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -143,17 +147,17 @@ Bicicleta* pesquisarBicicleta(FILE *fp){
     printf("║ Informe o ID da Bicicleta:  ");
     scanf("%d", &id);
     getchar();
-    const char* nomeArquivo = "bicicletas.dat";
+
+    char* nomeArquivo = "bicicletas.dat";
 
     bicicleta = encontrarPeloID(bicicleta, nomeArquivo, fp, sizeof(Bicicleta), id);
-    return bicicleta;
 
     if (bicicleta == NULL) {
         printf("Erro ao pesquisar bicicleta!!\n\n");
         getchar();
         return NULL;
     }
-
+    return bicicleta;
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }

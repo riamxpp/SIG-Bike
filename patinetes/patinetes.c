@@ -30,14 +30,17 @@ void patinetes(void){
         }
         getchar();
 
+        Patinete *patinete = malloc(sizeof(Patinete));
         switch (op_patinete) {
             case 1:
                 pat = preenchePatinete();
                 gravaArquivo("patinetes.dat", pat, sizeof(Patinete));
+                // free(pat);
                 break;
             case 2:
                 pat = pesquisarPatinete();
                 exibePatinete(pat);
+                getchar();
                 break;
             case 3:
                 atualizarPatinete();
@@ -146,7 +149,6 @@ Patinete* pesquisarPatinete(void){
     FILE *fp;
     Patinete* pat;
     int id;
-    int encontrado = 0;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -177,7 +179,6 @@ void exibePatinete(Patinete* pat) {
         printPatinete(pat);
     }
     printf("Tecle <ENTER> para continuar...");
-    getchar();
 }
 
 void atualizarPatinete(void){

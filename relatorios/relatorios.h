@@ -11,5 +11,6 @@ int verificaNumero(int num);
 int validarNumAndCharAndCaractere(char[]);
 int validarNumAndChar(char[]);
 int validarPalavra(char[]);
+void listarTodosOsItens(FILE* fp, void* estrutura, char* nomeDoArquivo, size_t tamanhoEstrutura, int tipo);
 
 #endif

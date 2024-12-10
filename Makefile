@@ -13,7 +13,7 @@ SRCS := main.c $(wildcard clientes/*.c) $(wildcard bicicletas/*.c) $(wildcard pa
 OBJS := $(SRCS:.c=.o)
 
 # Header files
-HDRS := $(wildcard clientes/*.h) $(wildcard bicicletas/*.h) $(wildcard patinetes/*.h) $(wildcard locacao/*.h) $(wildcard relatorios/*.h) $(wildcard validacao/*.h) (wildcard util/*.h)
+HDRS := $(wildcard clientes/*.h) $(wildcard bicicletas/*.h) $(wildcard patinetes/*.h) $(wildcard locacao/*.h) $(wildcard relatorios/*.h) $(wildcard validacao/*.h) $(wildcard util/*.h)
 
 # Executable name
 TARGET := main
