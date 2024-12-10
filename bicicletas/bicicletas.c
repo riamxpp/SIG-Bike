@@ -119,7 +119,7 @@ Bicicleta* preencheBicicleta(void) {
         getchar();
         return NULL;
     }
-    bicicleta->status = "a";
+    bicicleta->status = 1;
     // tipo 1 para a função listar entender que é bicicleta
     bicicleta->tipo = 1;
     
@@ -163,13 +163,11 @@ void exibeBicicleta(Bicicleta* bicicleta) {
     if (bicicleta == NULL) {
         printf("\n= = = Bicicleta Inexistente = = =\n");
     } else {
-        printf("\n= = = Bicicleta Cadastrado = = =\n");
-        printf("║ ID: %d\n", bicicleta->id);
-        printf("║ Modelo: %s\n", bicicleta->modelo);
-        printf("║ Cor: %s\n", bicicleta->cor);
-        printf("║ Marca: %s\n", bicicleta->marca);
-        printf("║ Ano de Fabrica: %d\n", bicicleta->ano);
-        printf("║ Bateria (capacidade): %d\n", bicicleta->tam_quadro);
+        if (bicicleta->status == 1) {   
+            printBicicleta(bicicleta);
+        } else {
+            printf("\n= = = Bicicleta Inexistente = = =\n");
+        }
     }
     printf("Tecle <ENTER> para continuar...");
     getchar();

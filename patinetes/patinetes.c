@@ -121,7 +121,7 @@ Patinete* preenchePatinete(void) {
         return NULL;
     }
 
-    pat-> status = "a";
+    pat-> status = 1;
     // tipo 2 para a função listar entender que é patinete
     pat->tipo = 2;
 
@@ -181,7 +181,11 @@ void exibePatinete(Patinete* pat) {
     if (pat == NULL) {
         printf("\n= = = Patinete Inexistente = = =\n");
     } else {
-        printPatinete(pat);
+        if (pat->status == 1) {
+            printPatinete(pat);
+        }else {
+            printf("\n= = = Patinete Inexistente = = =\n");
+        }
     }
     printf("Tecle <ENTER> para continuar...");
 }
