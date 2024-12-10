@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../util/util.h"
+#include "../patinetes/patinetes.h"
+#include "../bicicletas/bicicletas.h"
 
 void gravaArquivo(char nomeDoArquivo[], void* estrutura, size_t tamanhoEstrutura) {
     FILE* fp;
@@ -56,4 +58,24 @@ void* encontrarPeloID(void* estrutura, char* nomeArquivo, FILE* fp, size_t taman
         // free(estrutura);
         return NULL;
     }
+}
+
+void printPatinete(Patinete* pat){
+    printf("\n= = = Patinete Cadastrado = = =\n");
+    printf("║ ID: %d\n", pat->id);
+    printf("║ Modelo: %s\n", pat->modelo);
+    printf("║ Cor: %s\n", pat->cor);
+    printf("║ Marca: %s\n", pat->marca);
+    printf("║ Ano de Fabrica: %d\n", pat->ano);
+    printf("║ Bateria (capacidade): %d\n", pat->bateria);
+}
+
+void printBicicleta(Bicicleta* bicicleta) {
+    printf("\n= = = Bicicleta Cadastrado = = =\n");
+    printf("║ ID: %d\n", bicicleta->id);
+    printf("║ Modelo: %s\n", bicicleta->modelo);
+    printf("║ Cor: %s\n", bicicleta->cor);
+    printf("║ Marca: %s\n", bicicleta->marca);
+    printf("║ Ano de Fabrica: %d\n", bicicleta->ano);
+    printf("║ Bateria (capacidade): %d\n", bicicleta->tam_quadro);
 }
