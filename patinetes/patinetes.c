@@ -156,27 +156,16 @@ Patinete* pesquisarPatinete(void){
     scanf("%d", &id);
     getchar();
 
-    pat = (Patinete*) malloc(sizeof(Patinete));
-    fp = fopen("patinetes.dat", "rb");
-    if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Não é possível continuar...\n");
-        free(pat);
-        exit(1);
-    }
-    while (fread(pat, sizeof(Patinete), 1, fp) == 1) {
-        if (pat->id == id) {
-            encontrado = 1;
-            break;
-        }
-    }
-    fclose(fp);
-    if (encontrado) {
-        return pat;
-    } else {
-        free(pat);
+    const char* nomeArquivo = "patinetes.dat";
+
+    pat = encontrarPeloID(pat, nomeArquivo, fp, sizeof(Patinete), id);
+    
+    if (pat == NULL) {
+        printf("Erro ao pesquisar patinete!!\n\n");
+        getchar();
         return NULL;
     }
+    return pat;
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }

@@ -61,7 +61,7 @@ Bicicleta* preencheBicicleta(void) {
         printf("Erro ao alocar memória para o Bicicleta.\n");
         exit(1);
     }
-    
+
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Cadastrar Bicicleta                              ║\n");
@@ -123,6 +123,11 @@ Bicicleta* preencheBicicleta(void) {
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     sleep(1);
+    
+    free(bicicleta->modelo);
+    free(bicicleta->cor);
+    free(bicicleta->marca);
+    free(bicicleta);
     return bicicleta;
 }
 
@@ -138,29 +143,17 @@ Bicicleta* pesquisarBicicleta(FILE *fp){
     printf("║ Informe o ID da Bicicleta:  ");
     scanf("%d", &id);
     getchar();
+    const char* nomeArquivo = "bicicletas.dat";
 
-    bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
-    fp = fopen("Bicicletas.dat", "rb");
-    if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        printf("Não é possível continuar...\n");
-        free(bicicleta);
-        exit(1);
-    }
-    while (fread(bicicleta, sizeof(Bicicleta), 1, fp) == 1) {
-        if (bicicleta->id == id) {
-            encontrado = 1;
-            break;
-        }
-    }
-    fclose(fp);
+    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, fp, sizeof(Bicicleta), id);
+    return bicicleta;
 
-    if (encontrado) {
-        return bicicleta;
-    } else {
-        free(bicicleta);
+    if (bicicleta == NULL) {
+        printf("Erro ao pesquisar bicicleta!!\n\n");
+        getchar();
         return NULL;
     }
+
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
