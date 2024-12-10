@@ -9,6 +9,8 @@ typedef struct bicicleta {
     char *marca;
     char *modelo;
     int ano;
+    int status;
+    int tipo;
 } Bicicleta;
 void gravaArquivo(char nomeDoArquivo[], void* estrutura, size_t tamanhoEstrutura);
 void bicicletas(void);

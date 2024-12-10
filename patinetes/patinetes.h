@@ -8,6 +8,8 @@ typedef struct patinete {
     char marca[51];
     int ano;
     int bateria;
+    int status;
+    int tipo;
 } Patinete;
 
 void patinetes(void);
