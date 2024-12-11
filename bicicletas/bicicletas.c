@@ -250,6 +250,16 @@ void exibeBicicleta(Bicicleta* bicicleta) {
 
 void deletarBicicleta(void){
     int id;
+    FILE* fp;
+    Bicicleta* bicicleta;
+    const char* nomeArquivo = "bicicletas.dat";
+
+    fp = fopen(nomeArquivo, "r+b");
+    if (fp == NULL) {
+        printf("Error ao abrir o arquivo!!\n\n");
+        exit(1);
+    }
+    bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));    
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -263,11 +273,50 @@ void deletarBicicleta(void){
         getchar();
         return;
     }
-    getchar();
-    printf("║                                                                               ║\n");
-    printf("║                                                                               ║\n");
-    printf("║                       Bicicleta excluída com sucesso                          ║\n");
-    printf("║                                   Aguarde...                                  ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    sleep(1);
+    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, fp, sizeof(Bicicleta), id);
+
+    if (bicicleta == NULL) {
+        printf("Bicicleta não encontrada!!\n\n");
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }else {
+        bicicleta->status = 0;
+        regravarBicicleta(bicicleta);
+        
+        printf("║                                                                               ║\n");
+        printf("║                                                                               ║\n");
+        printf("║                       Bicicleta excluída com sucesso                          ║\n");
+        printf("║                                   Aguarde...                                  ║\n");
+        printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+        sleep(1);
+    }  
+}
+
+void regravarBicicleta(Bicicleta* bicicleta) {
+    int achou;
+    FILE* fp;
+    Bicicleta* bicicletaLida;
+
+    bicicletaLida = (Bicicleta*) malloc(sizeof(Bicicleta));
+    fp = fopen("bicicletas.dat", "r+b");
+
+    if (fp == NULL ){
+        printf("Erro ao abrir arquivo!!\n\n");
+        getchar();
+        fclose(fp);
+        free(bicicleta);
+        return;
+    }
+    achou = 0;
+    while (fread(bicicletaLida, sizeof(Bicicleta), 1, fp) && !achou) {
+        if (bicicletaLida->id == bicicleta->id) {
+            achou = 1;
+            // faz o apontador voltar um item, pois ao encontrar o item a ser modificado ele está no item seguinte
+            fseek(fp, -1*sizeof(Bicicleta), SEEK_CUR);
+            fwrite(bicicleta, sizeof(Bicicleta), 1, fp);
+        }
+    }
+    fclose(fp);
+    free(bicicletaLida);
 }
