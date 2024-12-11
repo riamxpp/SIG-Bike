@@ -8,7 +8,7 @@
 
 void bicicletas(void){
     Bicicleta* bicicleta;
-    int op_bicicleta;
+    int op_bicicleta, statusExibe;
 
     do{
         system("clear||cls");
@@ -41,7 +41,11 @@ void bicicletas(void){
                 break;
             case 2:
                 bicicleta = pesquisarBicicleta();
-                exibeBicicleta(bicicleta);
+                statusExibe = exibeBicicleta(bicicleta);
+                if (statusExibe != 1) {
+                    printf("\nBicicleta inexistente!!\n\n");
+                    getchar();
+                }
                 break;
             case 3:
                 // atualizarBicicleta();
@@ -159,18 +163,17 @@ Bicicleta* pesquisarBicicleta(){
     getchar();
 }
 
-void exibeBicicleta(Bicicleta* bicicleta) {
+int exibeBicicleta(Bicicleta* bicicleta) {
     if (bicicleta == NULL) {
         printf("\n= = = Bicicleta Inexistente = = =\n");
     } else {
         if (bicicleta->status == 1) {   
             printBicicleta(bicicleta);
-        } else {
-            printf("\n= = = Bicicleta Inexistente = = =\n");
-        }
+            return 1;
+        } 
+
+        return 0;
     }
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
 }
 
 // void atualizarBicicleta(void){

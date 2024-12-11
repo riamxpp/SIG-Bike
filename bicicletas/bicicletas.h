@@ -16,7 +16,7 @@ void bicicletas(void);
 Bicicleta* preencheBicicleta(void);
 void cadastrarBicicleta(FILE *fp);
 Bicicleta* pesquisarBicicleta();
-void exibeBicicleta(Bicicleta* bicicleta);
+int exibeBicicleta(Bicicleta* bicicleta);
 // void atualizarBicicleta(void);
 void deletarBicicleta(void);
 
