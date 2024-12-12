@@ -44,11 +44,11 @@ void bicicletas(void){
                 statusExibe = exibeBicicleta(bicicleta);
                 if (statusExibe != 1) {
                     printf("\nBicicleta inexistente!!\n\n");
-                    getchar();
                 }
+                getchar();
                 break;
             case 3:
-                // atualizarBicicleta();
+                atualizarBicicleta();
                 break;
             case 4:
                 deletarBicicleta();
@@ -176,80 +176,41 @@ int exibeBicicleta(Bicicleta* bicicleta) {
     }
 }
 
-// void atualizarBicicleta(void){
-//     Bicicleta* bicicleta;
-//     system("clear||cls");
-//     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-//     printf("║                          Atualizar Dados da Bicicleta                         ║\n");
-//     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-//     printf("║ Informe o ID da Bicicleta: ");
+void atualizarBicicleta(void){
+    Bicicleta* bicicleta;
+    FILE* fp;
+
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                          Atualizar Dados da Bicicleta                         ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    printf("║ Informe o ID da Bicicleta: ");
+    if (verificaNumero(scanf("%d", &bicicleta->id)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+
+    const char* nomeArquivo = "bicicletas.dat";
+    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, fp, sizeof(Bicicleta), bicicleta->id);
     
-//     if (verificaNumero(scanf("%d", &bicicleta->id)) != 1) {
-//         printf("\nEntrada inválida, digite apenas números.  \n");
-//         while (getchar() != '\n');
-//         getchar();
-//         return;
-//     }
+    if (bicicleta == NULL) {
+        printf("Bicicleta não encontrada!!!\n\n");
+        free(bicicleta);
+        return;
+    }else {
+        bicicleta = preencheBicicleta();
+        bicicleta->status = 0;
+        regravarBicicleta(bicicleta);
+        free(bicicleta);
+    }
 
-//     printf("║                                                                               ║\n");
-//     printf("║                           ↪Digite os Novos Dados↩                             ║\n");
-//     printf("║ Modelo: ");
-//     bicicleta->modelo = (char*) malloc(20*sizeof(char));
-//     scanf("%99s", bicicleta->modelo);
-//     if (!validarNumAndChar(bicicleta->modelo)) {
-//         printf("\nEntrada inválida, digite apenas letras e números.  \n");
-//         while (getchar() != '\n');
-//         getchar();
-//         return;
-//     }
-
-//     printf("║ Cor: ");
-//     bicicleta->cor = (char*) malloc(20*sizeof(char));
-//     scanf("%99s", bicicleta->cor);
-//     if (validarPalavra(bicicleta->cor)) {
-//         printf("\nEntrada inválida, digite apenas letras.  \n");
-//         while (getchar() != '\n');
-//         getchar();
-//         return;
-//     }
-
-//     printf("║ Marca: ");
-//     bicicleta->marca = (char*) malloc(12*sizeof(char));
-//     scanf("%99s", bicicleta->marca);
-    
-//     if (!validarNumAndChar(bicicleta->marca)){
-//         printf("\nEntrada inválida, digite apenas letras e números.  \n");
-//         while (getchar() != '\n');
-//         getchar();
-//         return;
-//     };
-
-//     printf("║ Ano de Fabricação: ");
-//     scanf("%d", &bicicleta->ano);
-    
-//     if (!validaAno(bicicleta->ano)) {
-//         printf("\nEntrada inválida, digite apenas números.  \n");
-//         while (getchar() != '\n');
-//         getchar();
-//         return;
-//     }
-
-//     printf("║ Tamanho do Quadro:  ");
-//     if (verificaNumero(scanf("%d", &bicicleta->tam_quadro)) != 1) {
-//         printf("\nEntrada inválida, digite apenas números.  \n");
-//         while (getchar() != '\n');
-//         getchar();
-//         return;
-//     }
-
-//     printf("║                             Bicicleta atualizada                              ║\n");
-//     printf("║                                   Aguarde...                                  ║\n");
-//     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-//     free(bicicleta->modelo);
-//     free(bicicleta->marca);
-//     free(bicicleta->cor);
-//     sleep(1);
-// }
+    printf("║                             Bicicleta atualizada                              ║\n");
+    printf("║                                   Aguarde...                                  ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    sleep(1);
+}
 
 void deletarBicicleta(void){
     int id;
