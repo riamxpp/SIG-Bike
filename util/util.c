@@ -60,16 +60,6 @@ void* encontrarPeloID(void* estrutura, char* nomeArquivo, FILE* fp, size_t taman
     }
 }
 
-void printPatinete(Patinete* pat){
-    printf("\n= = = Patinete Cadastrado = = =\n");
-    printf("║ ID: %d\n", pat->id);
-    printf("║ Modelo: %s\n", pat->modelo);
-    printf("║ Cor: %s\n", pat->cor);
-    printf("║ Marca: %s\n", pat->marca);
-    printf("║ Ano de Fabrica: %d\n", pat->ano);
-    printf("║ Bateria (capacidade): %d\n", pat->bateria);
-}
-
 void printBicicleta(Bicicleta* bicicleta) {
     printf("\n= = = Bicicleta Cadastrado = = =\n");
     printf("║ ID: %d\n", bicicleta->id);

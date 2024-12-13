@@ -149,9 +149,8 @@ Patinete* pesquisarPatinete(void){
         printf("Não é possível continuar...\n");
         exit(1);
     }
-    while(!feof(fp)) {
-        fread(pat, sizeof(Patinete), 1, fp);
-        if ((pat->id == id)) {
+    while (fread(pat, sizeof(Patinete), 1, fp) == 1) {
+        if (pat->id == id) {
             fclose(fp);
             return pat;
         }
@@ -165,13 +164,26 @@ void exibePatinete(Patinete* pat) {
     if (pat == NULL) {
         printf("\n= = = Patinete Inexistente = = =\n");
     } else {
-        if (pat->status == 1) {
-            printPatinete(pat);
-        }else {
-            printf("\n= = = Patinete Inexistente = = =\n");
-        }
+        printf("\n= = = Patinete Cadastrado = = =\n");
+        printf("║ ID: %d\n", pat->id);
+        printf("║ Modelo: %s\n", pat->modelo);
+        printf("║ Cor: %s\n", pat->cor);
+        printf("║ Marca: %s\n", pat->marca);
+        printf("║ Ano de Fabrica: %d\n", pat->ano);
+        printf("║ Bateria (capacidade): %d\n", pat->bateria);
     }
     printf("Tecle <ENTER> para continuar...");
+    getchar();
+}
+
+void printPatinete(Patinete* pat){
+    printf("\n= = = Patinete Cadastrado = = =\n");
+    printf("║ ID: %d\n", pat->id);
+    printf("║ Modelo: %s\n", pat->modelo);
+    printf("║ Cor: %s\n", pat->cor);
+    printf("║ Marca: %s\n", pat->marca);
+    printf("║ Ano de Fabrica: %d\n", pat->ano);
+    printf("║ Bateria (capacidade): %d\n", pat->bateria);
 }
 
 void atualizarPatinete(void) {
