@@ -35,7 +35,6 @@ void patinetes(void){
             case 1:
                 pat = preenchePatinete();
                 gravaArquivo("patinetes.dat", pat, sizeof(Patinete));
-                // free(pat);
                 break;
             case 2:
                 pat = pesquisarPatinete();
@@ -132,23 +131,6 @@ Patinete* preenchePatinete(void) {
     sleep(1);
     return pat;
 }
-/*
-int obterProximoID() {
-    FILE* arquivo = fopen("patinetes.dat", "rb");
-    if (arquivo == NULL) {
-        return 1;
-    }
-    Patinete temp;
-    int ultimoID = 0;
-
-    while (fread(&temp, sizeof(Patinete), 1, arquivo) == 1) {
-        ultimoID = temp.id;
-    }
-
-    fclose(arquivo);
-    return ultimoID + 1;
-}
-*/
 
 Patinete* pesquisarPatinete(void){
     FILE *fp;
