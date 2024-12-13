@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include "patinetes.h"
 #include <string.h>
 #include "../validacao/validacao.h"
@@ -29,8 +30,6 @@ void patinetes(void){
             return;
         }
         getchar();
-
-        Patinete *patinete = malloc(sizeof(Patinete));
         switch (op_patinete) {
             case 1:
                 pat = preenchePatinete();
@@ -143,19 +142,22 @@ Patinete* pesquisarPatinete(void){
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do Patinete: ");
     scanf("%d", &id);
-    getchar();
-
-    const char* nomeArquivo = "patinetes.dat";
-
-    pat = encontrarPeloID(pat, nomeArquivo, fp, sizeof(Patinete), id);
-    
-    if (pat == NULL) {
-        printf("Erro ao pesquisar patinete!!\n\n");
-        getchar();
-        return NULL;
+    pat = (Patinete*) malloc(sizeof(Patinete));
+    fp = fopen("patinetes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        exit(1);
     }
-    return pat;
-    printf("Tecle <ENTER> para continuar...");
+    while(!feof(fp)) {
+        fread(pat, sizeof(Patinete), 1, fp);
+        if ((pat->id == id)) {
+            fclose(fp);
+            return pat;
+        }
+    }
+    fclose(fp);
+    return NULL;
     getchar();
 }
 
@@ -172,91 +174,48 @@ void exibePatinete(Patinete* pat) {
     printf("Tecle <ENTER> para continuar...");
 }
 
-void atualizarPatinete(void){
-    return;
-    /*
-    struct patinete patinete;
+void atualizarPatinete(void) {
+    Patinete* pat;
 
-    system("clear||cls");
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                          Atualizar Dados do Patinete                          ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("║ Informe o ID do Patinete: ");
-    if (verificaNumero(scanf("%d", &patinete.id)) != 1) {
-        printf("\nEntrada inválida, digite apenas números.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
-    }
-    getchar();
-
-    printf("║                                                                               ║\n");
-    printf("║                           ↪Digite os Novos Dados↩                             ║\n");
-
-    printf("║                                                                               ║\n");
-    patinete.modelo = (char*) malloc(20*sizeof(char));
-    printf("║ Modelo: ");
-    scanf("%99s", patinete.modelo);
-
-    if (!validarNumAndChar(patinete.modelo)) {
-        printf("\nEntrada inválida, digite apenas letras e números.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
-    }
-
-    printf("║ Cor: ");
-    patinete.cor = (char*) malloc(20*sizeof(char));
-    scanf("%99s", patinete.cor);
-    if (validarPalavra(patinete.cor)) {
-        printf("\nEntrada inválida, digite apenas letras.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
-    }
-    getchar();
-
-    patinete.marca = (char*) malloc(12*sizeof(char));
-    printf("║ Marca: ");
-    scanf("%99s", patinete.marca);
-
-    if (!validarNumAndChar(patinete.marca)) {
-        printf("\nEntrada inválida, digite apenas letras e números.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
-    }
-    getchar();
-    
-    printf("║ Ano de Fabricação: ");
-    scanf("%d", &patinete.ano);
-
-    if (!validaAno(patinete.ano)) {
-        printf("\nEntrada inválida, digite apenas números.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
-    }
-    getchar();
-
-    printf("║ Bateria (capacidade): ");
-    if (verificaNumero(scanf("%d", &patinete.bateria)) != 1 || patinete.bateria < 0 || patinete.bateria > 100) {
-        printf("\nEntrada inválida, digite apenas números.  \n");
-        while (getchar() != '\n');
-        getchar();
-        return;
-    }
-    getchar();
-
+	pat = pesquisarPatinete();
+	if (pat == NULL) {
+    	printf("\n\nPatinete não encontrado!\n\n");
+  	} else {
+        pat = preenchePatinete();
+        regravarPatinete(pat);
+        free(pat);
+	}
     printf("║                                                                               ║\n");
     printf("║                      Patinete Atualizado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    free(patinete.modelo);
-    free(patinete.marca);
-    free(patinete.cor);
-    sleep(1);
-    */
+    return;
+}
+
+void regravarPatinete(Patinete* pat) {
+	bool achou;
+	FILE* fp;
+	Patinete* patLido;
+
+	patLido = (Patinete*) malloc(sizeof(Patinete));
+	fp = fopen("patinetes.dat", "r+b");
+	if (fp == NULL) {
+		printf("Ops! Erro abertura do arquivo!\n");
+        printf("Não é possível continuar...\n");
+        free(patLido);
+        exit(1);
+	}
+	achou = false;
+	while(fread(patLido, sizeof(Patinete), 1, fp) && !achou) {
+		if (patLido->id == pat->id){
+			achou = true;
+			fseek(fp, -1*sizeof(Patinete), SEEK_CUR);
+        	fwrite(pat, sizeof(Patinete), 1, fp);
+			//break;
+		}
+	}
+	fclose(fp);
+	free(patLido);
 }
 
 void deletarPatinete(Patinete* patLido) {

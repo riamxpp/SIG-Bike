@@ -61,7 +61,7 @@ void listarClientes(void){
 
 void listarBicicletas(void){
     Bicicleta* bicicleta;
-    FILE* fp;
+    //FILE* fp;
 
     bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
    
@@ -71,7 +71,7 @@ void listarBicicletas(void){
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║     ID     ║         Modelo          ║         Marca          ║ Ano de Fabricação ║   Tamanho do Quadro    ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
-    listarTodosOsItens(fp, "bicicletas.dat", sizeof(Bicicleta), 1);
+    //listarTodosOsItens(fp, "bicicletas.dat", sizeof(Bicicleta), 1);
     free(bicicleta);
     printf("Tecle <ENTER> para continuar...");
     getchar();
@@ -79,7 +79,7 @@ void listarBicicletas(void){
 
 void listarPatinetes(void){
     Patinete* pat;
-    FILE *fp;
+    //FILE *fp;
 
     pat = (Patinete*) malloc(sizeof(Patinete));
     system("clear||cls");
@@ -89,7 +89,7 @@ void listarPatinetes(void){
     printf("║     ID     ║         Modelo          ║         Marca          ║ Ano de Fabricação ║  Bateria (capacidade)  ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     
-    listarTodosOsItens(fp, "patinetes.dat", sizeof(Patinete), 2);
+    //listarTodosOsItens(fp, "patinetes.dat", sizeof(Patinete), 2);
     free(pat);
     printf("Tecle <ENTER> para continuar...");
     getchar();
@@ -117,6 +117,7 @@ void patinetes_mais_alugados(void){
     getchar();
 }
 
+/*
 void listarTodosOsItens(FILE* fp, char* nomeDoArquivo, size_t tamanhoEstrutura, int tipo) {
     fp = fopen(nomeDoArquivo, "rb");
 
@@ -139,3 +140,4 @@ void listarTodosOsItens(FILE* fp, char* nomeDoArquivo, size_t tamanhoEstrutura, 
         fclose(fp);
     }
 }
+*/

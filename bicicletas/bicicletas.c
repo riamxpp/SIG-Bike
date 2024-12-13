@@ -5,7 +5,7 @@
 #include "bicicletas.h"
 #include "../validacao/validacao.h"
 #include "../util/util.h"
-
+/*
 void bicicletas(void){
     Bicicleta* bicicleta;
     int op_bicicleta, statusExibe;
@@ -284,3 +284,4 @@ void regravarBicicleta(Bicicleta* bicicleta) {
     fclose(fp);
     free(bicicletaLida);
 }
+*/
