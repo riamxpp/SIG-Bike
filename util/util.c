@@ -3,6 +3,7 @@
 #include "../util/util.h"
 #include "../patinetes/patinetes.h"
 #include "../bicicletas/bicicletas.h"
+#include "../locacao/locacao.h"
 
 void gravaArquivo(char nomeDoArquivo[], void* estrutura, size_t tamanhoEstrutura) {
     FILE* fp;
@@ -17,7 +18,7 @@ void gravaArquivo(char nomeDoArquivo[], void* estrutura, size_t tamanhoEstrutura
 }
 
 int obterProximoID(const char* nomeArquivo, size_t tamanhoEstrutura) {
-    FILE* arquivo = fopen(nomeArquivo, "rb");
+    FILE* arquivo = fopen(nomeArquivo, "rb+");
     if (arquivo == NULL) {
         return 1;
     }
@@ -68,4 +69,25 @@ void printBicicleta(Bicicleta* bicicleta) {
     printf("║ Marca: %s\n", bicicleta->marca);
     printf("║ Ano de Fabrica: %d\n", bicicleta->ano);
     printf("║ Bateria (capacidade): %d\n", bicicleta->tam_quadro);
+}
+
+void printLocacao(LocacaoBicicleta* locaBike) {
+    printf("\n= = = Locação = = =\n");
+    printf("║ ID: %d\n", locaBike->idLocacao);
+    printf("║ ID bicicleta: %d\n", locaBike->idBicicleta);
+    printf("║ CPF cliente: %s\n", locaBike->cpfCliente);
+    printf("║ Nome cliente: %s\n", locaBike->clienteNome);
+    printf("║ Data ínicio: %s\n", locaBike->dataInicio);
+    printf("║ Data Fim: %s\n", locaBike->dataFim);
+    printf("║ Dias de locação: %d\n", locaBike->diasLocacao);
+    printf("║ Valor: %f\n", locaBike->valor);
+}
+
+int pegaNum(int num){
+    if (verificaNumero(scanf("%d", &num)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        return 0;
+    }
+    return num;
 }
