@@ -23,7 +23,7 @@ int main(){
                 break;
 
             case 2:
-                //bicicletas();
+                bicicletas();
                 break;
 
             case 3:
