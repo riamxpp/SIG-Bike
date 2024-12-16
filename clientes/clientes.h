@@ -13,6 +13,7 @@ void clientes(void);
 Cliente* preencherCliente(void);
 int obterProximoID();
 Cliente* pesquisarCliente(void);
+Cliente* buscarCliente(char cpf[12], Cliente* cliente);
 void exibeCliente(Cliente* cli);
 void deletarCliente(Cliente *cliLido);
 #endif 

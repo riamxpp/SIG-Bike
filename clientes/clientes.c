@@ -5,6 +5,7 @@
 #include "view.h"
 #include "../validacao/validacao.h"
 #include "../util/util.h"
+#include <string.h>
 
 void clientes(void){
     Cliente* cli;
@@ -134,39 +135,49 @@ int obterProximoID() {
 */
 
 Cliente* pesquisarCliente(void){
-    FILE *fp;
-    Cliente* cli;
-    int id;
-    int encontrado = 0;
+    Cliente* cli = malloc(sizeof(Cliente));
+    char cpf[12];
     menuPesquisarCliente();
-    printf("║ ID: ");
-    scanf("%d", &id);
-    getchar();
 
-    cli = (Cliente*) malloc(sizeof(Cliente));
+    printf("║ Informe o CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
+    scanf(" %50[^\n]", cpf);
+    if (!validarCPF(cpf)) {
+        printf("CPF inválido!\n\n");
+        while (getchar() != '\n');
+        free(cli);
+        return NULL;
+    }
+
+    cli = buscarCliente(cpf, cli);
+    if (cli == NULL) {
+        printf("Cliente não encontrado!!\n\n");
+        return NULL;
+    }
+
+    return cli;
+}
+
+Cliente* buscarCliente(char cpf[12], Cliente* cliente) {
+    FILE* fp;
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         printf("Não é possível continuar...\n");
-        free(cli);
-        exit(1);
-    }
-    while (fread(cli, sizeof(Cliente), 1, fp) == 1) {
-        if (cli->id == id) {
-            encontrado = 1;
-            break;
-        }
-    }
-    fclose(fp);
-    if (encontrado) {
-        return cli;
-    } else {
-        free(cli);
+        free(cliente);
         return NULL;
     }
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
 
+    while (fread(cliente, sizeof(Cliente), 1, fp) == 1) {
+        if (!strcmp(cliente->cpf, cpf)) {
+            fclose(fp);
+            printf("Encontrou");
+            return cliente;
+        }
+    }
+    
+    free(cliente);
+    fclose(fp);
+    return NULL;
 }
 
 void exibeCliente(Cliente* cli) {
@@ -181,8 +192,8 @@ void exibeCliente(Cliente* cli) {
         printf("║ Telefone: %s\n", cli->fone);
         printf("║ Data de Nascimento: %s\n", cli->dtnas);
     }
-    printf("passou por aqui");
     printf("Tecle <ENTER> para continuar...");
+    getchar();
     getchar();
 }
 
