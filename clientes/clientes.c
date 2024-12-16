@@ -170,7 +170,6 @@ Cliente* buscarCliente(char cpf[12], Cliente* cliente) {
     while (fread(cliente, sizeof(Cliente), 1, fp) == 1) {
         if (!strcmp(cliente->cpf, cpf)) {
             fclose(fp);
-            printf("Encontrou");
             return cliente;
         }
     }

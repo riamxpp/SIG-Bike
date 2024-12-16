@@ -64,6 +64,7 @@ LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* biciclet
     Data* dataInicio = malloc(sizeof(Data));
     Data* dataFim = malloc(sizeof(Data));
     char dataInicioSalvar[12], dataFimSalvar[12];
+    char cpf[12];
 
     locaBike->idLocacao = obterProximoID(nomeArquivoLocaBike, sizeof(locaBike));
     int diaReserva, mesReserva, anoReserva;
@@ -84,21 +85,22 @@ LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* biciclet
         return NULL;
     }
 
-    // printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
-    // scanf(" %50[^\n]", locaBike->cpfCliente);
-    // if (!validarCPF(locaBike->cpfCliente)) {
-    //     printf("  CPF inválido! \n");
-    //     while (getchar() != '\n');
-    //     free(locaBike);
-    //     return NULL;
-    // }
-    // cliente = buscarCliente(locaBike->cpfCliente, cliente);
-    // if (cliente == NULL) {
-    //     printf("Cliente não encontrado!!!\n\n");
-    //     return NULL;
-    // }
-    strcpy(locaBike->cpfCliente, "00000000000");
-    strcpy(locaBike->clienteNome, "pedro");
+    printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
+    scanf(" %50[^\n]", cpf);
+    if (!validarCPF(cpf)) {
+        printf("  CPF inválido! \n");
+        while (getchar() != '\n');
+        free(locaBike);
+        return NULL;
+    }
+
+    cliente = buscarCliente(cpf, cliente);
+    if (cliente == NULL) {
+        printf("Cliente não encontrado!!!\n\n");
+        return NULL;
+    }
+    strcpy(locaBike->cpfCliente, cpf);
+    strcpy(locaBike->clienteNome, cliente->nome);
 
     dataInicio = pegaInicioReserva(); 
     if (dataInicio == NULL) {
