@@ -32,7 +32,7 @@ void patinetes(void){
         getchar();
         switch (op_patinete) {
             case 1:
-                pat = preenchePatinete();
+                pat = preenchePatinete(0);
                 gravaArquivo("patinetes.dat", pat, sizeof(Patinete));
                 break;
             case 2:
@@ -57,7 +57,7 @@ void patinetes(void){
     free(pat);
 } 
 
-Patinete* preenchePatinete(void) {
+Patinete* preenchePatinete(int id) {
     Patinete* pat;
     pat = (Patinete*) malloc(sizeof(Patinete));
     if (pat == NULL) {
@@ -69,7 +69,11 @@ Patinete* preenchePatinete(void) {
     printf("║                               Cadastrar Patinete                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     const char* arquivoPatinetes = "patinetes.dat";
-    pat->id = obterProximoID(arquivoPatinetes, sizeof(Patinete));
+    if (id) {
+        pat->id = id;
+    }else {
+        pat->id = obterProximoID(arquivoPatinetes, sizeof(Patinete));
+    }
 
     printf("║ Modelo: ");
     scanf(" %50[^\n]", pat->modelo);
@@ -186,21 +190,39 @@ void printPatinete(Patinete* pat){
 }
 
 void atualizarPatinete(void) {
-    Patinete* pat;
+    Patinete* pat = (Patinete*) malloc(sizeof(Patinete));
+    Patinete* novoPat = (Patinete*) malloc(sizeof(Patinete));
+    FILE* fp;
 
-	pat = pesquisarPatinete();
-	if (pat == NULL) {
-    	printf("\n\nPatinete não encontrado!\n\n");
-  	} else {
-        pat = preenchePatinete();
-        regravarPatinete(pat);
+    system("clear||cls");
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                          Atualizar Dados do Patinete                          ║\n");
+    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+    printf("║ Informe o ID da Bicicleta: ");
+    if (verificaNumero(scanf("%d", &pat->id)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+	pat = encontrarPeloID(pat, "patinetes.dat", fp, sizeof(Patinete), pat->id);
+    if (pat == NULL) {
+        printf("Patinete não encontrado!!\n\n");
         free(pat);
-	}
+        free(novoPat);
+        return NULL;
+    }else {
+        pat->status = 0;
+        novoPat = preenchePatinete(pat->id);
+        regravarPatinete(novoPat);
+        free(pat);
+    }
+
     printf("║                                                                               ║\n");
     printf("║                      Patinete Atualizado com sucesso!                         ║\n");
     printf("║                                   Aguarde...                                  ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    return;
+    sleep(1);
 }
 
 void deletarPatinete(void) {
