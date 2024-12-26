@@ -44,8 +44,8 @@ void patinetes(void){
                 atualizarPatinete();
                 break;
             case 4:
-                pat = pesquisarPatinete();
-                deletarPatinete(pat);
+                // pat = pesquisarPatinete();
+                deletarPatinete();
                 break;
             case 0:
                 break;
@@ -118,7 +118,6 @@ Patinete* preenchePatinete(void) {
         getchar();
         return NULL;
     }
-
     pat-> status = 1;
     // tipo 2 para a função listar entender que é patinete
     pat->tipo = 2;
@@ -150,7 +149,7 @@ Patinete* pesquisarPatinete(void){
         exit(1);
     }
     while (fread(pat, sizeof(Patinete), 1, fp) == 1) {
-        if (pat->id == id) {
+        if (pat->id == id && pat->status == 1) {
             fclose(fp);
             return pat;
         }
@@ -204,94 +203,73 @@ void atualizarPatinete(void) {
     return;
 }
 
-void regravarPatinete(Patinete* pat) {
-	bool achou;
-	FILE* fp;
-	Patinete* patLido;
+void deletarPatinete(void) {
+    int id;
+    FILE* fp;
+    Patinete* patinete = (Patinete*) malloc(sizeof(Patinete));
+    char* nomeArquivo = "patinetes.dat";
 
-	patLido = (Patinete*) malloc(sizeof(Patinete));
-	fp = fopen("patinetes.dat", "r+b");
-	if (fp == NULL) {
-		printf("Ops! Erro abertura do arquivo!\n");
-        printf("Não é possível continuar...\n");
-        free(patLido);
-        exit(1);
-	}
-	achou = false;
-	while(fread(patLido, sizeof(Patinete), 1, fp) && !achou) {
-		if (patLido->id == pat->id){
-			achou = true;
-			fseek(fp, -1*sizeof(Patinete), SEEK_CUR);
-        	fwrite(pat, sizeof(Patinete), 1, fp);
-			//break;
-		}
-	}
-	fclose(fp);
-	free(patLido);
-}
-
-void deletarPatinete(Patinete* patLido) {
-    FILE *fp, *temp;
-    Patinete* patArq;
-    int achou = 0;
-
-    if (patLido == NULL) {
-        printf("O patinete informado não existe!\n");
-        return;
-    } 
-
-    patArq = (Patinete*) malloc(sizeof(Patinete));
-    if(patArq == NULL){
-        printf("Erro ao alocar memória.\n");
-        exit(1);
-    }
-
-    fp = fopen("patinetes.dat", "rb");
+    fp = fopen(nomeArquivo, "r+b");
     if (fp == NULL) {
-        printf("Ops! Erro abertura do arquivo!\n");
-        printf("Não é possível continuar...\n");
-        free(patArq);
-        exit(1);
+        printf("Erro ao abrir arquivo!!\n\n");
+        return NULL;
     }
-
-    temp =fopen("temp.dat","wb");
-    if (temp == NULL) {
-        printf("Ops! Erro na criação do arquivo temporário!\n");
-        fclose(fp);
-        free(patArq);
-        exit(1);
-    }
-
-    while (fread(patArq, sizeof(Patinete), 1, fp) == 1) {
-        if (patArq->id == patLido->id) {
-            achou = 1;
-        } else {
-            fwrite(patArq, sizeof(Patinete), 1, temp);
-        }
-    }
-
-    fclose(fp);
-    fclose(temp);
-    free(patArq);
-
-    if (achou) {
-        remove("patinetes.dat");
-        rename("temp.dat", "patinetes.dat");
-        printf("║                                                                               ║\n");
-        printf("║                          Patinete excluído com sucesso!                       ║\n");
-        printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    } else {
-        remove("temp.dat");
-        printf("\nPatinete não encontrado!\n");
-    }
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
-    /*
+    
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                               Deletar Patinete                                ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║ Informe o ID do patinete a excluir: ");
-    */
+    if (verificaNumero(scanf("%d", &id)) != 1) {
+        printf("\nEntrada inválida, digite apenas números.  \n");
+        while (getchar() != '\n');
+        getchar();
+        return;
+    }
+
+    patinete = encontrarPeloID(patinete, nomeArquivo, fp, sizeof(Patinete), id);
+    if (patinete == NULL) {
+        printf("Patinete não encontrado!!\n\n");
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }else {
+        patinete->status = 0;
+        regravarPatinete(patinete);
+        printf("║                                                                               ║\n");
+        printf("║                          Patinete excluído com sucesso!                       ║\n");
+        printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+        printf("Tecle <ENTER> para continuar...");
+        getchar();
+        getchar();
+    }
 }
 
+void regravarPatinete(Patinete* patinete) {
+    int achou = 0;
+    FILE* fp;
+    Patinete* patineteLido = (Patinete*) malloc(sizeof(Patinete));
+
+    fp = fopen("patinetes.dat", "r+b");
+
+    if (fp == NULL) {
+        printf("Erro ao abrir arquivo!!\n\n");
+        getchar();
+        fclose(fp);
+        free(patinete);
+        free(patineteLido);
+        return NULL;
+    }
+
+    while (fread(patineteLido, sizeof(Patinete), 1, fp) && !achou) {
+        if (patineteLido->id == patinete->id) {
+            achou = 1;
+            fseek(fp, -1*sizeof(Patinete), SEEK_CUR);
+            fwrite(patinete, sizeof(Patinete), 1, fp);
+        }
+    }
+
+    fclose(fp);
+    free(patinete);
+    free(patineteLido);
+}
