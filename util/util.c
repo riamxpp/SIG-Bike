@@ -68,7 +68,7 @@ void printBicicleta(Bicicleta* bicicleta) {
     printf("║ Cor: %s\n", bicicleta->cor);
     printf("║ Marca: %s\n", bicicleta->marca);
     printf("║ Ano de Fabrica: %d\n", bicicleta->ano);
-    printf("║ Bateria (capacidade): %d\n", bicicleta->tam_quadro);
+    printf("║ Tamanho do quadro: %d\n", bicicleta->tam_quadro);
 }
 
 void printLocacao(LocacaoBicicleta* locaBike) {

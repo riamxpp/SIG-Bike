@@ -13,7 +13,7 @@ typedef struct bicicleta {
     int tipo;
 } Bicicleta;
 void bicicletas(void);
-Bicicleta* preencheBicicleta(void);
+Bicicleta* preencheBicicleta(int id);
 void cadastrarBicicleta(FILE *fp);
 Bicicleta* pesquisarBicicleta();
 int exibeBicicleta(Bicicleta* bicicleta);

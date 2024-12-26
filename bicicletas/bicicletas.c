@@ -34,7 +34,7 @@ void bicicletas(void){
         Bicicleta *bicicleta  = malloc(sizeof(Bicicleta));
         switch (op_bicicleta) {
             case 1:
-                bicicleta = preencheBicicleta();
+                bicicleta = preencheBicicleta(0);
                 printf("%d", bicicleta->id);
                 gravaArquivo("bicicletas.dat", bicicleta, sizeof(Bicicleta));
                 free(bicicleta);
@@ -62,7 +62,7 @@ void bicicletas(void){
     }while(op_bicicleta != 0);
 }
 
-Bicicleta* preencheBicicleta(void) {
+Bicicleta* preencheBicicleta(int id) {
     Bicicleta* bicicleta;
     bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
     if (bicicleta == NULL) {
@@ -75,7 +75,11 @@ Bicicleta* preencheBicicleta(void) {
     printf("║                               Cadastrar Bicicleta                              ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     const char* arquivoBicicletas = "bicicletas.dat";
-    bicicleta->id = obterProximoID(arquivoBicicletas, sizeof(Bicicleta));
+    if (id) {
+        bicicleta->id = id;
+    }else {
+        bicicleta->id = obterProximoID(arquivoBicicletas, sizeof(Bicicleta));
+    }
 
     printf("║ Modelo: ");
     scanf(" %50[^\n]", bicicleta->modelo);
@@ -177,7 +181,8 @@ int exibeBicicleta(Bicicleta* bicicleta) {
 }
 
 void atualizarBicicleta(void){
-    Bicicleta* bicicleta;
+    Bicicleta* bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
+    Bicicleta* novaBike = (Bicicleta*) malloc(sizeof(Bicicleta));
     FILE* fp;
 
     system("clear||cls");
@@ -200,10 +205,11 @@ void atualizarBicicleta(void){
         free(bicicleta);
         return;
     }else {
-        bicicleta = preencheBicicleta();
         bicicleta->status = 0;
-        regravarBicicleta(bicicleta);
+        novaBike = preencheBicicleta(bicicleta->id);
+        regravarBicicleta(novaBike);
         free(bicicleta);
+        free(novaBike);
     }
 
     printf("║                             Bicicleta atualizada                              ║\n");
