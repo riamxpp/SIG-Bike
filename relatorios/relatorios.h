@@ -11,6 +11,6 @@ int verificaNumero(int num);
 int validarNumAndCharAndCaractere(char[]);
 int validarNumAndChar(char[]);
 int validarPalavra(char[]);
-void listarTodosOsItens(FILE* fp, char* nomeDoArquivo, size_t tamanhoEstrutura, int tipo);
-
+void listarTodasBicicletas();
+void listarTodosPatinetes();
 #endif

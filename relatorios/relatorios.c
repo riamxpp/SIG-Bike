@@ -60,28 +60,19 @@ void listarClientes(void){
 }
 
 void listarBicicletas(void){
-    Bicicleta* bicicleta;
-    //FILE* fp;
-
-    bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
-   
     system("clear||cls");
     printf("\n╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                                         Listar Bicicletas                                                  ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║     ID     ║         Modelo          ║         Marca          ║ Ano de Fabricação ║   Tamanho do Quadro    ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
-    //listarTodosOsItens(fp, "bicicletas.dat", sizeof(Bicicleta), 1);
-    free(bicicleta);
+
+    listarTodasBicicletas();
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
 
 void listarPatinetes(void){
-    Patinete* pat;
-    //FILE *fp;
-
-    pat = (Patinete*) malloc(sizeof(Patinete));
     system("clear||cls");
     printf("\n╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                                         Listar Patinetes                                                   ║\n");
@@ -89,8 +80,7 @@ void listarPatinetes(void){
     printf("║     ID     ║         Modelo          ║         Marca          ║ Ano de Fabricação ║  Bateria (capacidade)  ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     
-    //listarTodosOsItens(fp, "patinetes.dat", sizeof(Patinete), 2);
-    free(pat);
+    listarTodosPatinetes();
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
@@ -117,27 +107,30 @@ void patinetes_mais_alugados(void){
     getchar();
 }
 
-/*
-void listarTodosOsItens(FILE* fp, char* nomeDoArquivo, size_t tamanhoEstrutura, int tipo) {
-    fp = fopen(nomeDoArquivo, "rb");
+void listarTodasBicicletas() {
+    FILE* fp;
 
+    fp = fopen("bicicletas.dat", "rb");
     if (fp == NULL) {
         printf("Erro na abertura do arquivo!!\n\n");
-        return;
-    }else {
-
-        if (tipo == 1) {
-            Bicicleta buffer;
-            while (fread(&buffer, tamanhoEstrutura, 1, fp) == 1) {
-                exibeBicicleta(&buffer);
-            }
-        }else {
-            Patinete buffer;
-            while (fread(&buffer, tamanhoEstrutura, 1, fp) == 1) {
-                exibePatinete(&buffer);
-            }
-        }
-        fclose(fp);
+        return NULL;
+    }
+    Bicicleta buffer;
+    while (fread(&buffer, sizeof(Bicicleta), 1, fp) == 1) {
+        exibeBicicleta(&buffer);
     }
 }
-*/
+
+void listarTodosPatinetes() {
+    FILE* fp;
+
+    fp = fopen("patinetes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo!!\n\n");
+        return NULL;
+    }
+    Patinete buffer;
+    while (fread(&buffer, sizeof(Patinete), 1, fp) == 1) {
+        exibeBicicleta(&buffer);
+    }
+}
