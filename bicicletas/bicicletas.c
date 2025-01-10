@@ -132,11 +132,11 @@ Bicicleta* preencheBicicleta(int id) {
     bicicleta->tipo = 1;
     
     printf("║                                                                               ║\n");
-    printf("║                      Bicicleta cadastrado com sucesso!                         ║\n");
-    printf("║                                   Aguarde...                                  ║\n");
+    printf("║                      Bicicleta cadastrado com sucesso!                        ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    sleep(1);    
-
+    printf(" ");
+    getchar();
+    exibeBicicleta(bicicleta);
     return bicicleta;
 }
 

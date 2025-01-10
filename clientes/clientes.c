@@ -107,13 +107,11 @@ Cliente* preencherCliente(void){
         }
     } while (!validarDataNascimento(cli->dtnas));
     cli->id = obterProximoID(arquivoClientes, sizeof(Cliente));
-    exibeCliente(cli);
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                        Cliente cadastrado com sucesso!                        ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
-    return(cli);
+   
+
 }
 
 /*
