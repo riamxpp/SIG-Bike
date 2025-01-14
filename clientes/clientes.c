@@ -284,6 +284,7 @@ void deletarCliente(Cliente *cliLido){
         printf("║                                                                               ║\n");
         printf("║                          Cliente excluído com sucesso!                       ║\n");
         printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
+        getchar();
     } else {
         remove("temp.dat");
         printf("\nCliente não encontrado!\n");
