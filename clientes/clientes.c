@@ -15,7 +15,10 @@ void clientes(void){
         switch (op_cliente) {
             case 1:
                 cli = preencherCliente(0);
-                gravaArquivo("clientes.dat", cli, sizeof(Cliente));
+                if (cli != NULL) {
+                    gravaArquivo("clientes.dat", cli, sizeof(Cliente));
+                    mensagemClienteCadastrado();
+                }
                 break;
             case 2:
                 cli = pesquisarCliente();
@@ -53,70 +56,56 @@ Cliente* preencherCliente(int id){
     }else {
         cli->id = obterProximoIDCliente(arquivoClientes);
     }
-    do {
-        printf("║ Nome: ");
-        scanf(" %50[^\n]", cli->nome);
-        if (!validarNome(cli->nome)) {
-            printf("  Entrada inválida. Digite apenas letras e espaços.\n");
-            printf("\n");
-            while (getchar() != '\n');
-            free(cli);
-            return NULL;
-        }
-    } while (!validarNome(cli->nome));
 
-    do {
-        printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
-        scanf(" %50[^\n]", cli->cpf);
-        if (!validarCPF(cli->cpf)) {
-            printf("  CPF inválido! \n");
-            printf("\n");
-            while (getchar() != '\n');
-            free(cli);
-            return NULL;
-        }
-    } while (!validarCPF(cli->cpf));
+    printf("║ Nome: ");
+    scanf(" %50[^\n]", cli->nome);
+    if (!validarNome(cli->nome)) {
+        printf("Entrada inválida. Digite apenas letras e espaços.\n");
+        free(cli);
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }
 
-    do {
-        printf("║ Email: ");
-        scanf(" %50[^\n]", cli->email);
-        if (!validarEmail(cli->email)) {
-            printf("  Email inválido! \n");
-            printf("\n");
-            while (getchar() != '\n');
-            free(cli);
-            return NULL;
-        }
-    } while (!validarEmail(cli->email));
+    printf("║ CPF (xxx.xxx.xxx-xx ou xxxxxxxxxxx): ");
+    scanf(" %50[^\n]", cli->cpf);
+    if (!validarCPF(cli->cpf)) {
+        printf("  CPF inválido! \n");
+        free(cli);
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }
 
-    do {
-        printf("║ Telefone: ");
-        scanf(" %50[^\n]", cli->fone);
-        if (!validarTelefone(cli->fone)) {
-            printf("  Telefone inválido! \n");
-            printf("\n");
-            while (getchar() != '\n');
-            free(cli);
-            return NULL;
-        }
-    } while (!validarTelefone(cli->fone));
+    printf("║ Email: ");
+    scanf(" %50[^\n]", cli->email);
+    if (!validarEmail(cli->email)) {
+        printf("  Email inválido! \n");
+        free(cli);
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }
 
-    do {
-        printf("║ Data de nascimento: ");
-        scanf(" %50[^\n]", cli->dtnas);
-        if (!validarDataNascimento(cli->dtnas)) {
-            printf("  Data de Nascimento inválida! \n");
-            printf("\n");
-            while (getchar() != '\n');
-            free(cli);
-            return NULL;
-        }
-    } while (!validarDataNascimento(cli->dtnas));
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                        Cliente cadastrado com sucesso!                        ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf(" ");
-    getchar();
+    printf("║ Telefone: ");
+    scanf(" %50[^\n]", cli->fone);
+    if (!validarTelefone(cli->fone)) {
+        printf("  Telefone inválido! \n");
+        free(cli);
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }
+
+    printf("║ Data de nascimento: ");
+    scanf(" %50[^\n]", cli->dtnas);
+    if (!validarDataNascimento(cli->dtnas)) {
+        printf("  Data de Nascimento inválida! \n");
+        free(cli);
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }
     exibeCliente(cli);
     return(cli);
 }
