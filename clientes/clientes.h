@@ -18,4 +18,5 @@ void exibeCliente(Cliente* cli);
 void deletarCliente(Cliente *cliLido);
 void atualizarCliente(Cliente* cli);
 void regravarCliente(Cliente* cli);
+static int obterProximoIDCliente(const char* nomeArquivo);
 #endif 

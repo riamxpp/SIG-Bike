@@ -51,7 +51,7 @@ Cliente* preencherCliente(int id){
     if (id) {
         cli->id = id;
     }else {
-        cli->id = obterProximoID(arquivoClientes, sizeof(cli));
+        cli->id = obterProximoIDCliente(arquivoClientes);
     }
     do {
         printf("║ Nome: ");
@@ -121,6 +121,22 @@ Cliente* preencherCliente(int id){
     return(cli);
 }
 
+static int obterProximoIDCliente(const char* nomeArquivo) {
+    FILE* arquivo = fopen(nomeArquivo, "rb");
+    if (arquivo == NULL) {
+        return 1; // Arquivo não existe ainda, ID inicial é 1
+    }
+
+    Cliente cli;
+    int ultimoID = 0;
+
+    while (fread(&cli, sizeof(Cliente), 1, arquivo) == 1) {
+        ultimoID = cli.id; // Obtém o ID do último registro
+    }
+
+    fclose(arquivo);
+    return ultimoID + 1; // Próximo ID
+}
 
 Cliente* pesquisarCliente(void){
     Cliente* cli = malloc(sizeof(Cliente));
