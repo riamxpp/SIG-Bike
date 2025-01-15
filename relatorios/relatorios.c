@@ -55,6 +55,7 @@ void listarClientes(void){
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     printf("║       Nome        ║       CPF       ║           Email             ║      Fone      ║   Data de Nacimento   ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
+    listarTodosClientes();
     printf("Tecle <ENTER> para continuar...");
     getchar();
 }
@@ -133,4 +134,20 @@ void listarTodosPatinetes() {
     while (fread(&buffer, sizeof(Patinete), 1, fp) == 1) {
         exibeBicicleta(&buffer);
     }
+}
+
+void listarTodosClientes(void) {
+    FILE* fp;
+
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Erro na abertura do arquivo!!\n\n");
+        return NULL;
+    }
+    Cliente buffer;
+    while (fread(&buffer, sizeof(Cliente), 1, fp) == 1) {
+        exibeCliente(&buffer);
+    }
+    printf("Tecle <ENTER> para continuar...");
+    getchar();
 }
