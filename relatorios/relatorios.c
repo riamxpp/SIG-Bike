@@ -56,8 +56,6 @@ void listarClientes(void){
     printf("║       Nome        ║       CPF       ║           Email             ║      Fone      ║   Data de Nacimento   ║\n");
     printf("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
     listarTodosClientes();
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
 }
 
 void listarBicicletas(void){
@@ -146,7 +144,7 @@ void listarTodosClientes(void) {
     }
     Cliente buffer;
     while (fread(&buffer, sizeof(Cliente), 1, fp) == 1) {
-        exibeCliente(&buffer);
+        exibeCliente(&buffer, 1);
     }
     printf("Tecle <ENTER> para continuar...");
     getchar();

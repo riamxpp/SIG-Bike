@@ -22,7 +22,7 @@ void clientes(void){
                 break;
             case 2:
                 cli = pesquisarCliente();
-                exibeCliente(cli);
+                exibeCliente(cli, 0);
                 break;
             case 3:
                 cli = pesquisarCliente();
@@ -106,7 +106,7 @@ Cliente* preencherCliente(int id){
         getchar();
         return NULL;
     }
-    exibeCliente(cli);
+    exibeCliente(cli, 0);
     return(cli);
 }
 
@@ -171,22 +171,23 @@ Cliente* buscarCliente(char cpf[12], Cliente* cliente) {
     fclose(fp);
     return NULL;
 }
-
-void exibeCliente(Cliente* cli) {
+// todos os clientes é um atributo que deve ser verdadeiro quando a listagem for feita em mais de um cliente.
+void exibeCliente(Cliente* cli, int todosCliente) {
     if (cli == NULL) {
         printf("\n= = = Cliente Inexistente = = =\n");
     } else {
-        printf("\n= = = Cliente Cadastrado = = =\n");
+        printf("\n= = = Cliente = = =\n");
         printf("║ ID: %d\n", cli->id);
         printf("║ Nome: %s\n", cli->nome);
         printf("║ CPF: %s\n", cli->cpf);
         printf("║ Email: %s\n", cli->email);
         printf("║ Telefone: %s\n", cli->fone);
         printf("║ Data de Nascimento: %s\n", cli->dtnas);
+        if (!todosCliente) {
+            printf("Tecle <ENTER> para continuar...");
+            getchar();        
+        }
     }
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
-    getchar();
 }
 
 void atualizarCliente(Cliente* cli){
