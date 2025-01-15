@@ -35,7 +35,6 @@ void bicicletas(void){
         switch (op_bicicleta) {
             case 1:
                 bicicleta = preencheBicicleta(0);
-                printf("%d", bicicleta->id);
                 gravaArquivo("bicicletas.dat", bicicleta, sizeof(Bicicleta));
                 free(bicicleta);
                 break;
