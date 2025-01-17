@@ -50,7 +50,7 @@ Cliente* preencherCliente(int id){
         exit(1);
     }
     menuCadastrarCliente();
-    const char* arquivoClientes = "clientes.dat";
+    char* arquivoClientes = "clientes.dat";
     if (id) {
         cli->id = id;
     }else {
@@ -110,7 +110,7 @@ Cliente* preencherCliente(int id){
     return(cli);
 }
 
-static int obterProximoIDCliente(const char* nomeArquivo) {
+int obterProximoIDCliente(char* nomeArquivo) {
     FILE* arquivo = fopen(nomeArquivo, "rb");
     if (arquivo == NULL) {
         return 1; // Arquivo não existe ainda, ID inicial é 1
@@ -192,7 +192,6 @@ void exibeCliente(Cliente* cli, int todosCliente) {
 
 void atualizarCliente(Cliente* cli){
     Cliente* novoCli = (Cliente*) malloc(sizeof(Cliente));
-    FILE* fp;
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║                          Atualizar Dados do Cliente                           ║\n");

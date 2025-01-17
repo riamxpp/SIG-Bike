@@ -7,7 +7,6 @@
 #include "../util/util.h"
 
 void bicicletas(void){
-    Bicicleta* bicicleta;
     int op_bicicleta, statusExibe;
 
     do{
@@ -79,7 +78,6 @@ Bicicleta* preencheBicicleta(int id) {
     }else {
         bicicleta->id = obterProximoID(arquivoBicicletas, sizeof(Bicicleta));
     }
-
     printf("║ Modelo: ");
     scanf(" %50[^\n]", bicicleta->modelo);
     if (!validarNumAndChar(bicicleta->modelo)) {
@@ -140,8 +138,7 @@ Bicicleta* preencheBicicleta(int id) {
 }
 
 Bicicleta* pesquisarBicicleta(){
-    FILE *fp;
-    Bicicleta* bicicleta;
+    Bicicleta* bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
     int id;
 
     system("clear||cls");
@@ -154,7 +151,7 @@ Bicicleta* pesquisarBicicleta(){
 
     char* nomeArquivo = "bicicletas.dat";
 
-    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, fp, sizeof(Bicicleta), id);
+    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, sizeof(Bicicleta), id);
 
     if (bicicleta == NULL) {
         printf("Erro ao pesquisar bicicleta!!\n\n");
@@ -169,6 +166,7 @@ Bicicleta* pesquisarBicicleta(){
 int exibeBicicleta(Bicicleta* bicicleta) {
     if (bicicleta == NULL) {
         printf("\n= = = Bicicleta Inexistente = = =\n");
+        return 0;
     } else {
         if (bicicleta->status == 1) {   
             printBicicleta(bicicleta);
@@ -182,7 +180,6 @@ int exibeBicicleta(Bicicleta* bicicleta) {
 void atualizarBicicleta(void){
     Bicicleta* bicicleta = (Bicicleta*) malloc(sizeof(Bicicleta));
     Bicicleta* novaBike = (Bicicleta*) malloc(sizeof(Bicicleta));
-    FILE* fp;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -196,8 +193,8 @@ void atualizarBicicleta(void){
         return;
     }
 
-    const char* nomeArquivo = "bicicletas.dat";
-    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, fp, sizeof(Bicicleta), bicicleta->id);
+    char* nomeArquivo = "bicicletas.dat";
+    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, sizeof(Bicicleta), bicicleta->id);
     
     if (bicicleta == NULL) {
         printf("Bicicleta não encontrada!!!\n\n");
@@ -221,7 +218,7 @@ void deletarBicicleta(void){
     int id;
     FILE* fp;
     Bicicleta* bicicleta;
-    const char* nomeArquivo = "bicicletas.dat";
+    char* nomeArquivo = "bicicletas.dat";
 
     fp = fopen(nomeArquivo, "r+b");
     if (fp == NULL) {
@@ -242,13 +239,13 @@ void deletarBicicleta(void){
         getchar();
         return;
     }
-    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, fp, sizeof(Bicicleta), id);
+    bicicleta = encontrarPeloID(bicicleta, nomeArquivo, sizeof(Bicicleta), id);
 
     if (bicicleta == NULL) {
         printf("Bicicleta não encontrada!!\n\n");
         while (getchar() != '\n');
         getchar();
-        return NULL;
+        return;
     }else {
         bicicleta->status = 0;
         regravarBicicleta(bicicleta);

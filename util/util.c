@@ -33,8 +33,9 @@ int obterProximoID(const char* nomeArquivo, size_t tamanhoEstrutura) {
     return ultimoID + 1;
 }
 
-void* encontrarPeloID(void* estrutura, char* nomeArquivo, FILE* fp, size_t tamanhoEstrutura, int id) {
+void* encontrarPeloID(void* estrutura, char* nomeArquivo, size_t tamanhoEstrutura, int id) {
     int encontrado = 0;
+    FILE *fp;
     fp = fopen(nomeArquivo, "rb");
 
     if (fp == NULL) {

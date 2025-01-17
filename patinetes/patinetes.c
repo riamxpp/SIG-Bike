@@ -192,7 +192,6 @@ void printPatinete(Patinete* pat){
 void atualizarPatinete(void) {
     Patinete* pat = (Patinete*) malloc(sizeof(Patinete));
     Patinete* novoPat = (Patinete*) malloc(sizeof(Patinete));
-    FILE* fp;
 
     system("clear||cls");
     printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
@@ -205,12 +204,12 @@ void atualizarPatinete(void) {
         getchar();
         return;
     }
-	pat = encontrarPeloID(pat, "patinetes.dat", fp, sizeof(Patinete), pat->id);
+	pat = encontrarPeloID(pat, "patinetes.dat", sizeof(Patinete), pat->id);
     if (pat == NULL) {
         printf("Patinete não encontrado!!\n\n");
         free(pat);
         free(novoPat);
-        return NULL;
+        return;
     }else {
         pat->status = 0;
         novoPat = preenchePatinete(pat->id);
@@ -234,7 +233,7 @@ void deletarPatinete(void) {
     fp = fopen(nomeArquivo, "r+b");
     if (fp == NULL) {
         printf("Erro ao abrir arquivo!!\n\n");
-        return NULL;
+        return;
     }
     
     system("clear||cls");
@@ -249,12 +248,12 @@ void deletarPatinete(void) {
         return;
     }
 
-    patinete = encontrarPeloID(patinete, nomeArquivo, fp, sizeof(Patinete), id);
+    patinete = encontrarPeloID(patinete, nomeArquivo, sizeof(Patinete), id);
     if (patinete == NULL) {
         printf("Patinete não encontrado!!\n\n");
         while (getchar() != '\n');
         getchar();
-        return NULL;
+        return;
     }else {
         patinete->status = 0;
         regravarPatinete(patinete);
@@ -280,7 +279,7 @@ void regravarPatinete(Patinete* patinete) {
         fclose(fp);
         free(patinete);
         free(patineteLido);
-        return NULL;
+        return;
     }
 
     while (fread(patineteLido, sizeof(Patinete), 1, fp) && !achou) {
