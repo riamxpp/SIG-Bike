@@ -46,14 +46,19 @@ void reservarBicicleta(void){
     char* nomeArquivo = "locacaoBicicletas";
 
     menuReservarBicicleta();
-    preencheLocacaoBicicleta(cliente, bicicleta, locaBike);
+    locaBike = preencheLocacaoBicicleta(cliente, bicicleta, locaBike);
+    if (!locaBike) {
+        return NULL;
+    }
     gravaArquivo(nomeArquivo, locaBike, sizeof(LocacaoBicicleta));
 
 
-    getchar();  
-    printf("║                                                                               ║\n");
+
+    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                        Reserva cadastrada com sucesso!                        ║\n");
     printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
     printf("Tecle <ENTER> para continuar...");
+    getchar();
     getchar();
 }
 
@@ -107,7 +112,6 @@ LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* biciclet
     locaBike->dataFim = (char*) malloc(12*sizeof(char));
 
     locaBike->dataInicio = pegaDataAtual(); 
-    // locaBike->dataFim = "01/01/2025";
     
     printf("║ Informe a data do fim da reserva: ");
     scanf(" %50[^\n]", locaBike->dataFim);
@@ -121,22 +125,70 @@ LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* biciclet
 
 
     printf("║ Data ínicio da reserva: %s\n", locaBike->dataInicio);
-    printf("║ Data fim da reserva:: %s\n", locaBike->dataFim);
+    printf("║ Data fim da reserva: %s\n", locaBike->dataFim);
 
-    // adicionar preço no futuro
-    locaBike-> diasLocacao = 0;
+    
+    locaBike-> diasLocacao = diasLocado(locaBike->dataInicio, locaBike->dataFim);
+    if (!locaBike->diasLocacao) {
+        printf("\n║ Problema na data de fim da reserva!\n");
+        printf("║ Só é possível alugar por no máximo 7 dias!!");
+        free(locaBike);
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }
+    printf("║ Total de dias: %d\n", locaBike->diasLocacao);
     locaBike->valor = 0.0;
     locaBike->status = 1;
 
-    printf("\n╔═══════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                        Reserva cadastrada com sucesso!                        ║\n");
-    printf("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
-    printf("Tecle <ENTER> para continuar...");
-    getchar();
     return(locaBike);
 
 }
 
+int diasLocado(char* dataInicio, char* dataFim) {
+    //Separando a string
+    int diaFim = atoi(&dataFim[0]);
+    int mesFim = atoi(&dataFim[3]);
+    int anoFim = atoi(&dataFim[6]);
+    int diaInicio = atoi(&dataInicio[0]);
+    int mesInicio = atoi(&dataInicio[3]);
+    int anoInicio = atoi(&dataInicio[6]);
+
+    int diasAlugado;
+
+    if (anoFim < anoInicio) {
+        return 0;
+    }
+
+    // verifica se a pessoa está alugando a bicicleta para entregar no mesmo mes
+    if (mesFim == mesInicio) {
+        // +1 para contar o dia alugado
+        diasAlugado =  (diaFim - diaInicio) + 1;
+        // se o cliente tentar alugar por mais de 7 dias retorna erro
+        if (diasAlugado > 7) {
+            return 0;
+        }
+
+        return diasAlugado;
+    }
+    // dias por mês
+    int diasNoMes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int verificaDiferecaNoMes;
+
+    if (mesFim != mesInicio) {
+        // retorna a subtração entre o mês de ínicio e o mês do fim;
+        verificaDiferecaNoMes = mesFim - mesInicio;
+        if (verificaDiferecaNoMes != 1) {
+            return 0;
+        }
+        // variavel para guardar a quantidade de dias que tem de aluguel antes do mês virar
+        int diaDoMesInicio = (diasNoMes[mesInicio - 1] - diaInicio) + 1;
+
+        // retorno a quantidade de dias, somando apenas os dias de aluguel antes do mês virar e o dia do fim do novo mês
+        return diaDoMesInicio + diaFim;
+    }
+
+}
 char* pegaDataAtual(){
     static char dataFormatada[12];
     time_t t;
