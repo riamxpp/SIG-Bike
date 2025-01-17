@@ -8,6 +8,7 @@
 #include "../clientes/clientes.h"
 #include "../util/util.h"
 #include <string.h>
+#include <time.h>
 
 void locacao(void){
     int op_locacao;
@@ -102,38 +103,25 @@ LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* biciclet
     strcpy(locaBike->cpfCliente, cpf);
     strcpy(locaBike->clienteNome, cliente->nome);
 
-    dataInicio = pegaInicioReserva(); 
-    if (dataInicio == NULL) {
-        printf("Data ínicio inválida!!\n\n");
-        return NULL;
-    }
-    sprintf(dataInicioSalvar, "%02d/%02d/%04d", dataInicio->dia, dataInicio->mes, dataInicio->ano);
-    strcpy(locaBike->dataInicio, dataInicioSalvar);
+    locaBike->dataInicio = (char*) malloc(12*sizeof(char));
+    locaBike->dataFim = (char*) malloc(12*sizeof(char));
 
-    dataFim = pegaFimReserva();
-    if (dataInicio == NULL) {
-        printf("Data ínicio inválida!!\n\n");
-        return NULL;
-    }
-    sprintf(dataFimSalvar, "%02d/%02d/%04d", dataFim->dia, dataFim->mes, dataFim->ano);
-    strcpy(locaBike->dataFim, dataFimSalvar);
+    locaBike->dataInicio = pegaDataAtual(); 
+    locaBike->dataFim = "01/01/2025";
+    
+    // printf("ínicio: %s\n", locaBike->dataInicio);
+    // printf("Fim: %s\n", locaBike->dataFim);
 
-    // scanf(" %50[^\n]", locaBike->dataInicio);
-    // if (!validarData(dia, mes, ano)) {
-    //     printf("Data de Locação inválida! \n");
-    //     while (getchar() != '\n');
-    //     free(locaBike);
-    //     return NULL;
-    // }
-
-    // printf("║ Data da fim reserva: ");
+    // printf("║ Data fim da reserva: ");
     // scanf(" %50[^\n]", locaBike->dataFim);
-    // if (!validarData(locaBike->dataFim)) {
-    //     printf("Data de Locação inválida! \n");
-    //     while (getchar() != '\n');
+    // if (!validarFormatoData(locaBike->dataFim)) {
+    //     printf("Data informada inválida! \n");
     //     free(locaBike);
+    //     while (getchar() != '\n');
+    //     getchar();
     //     return NULL;
     // }
+
 
     // adicionar preço no futuro
     locaBike-> diasLocacao = 0;
@@ -149,78 +137,21 @@ LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* biciclet
 
 }
 
-Data* pegaInicioReserva() {
-    char dataFormatada[11]; 
-    int validaData = 0;
-    Data *data = malloc(sizeof(Data));
+char* pegaDataAtual(){
+    static char dataFormatada[12];
+    time_t t;
+    struct tm *dataAtual;
 
-    printf("║ Data da ínicio reserva \n");
-    printf("║ Informe o dia da reserva: ");
-    data->dia = pegaNum(data->dia);
-    if (data->dia == NULL) {
-        printf("Dia informado inválido!!\n\n");
-        return NULL;
-    }
+    time(&t);
+    dataAtual = localtime(&t);
 
-    printf("║ Informe o mês da reserva: ");
-    data->mes = pegaNum(data->mes);
-    if (data->mes == NULL) {
-        printf("Mês informado inválido!!\n\n");
-        return NULL;
-    }
+    snprintf(dataFormatada, sizeof(dataFormatada), "%02d/%02d/%04d",
+        dataAtual->tm_mday,
+        dataAtual->tm_mon + 1,
+        dataAtual->tm_year + 1900
+            );
 
-    printf("║ Informe o ano da reserva: ");
-    data->ano = pegaNum(data->ano);
-    if (data->ano == NULL) {
-        printf("Ano informado inválido!!\n\n");
-        return NULL;
-    }
-    
-    validaData = validarData(data->dia, data->mes, data->ano);
-    
-    if (validaData) {
-        sprintf(dataFormatada, "%02d/%02d/%04d", data->dia, data->mes, data->ano);
-        return data;
-    }
-    
-    return NULL;
-}
-
-Data* pegaFimReserva() {
-    char dataFormatada[11]; 
-    int validaData = 0;
-    Data *data = malloc(sizeof(Data));
-
-    printf("║ Data do Fim reserva: \n");
-    printf("║ Informe o dia do fim da reserva: ");
-    data->dia = pegaNum(data->dia);
-    if (data->dia == NULL) {
-        printf("Dia informado inválido!!\n\n");
-        return NULL;
-    }
-
-    printf("║ Informe o mês do fim da reserva: ");
-    data->mes = pegaNum(data->mes);
-    if (data->mes == NULL) {
-        printf("Mês informado inválido!!\n\n");
-        return NULL;
-    }
-
-    printf("║ Informe o ano do fim da reserva: ");
-    data->ano = pegaNum(data->ano);
-    if (data->ano == NULL) {
-        printf("Ano informado inválido!!\n\n");
-        return NULL;
-    }
-    
-    validaData = validarData(data->dia, data->mes, data->ano);
-    
-    if (validaData) {
-        sprintf(dataFormatada, "%02d/%02d/%04d", data->dia, data->mes, data->ano);
-        return data;
-    }
-    
-    return NULL;
+    return dataFormatada;
 }
 
 void reservarPatinete(void){

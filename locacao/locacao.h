@@ -8,8 +8,8 @@ typedef struct locacaoBicicleta {
     int idBicicleta;
     char cpfCliente[15];
     char clienteNome[81];
-    char dataInicio[12];
-    char dataFim[12];    
+    char* dataInicio;
+    char* dataFim;    
     int diasLocacao;
     float valor;
     int status;
@@ -29,7 +29,6 @@ void devolverPatinete(void);
 void consultarAluguel(void);
 void locacao(void);
 LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* bicicleta, LocacaoBicicleta* locaBike);
-Data* pegaInicioReserva();
-Data* pegaFimReserva();
+char* pegaDataAtual();
 
 #endif 
