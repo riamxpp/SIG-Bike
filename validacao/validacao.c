@@ -242,3 +242,35 @@ int validaAno(int ano){
     }
     return true;
 }
+
+int validarFormatoData(char* data) {
+    // Verifica se a string tem o comprimento correto
+    if (strlen(data) != 10) {
+        return 0;
+    }
+
+    // Verifica se o contém os caracteres '/' nas posições corretas
+    if (data[2] != '/' || data[5] != '/') {
+        return 0;
+    }
+
+    // Extrai o dia, mês e ano da string
+    int dia = atoi(&data[0]);
+    int mes = atoi(&data[3]);
+    int ano = atoi(&data[6]);
+
+    // Verifica se os valores são válidos
+    if (mes < 1 || mes > 12 || dia < 1 || ano < 1) {
+        return 0;
+    }
+
+    // Dias máximos por mês
+    int diasNoMes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    // Verifica se o dia é válido para o mês
+    if (dia > diasNoMes[mes - 1]) {
+        return 0;
+    }
+
+    return 1;
+}

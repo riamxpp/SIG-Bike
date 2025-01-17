@@ -107,21 +107,21 @@ LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* biciclet
     locaBike->dataFim = (char*) malloc(12*sizeof(char));
 
     locaBike->dataInicio = pegaDataAtual(); 
-    locaBike->dataFim = "01/01/2025";
+    // locaBike->dataFim = "01/01/2025";
     
-    // printf("ínicio: %s\n", locaBike->dataInicio);
-    // printf("Fim: %s\n", locaBike->dataFim);
+    printf("║ Informe a data do fim da reserva: ");
+    scanf(" %50[^\n]", locaBike->dataFim);
+    if (!validarFormatoData(locaBike->dataFim)) {
+        printf("Data informada inválida! \n");
+        free(locaBike);
+        while (getchar() != '\n');
+        getchar();
+        return NULL;
+    }
 
-    // printf("║ Data fim da reserva: ");
-    // scanf(" %50[^\n]", locaBike->dataFim);
-    // if (!validarFormatoData(locaBike->dataFim)) {
-    //     printf("Data informada inválida! \n");
-    //     free(locaBike);
-    //     while (getchar() != '\n');
-    //     getchar();
-    //     return NULL;
-    // }
 
+    printf("║ Data ínicio da reserva: %s\n", locaBike->dataInicio);
+    printf("║ Data fim da reserva:: %s\n", locaBike->dataFim);
 
     // adicionar preço no futuro
     locaBike-> diasLocacao = 0;

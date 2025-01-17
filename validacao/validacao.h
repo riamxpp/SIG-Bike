@@ -16,5 +16,6 @@ bool validarNumAndChar(const char *entrada);
 int validarPalavra(const char *palavra);
 int verificaNumero(int);
 int validaAno(int ano);
+int validarFormatoData(char* data);
 
 #endif 
