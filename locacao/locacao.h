@@ -30,5 +30,6 @@ void consultarAluguel(void);
 void locacao(void);
 LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* bicicleta, LocacaoBicicleta* locaBike);
 char* pegaDataAtual();
+int diasLocado(char* dataInicio, char* dataFim);
 
 #endif 

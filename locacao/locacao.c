@@ -48,7 +48,7 @@ void reservarBicicleta(void){
     menuReservarBicicleta();
     locaBike = preencheLocacaoBicicleta(cliente, bicicleta, locaBike);
     if (!locaBike) {
-        return NULL;
+        return;
     }
     gravaArquivo(nomeArquivo, locaBike, sizeof(LocacaoBicicleta));
 
@@ -64,18 +64,9 @@ void reservarBicicleta(void){
 
 LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* bicicleta, LocacaoBicicleta* locaBike) {
     char* nomeArquivoLocaBike = "locacaoBicicletas";
-    FILE* fp;
-    // char dataInicio[12];
-    // char dataFim[12];
-    Data* dataInicio = malloc(sizeof(Data));
-    Data* dataFim = malloc(sizeof(Data));
-    char dataInicioSalvar[12], dataFimSalvar[12];
     char cpf[12];
 
     locaBike->idLocacao = obterProximoID(nomeArquivoLocaBike, sizeof(locaBike));
-    int diaReserva, mesReserva, anoReserva;
-    int diaFimReserva, mesFimReserva, anoFimReserva;
-
     printf("║ ID da bicicleta: ");
     if (verificaNumero(scanf("%d", &locaBike->idBicicleta)) != 1) {
         printf("\nEntrada inválida, digite apenas números.  \n");
@@ -84,7 +75,7 @@ LocacaoBicicleta* preencheLocacaoBicicleta(Cliente* cliente, Bicicleta* biciclet
         return NULL;
     }
 
-    bicicleta = encontrarPeloID(bicicleta, "bicicletas.dat", fp, sizeof(Bicicleta), locaBike->idBicicleta);
+    bicicleta = encontrarPeloID(bicicleta, "bicicletas.dat", sizeof(Bicicleta), locaBike->idBicicleta);
     if (bicicleta == NULL) {
         printf("Bicicleta não encontrada!!!\n\n");
         free(locaBike);
@@ -181,14 +172,15 @@ int diasLocado(char* dataInicio, char* dataFim) {
         if (verificaDiferecaNoMes != 1) {
             return 0;
         }
-        // variavel para guardar a quantidade de dias que tem de aluguel antes do mês virar
-        int diaDoMesInicio = (diasNoMes[mesInicio - 1] - diaInicio) + 1;
 
-        // retorno a quantidade de dias, somando apenas os dias de aluguel antes do mês virar e o dia do fim do novo mês
-        return diaDoMesInicio + diaFim;
     }
+    // variavel para guardar a quantidade de dias que tem de aluguel antes do mês virar
+    int diaDoMesInicio = (diasNoMes[mesInicio - 1] - diaInicio) + 1;
 
+    // retorno a quantidade de dias, somando apenas os dias de aluguel antes do mês virar e o dia do fim do novo mês
+    return diaDoMesInicio + diaFim;
 }
+
 char* pegaDataAtual(){
     static char dataFormatada[12];
     time_t t;
@@ -264,7 +256,6 @@ void devolverPatinete(void){
 
 void consultarAluguel(void){
     int id, escolha;
-    FILE* fp;
     menuConsultarAluguel();
 
     LocacaoBicicleta* locaBike = malloc(sizeof(LocacaoBicicleta));
@@ -276,7 +267,7 @@ void consultarAluguel(void){
         printf("\nEntrada inválida, digite apenas números.  \n");
         while (getchar() != '\n');
         getchar();
-        return NULL;
+        return;
     }
     getchar();  
     if (escolha == 1) {
@@ -286,15 +277,15 @@ void consultarAluguel(void){
             printf("\nEntrada inválida, digite apenas números.  \n");
             while (getchar() != '\n');
             getchar();
-            return NULL;
+            return;
         }
         getchar();  
 
-        locaBike = encontrarPeloID(locaBike, "locacaoBicicletas",fp, sizeof(LocacaoBicicleta), id);
+        locaBike = encontrarPeloID(locaBike, "locacaoBicicletas", sizeof(LocacaoBicicleta), id);
 
         if (locaBike == NULL) {
             printf("Locação não encontrada!!!\n\n");
-            return NULL;
+            return;
         }
 
         printLocacao(locaBike);
@@ -302,7 +293,7 @@ void consultarAluguel(void){
     }else if (escolha == 2) {
         printf("Funcionalidade não implementada no momento!!!\n\n");
         getchar();
-        return NULL;
+        return;
     }
    
 
